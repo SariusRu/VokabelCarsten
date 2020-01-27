@@ -1,11 +1,11 @@
 name: Xamarin
-on: [push, pull_request]
+on: push
 
 
 
 jobs:
   Android:
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
     - name: Android
