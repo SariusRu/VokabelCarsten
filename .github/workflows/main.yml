@@ -11,4 +11,6 @@ jobs:
     - name: Android
       run: |
         cd VokabelCarsten
+        nuget restore
+        cd VokabelCarsten
         msbuild VokabelCarsten.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
