@@ -1,14 +1,17 @@
 name: Xamarin
-on: push
 
-
+on: [push]
 
 jobs:
-  Android:
-    runs-on: windows-latest
+  build:
+
+    runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v1
-    - name: Android
-      run: |
-        dotnet restore
-        msbuild VokabelCarsten.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
+    - name: Xamarin
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
