@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Android
       run: |
-        cd '*/VokabelCarsten'
+        cd './VokabelCarsten'
         dotnet restore
         cd VokabelCarsten
         msbuild VokabelCarsten.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
