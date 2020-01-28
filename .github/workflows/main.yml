@@ -1,17 +1,19 @@
 name: Xamarin
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: macos-latest
     steps:
+    - name: CheckOut Files
     - uses: actions/checkout@v1
-    - name: Xamarin
+    - name: Setup dotNET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.100'
-    - name: Build with dotnet
+    - name: builld dotNET
       run: dotnet build --configuration Debug
