@@ -1,14 +1,20 @@
 name: Xamarin
-on: [push, pull_request]
 
-
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  Android:
+  build:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Android
-      run: |
-        cd VokabelCarsten
-        msbuild VokabelCarsten.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
+    - name: Setup dotNET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.100'
+    - name: restore
+      run: nuget restore
+    - name: builld dotNET
+      run: dotnet build --configuration Debug
