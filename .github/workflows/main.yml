@@ -15,6 +15,6 @@ jobs:
       with:
         dotnet-version: '3.1.100'
     - name: restore
-    run: nuget restore
+      run: nuget restore
     - name: builld dotNET
       run: dotnet build --configuration Debug
