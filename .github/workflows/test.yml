@@ -1,12 +1,8 @@
 name: CI on Push and Pull Request
-
 on: [push, pull_request]
-
-jobs:        
-
+jobs:
   Android:
-
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     steps:
 
@@ -16,8 +12,6 @@ jobs:
 
       run: |
 
-        cd VokabelCarsten
-
-        nuget restore
+        msbuild -t:restore
 
         msbuild VokabelCarsten.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
