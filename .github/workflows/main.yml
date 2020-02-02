@@ -1,4 +1,4 @@
-name: Xamarin
+name: Xamarin - Build
 
 on:
   push:
