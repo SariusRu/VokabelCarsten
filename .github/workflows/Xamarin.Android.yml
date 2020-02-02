@@ -12,5 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
-    - name: build
+    - name: Restoring Packages
       run: msBuild -t:restore
+    - name: Build App
+      run: msBuild VokabelCarsten.csproj
