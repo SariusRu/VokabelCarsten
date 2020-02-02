@@ -13,6 +13,10 @@ jobs:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Restoring Packages
-      run: msBuild -t:restore
+      run: |
+                cd VokabelCarsten
+                msBuild -t:restore
     - name: Build App
-      run: msBuild VokabelCarsten.csproj
+      run: |
+                cd VokabelCarsten
+                msBuild VokabelCarsten.csproj
