@@ -10,7 +10,7 @@ using Android.Widget;
 
 // von betti
 
-namespace VokabelCarsten.Classes
+namespace VokabelCarsten
 {
     class Vocab
     {
