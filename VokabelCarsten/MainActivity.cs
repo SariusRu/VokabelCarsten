@@ -23,7 +23,6 @@ namespace VokabelCarsten
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
             DataManager dataManager = DataManager._obj;
-            dataManager.ReadVocabXML();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

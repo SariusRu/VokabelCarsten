@@ -23,17 +23,16 @@ namespace VokabelCarsten
     {
         public static readonly DataManager _obj = new DataManager();
 
-        public static readonly string vocabBoxList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBoxes.csv");
-        public void Display()
-        {
-            Console.WriteLine(true);
-        }
+        private static readonly string vocabBoxList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBoxes.csv");
+
+        private string[,] vocabList = null;
+
         DataManager() {
             
         }
 
 
-        public bool ReadVocabXML()
+        private bool ReadVocabBoxesXML()
         {
 
             if(!File.Exists(vocabBoxList))
@@ -51,6 +50,36 @@ namespace VokabelCarsten
            
         }
 
+        public bool refreshVocabBoxes()
+        {
+            ReadVocabBoxesXML();
+            return true;
+        }
+
+        public bool SaveVocabBoxesXML()
+        {
+            return true;
+        }
+
+        public bool ReadVocabsXML(int vocabBoxID)
+        {
+            return true;
+        }
+
+        public bool ReadVocabsXML(string name)
+        {
+            return true;
+        }
+
+        public bool SaveVocabsXML(int vocabBoxID)
+        {
+            return true;
+        }
+
+        public bool SaveVocabsXML(string name)
+        {
+            return true;
+        }
 
 
     }
