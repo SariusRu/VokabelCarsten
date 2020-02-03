@@ -28,10 +28,12 @@ namespace VokabelCarsten
         {
             Console.WriteLine(true);
         }
-        DataManager() { }
+        DataManager() {
+            
+        }
 
 
-        private bool ReadVocabXML()
+        public bool ReadVocabXML()
         {
 
             if(!File.Exists(vocabBoxList))
