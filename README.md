@@ -8,10 +8,10 @@ This Android-Application is a project written for the class "Software-Engineerin
 
 # Coding-Standards
 ## Klassen
- - CamelCase-Convention. DasW‰reAlsoEinKlassenName
- - Klassen werden groﬂ geschrieben.
+ - CamelCase-Convention. DasW√§reAlsoEinKlassenName
+ - Klassen werden gro√ü geschrieben.
 ## Variablen
- - CamelCase-Convention.
+ - CamelCase-Convention. dasW√§reEineVariable
  - Variablen werden klein geschrieben
 ## Formatierung
  - Da alle mit VS Community programmieren, wird die Standard-Formatierung von VS Community als Formatierung festgelegt.
