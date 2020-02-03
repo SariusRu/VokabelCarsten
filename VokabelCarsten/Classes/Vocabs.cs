@@ -27,10 +27,6 @@ namespace VokabelCarsten.Classes
         }
 
 
-        public void DeleteVocab()
-        {
-        }
-
         public void EditVocab(string si1, string si2, int lev)
         {
             side1 = si1;
