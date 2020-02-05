@@ -1,5 +1,6 @@
 using System;
-using Vocabs.cs;
+using System.Collections.Generic;
+
 
 namespace VokabelCarsten
 {
@@ -11,7 +12,7 @@ namespace VokabelCarsten
 	public string name { get; set; }
 	public string spalte1 { get; set; }
 	public string spalte2 { get; set; }
-	public List<Vocabs> Vokabeln { get; set; }
+	public List<Vocab> Vokabeln { get; set; }
 	private Random rndGenerator;
 	
 
@@ -21,24 +22,22 @@ namespace VokabelCarsten
 			name = Na;
 			spalte1 = S1;
 			spalte2 = S2;
-			Vokabeln = new List<Vocabs>();
+			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
 		}
-		public void addVokabel(Vocabs Vokabel)
+		public void addVokabel(Vocab Vokabel)
         {
 			Vokabeln.Add(Vokabel);
-			anzVokabeln++;
 		}
 		public void removeVokabel(int id)
         {
 			Vokabeln.RemoveAt(id);
-			anzVokabeln--;
 		}
-		public Vocabs getVokabel(int id)
+		public Vocab getVokabel(int id)
         {
 			return Vokabeln[id];
         }
-		public Vocabs getRandomVok()
+		public Vocab getRandomVok()
         {
 			return Vokabeln[rndGenerator.Next(Vokabeln.Count)];
         }
@@ -46,12 +45,12 @@ namespace VokabelCarsten
         {
 			return Vokabeln.Count;
         }
-		public Vocabs[] getVokFromFach(int Fachnummer)
+		public List<Vocab> getVokFromFach(int Fachnummer)
         {
-			List<Vocabs> retVocs = new List<Vocabs>();
+			List<Vocab> retVocs = new List<Vocab>();
 			for(int i = 0; i < Vokabeln.Count; i++)
             {
-				if (Vokabeln[i].getFach() == Fachnummer)
+				if (Vokabeln[i].GetLevel() == Fachnummer)
 					retVocs.Add(Vokabeln[i]);
             }
 			return retVocs;
