@@ -32,7 +32,7 @@ namespace VokabelCarsten
             {
                 throw new FileNotReadException("File wasn't read properly");
             }
-            
+
         }
 
         private bool readVocabList()
