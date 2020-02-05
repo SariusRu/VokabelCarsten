@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Xml;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -23,31 +23,36 @@ namespace VokabelCarsten
     {
         public static readonly DataManager _obj = new DataManager();
 
-        private static readonly string vocabBoxList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBoxes.csv");
-
-        private string[,] vocabList = null;
-
-        DataManager() {
-            
-        }
-
-
-        private bool ReadVocabBoxesXML()
+        private string[,] vocabBoxes;
         {
-
-            if(!File.Exists(vocabBoxList))
+            if (vocabBoxList == null || !File.Exists(vocabBoxList))
             {
-                File.Create(vocabBoxList);
-                return false;
-            }
-            else
-            {
-                using (XmlReader XmlReader = XmlReader.Create(vocabBoxList))
+                using (XmlWriter writer = XmlWriter.Create("vocabBoxes.xml"))
                 {
-                    return true;
+                    writer.WriteStartElement("VocabBox");
+                    writer.WriteElementString("name", "English");
+                    writer.WriteEndElement();
+                    writer.Flush();
+                }
+                    writer.WriteElementString("filePath", "english.xml");
+            }
+            using (XmlReader reader = XmlReader.Create("vocabBoxes.xml"))
+                while (reader.Read())
+                int i = 0;
+            {
+                {
+                    switch (reader.NodeType)
+                        case XmlNodeType.Text:
+                    {
+                            vocabBoxes[i, 0] = reader.GetAttribute("name");
+                            i += 1;
+                            vocabBoxes[i, 1] = reader.GetAttribute("filePath");
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-           
         }
 
         public bool refreshVocabBoxes()
