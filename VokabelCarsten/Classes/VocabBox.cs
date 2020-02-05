@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using Vocabs.cs;
 
 namespace VokabelCarsten
 {
+	//noah
 	class VocabBox
 	{
 
