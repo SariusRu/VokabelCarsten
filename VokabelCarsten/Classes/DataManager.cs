@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Xml;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -23,41 +22,64 @@ namespace VokabelCarsten
     {
         public static readonly DataManager _obj = new DataManager();
 
+        private static readonly string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBoxes.xml");
+
         private string[,] vocabBoxes;
+
+        public DataManager()
         {
-            if (vocabBoxList == null || !File.Exists(vocabBoxList))
+            if (!readVocabList())
+            {
+                throw new FileNotReadException("File wasn't read properly");
+            }
+            
+        }
+
+        private bool readVocabList()
+        {
+            if (vocabFileList == null || !File.Exists(vocabFileList))
             {
                 using (XmlWriter writer = XmlWriter.Create("vocabBoxes.xml"))
                 {
                     writer.WriteStartElement("VocabBox");
                     writer.WriteElementString("name", "English");
+                    writer.WriteElementString("filePath", "english.xml");
                     writer.WriteEndElement();
                     writer.Flush();
+                    return true;
                 }
-                    writer.WriteElementString("filePath", "english.xml");
+
             }
-            using (XmlReader reader = XmlReader.Create("vocabBoxes.xml"))
-                while (reader.Read())
-                int i = 0;
+            else
             {
+                using (XmlReader reader = XmlReader.Create("vocabBoxes.xml"))
                 {
-                    switch (reader.NodeType)
-                        case XmlNodeType.Text:
+                    int i = 0;
+                    while (reader.Read())
                     {
-                            vocabBoxes[i, 0] = reader.GetAttribute("name");
-                            i += 1;
-                            vocabBoxes[i, 1] = reader.GetAttribute("filePath");
-                            break;
-                        default:
-                            break;
+                        switch (reader.NodeType)
+                        {
+                            case XmlNodeType.Text:
+                                vocabBoxes[i, 0] = reader.GetAttribute("name");
+                                i += 1;
+                                vocabBoxes[i, 1] = reader.GetAttribute("filePath");
+                                return true;
+                            default:
+                                return false;
+                        }
+
                     }
+                    return false;
                 }
             }
         }
 
         public bool refreshVocabBoxes()
         {
-            ReadVocabBoxesXML();
+            if (!readVocabList())
+            {
+                throw new FileNotReadException("File wasn't read properly");
+            }
             return true;
         }
 
