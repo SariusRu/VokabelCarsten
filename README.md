@@ -7,6 +7,7 @@ This Android-Application is a project written for the class "Software-Engineerin
 # Test-Status
 
 # Coding-Standards
+Alle Klassen und Kommentare werden in Englisch geschrieben.
 ## Klassen
  - CamelCase-Convention. DasWäreAlsoEinKlassenName
  - Klassen werden groß geschrieben.
