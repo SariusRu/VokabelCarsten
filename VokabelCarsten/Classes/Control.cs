@@ -27,12 +27,12 @@ namespace VokabelCarsten.Classes
 
         #region From GUI
 
-        public void selectedKasten(string pName)
+        public void selectedBox(string pName)
         { 
         
         }
 
-        public void selectedModus(string pName)
+        public void selectedMode(string pName)
         {
 
         }
@@ -43,59 +43,59 @@ namespace VokabelCarsten.Classes
 
         #endregion
 
-        #region Vokabelkasten
+        #region VocabBox
 
         //How to identify Kasten? By Name, ID, something different?
 
-        public void createKasten(string pName, string pSpalte1, string pSpalte2)
+        public void createBox(string pName, string pColumn1, string pColumn2)
         {
-            //kasten.Vokabelkasten(pName, pSpalte1, pSpalte2);
+            //kasten.VocabBox(pName, pColumn1, pColumn2);
         }
 
-        public void deleteKasten(int pID)
+        public void deleteBox(int pID)
         {
 
         }
 
-        public void renameKastenName(string pName, string pNameNew)
+        public void renameBoxName(string pName, string pNameNew)
         {
             //kasten.setName(pNameNew);
         }
 
-        public void renameKastenSpalten(string pName, string pSpalte1, string pSpalte2)
+        public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
         {
-            //kasten.setSpalte1(pSpalte1);
-            //kasten.setSpalrte2(pSpalte2);
+            //kasten.setColumn1(pColumn1);
+            //kasten.setColumn2(pColumn2);
         }
 
         #endregion
 
-        #region Vokabel
+        #region Vocab
 
         //How to identify Vokabel? By Name, ID, something different?
 
-        public void createVokabel(string pSeite1, string pSeite2, int pKasten)
+        public void createVocab(string pSide1, string pSide2, int pBox)
         {
-            //vokabel.Vokabel(pSeite1, pSeite2, pKasten);
+            //vokabel.Vokabel(pSide1, pSide2, pBox);
         }
 
-        public void rmVokabel(int pID)
+        public void rmVocab(int pID)
         {
 
         }
 
-        public void changeVokabel(string pSeite1, string pSeite2, string pKasten, int pFach)
+        public void changeVokabel(string pSide1, string pSide2, string pBox, int pLevel)
         {
-            /*vokabel.setSeite1(pSeite1);
-            vokabel.setSeite2(pSeite2);
-            vokabel.setFach(pFach);*/
+            /*vokabel.setSide1(pSide1);
+            vokabel.setSide2(pSide2);
+            vokabel.setLevel(pLevel);*/
         }
 
         #endregion
 
         #region Learning
 
-        public void lernen(string pKasten, string pModus)
+        public void startLearning(string pBox, string pMode)
         { 
         
         }
@@ -103,6 +103,7 @@ namespace VokabelCarsten.Classes
         #endregion
 
         #region DataManager
+
         public void loadData()
         { 
         
