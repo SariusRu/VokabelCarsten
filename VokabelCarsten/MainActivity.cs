@@ -24,7 +24,6 @@ namespace VokabelCarsten
             navigation.SetOnNavigationItemSelectedListener(this);
 
             DataManager dataManager = DataManager._obj;
-            dataManager.refreshVocabBoxes();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
