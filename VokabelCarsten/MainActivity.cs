@@ -17,11 +17,11 @@ namespace VokabelCarsten
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.Main_Activity);
 
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
-            navigation.SetOnNavigationItemSelectedListener(this);
+            //BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+            //navigation.SetOnNavigationItemSelectedListener(this);
 
             DataManager dataManager = DataManager._obj;
         }
