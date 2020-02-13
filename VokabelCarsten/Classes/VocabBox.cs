@@ -14,6 +14,7 @@ namespace VokabelCarsten
 	public string spalte2 { get; set; }
 	public List<Vocab> Vokabeln { get; set; }
 	private Random rndGenerator;
+	private string filePath { get; set; }
 	
 
 
@@ -24,6 +25,12 @@ namespace VokabelCarsten
 			spalte2 = S2;
 			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
+
+		}
+
+		public string getName()
+		{
+			return name;
 		}
 		public void addVokabel(Vocab Vokabel)
         {
@@ -63,5 +70,9 @@ namespace VokabelCarsten
         {
 			//????
         }
+		public void setFilePath(string file)
+		{
+			filePath = file;
+		}
 	}
 }
