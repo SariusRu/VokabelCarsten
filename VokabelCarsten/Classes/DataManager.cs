@@ -10,6 +10,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 //
 //Diese Klasse wird das bereitstellen, laden und verwalten von Tabellen übernehmen.
@@ -22,9 +24,14 @@ namespace VokabelCarsten
     {
         public static readonly DataManager _obj = new DataManager();
 
-        private static readonly string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBoxes.xml");
+        private static readonly string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "vocabBoxes.xml");
 
-        private string[,] vocabBoxes;
+        private VocabBox[] vocabBoxes;
+
+        private int loadedBox;
+        private string[,,] loadedVocabes;
+
+        public string status = null;
 
         public DataManager()
         {
@@ -32,54 +39,70 @@ namespace VokabelCarsten
             {
                 throw new FileNotReadException("File wasn't read properly");
             }
+        }
 
+
+        async Task TestWriter()
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Async = true;
+
+            using (XmlWriter writer = XmlWriter.Create(vocabFileList, settings))
+            {
+                await writer.WriteStartElementAsync("pf", "root", "http://ns");
+                await writer.WriteStartElementAsync(null, "sub", null);
+                await writer.WriteAttributeStringAsync(null, "att", null, "val");
+                await writer.WriteStringAsync("text");
+                await writer.WriteEndElementAsync();
+                await writer.WriteProcessingInstructionAsync("pName", "pValue");
+                await writer.WriteCommentAsync("cValue");
+                await writer.WriteCDataAsync("cdata value");
+                await writer.WriteEndElementAsync();
+                await writer.FlushAsync();
+            }
         }
 
         private bool readVocabList()
         {
             if (vocabFileList == null || !File.Exists(vocabFileList))
             {
-                using (XmlWriter writer = XmlWriter.Create("vocabBoxes.xml"))
+                var task = Task.Run(async () =>
                 {
-                    writer.WriteStartElement("VocabBox");
-                    writer.WriteElementString("name", "English");
-                    writer.WriteElementString("filePath", "english.xml");
-                    writer.WriteEndElement();
-                    writer.Flush();
-                    return true;
-                }
-
+                    await TestWriter();
+                });
             }
-            else
+            using (XmlReader reader = XmlReader.Create("vocabBoxes.xml"))
             {
-                using (XmlReader reader = XmlReader.Create("vocabBoxes.xml"))
+                while (reader.Read())
                 {
-                    int i = 0;
-                    while (reader.Read())
+                    switch (reader.NodeType)
                     {
-                        switch (reader.NodeType)
-                        {
-                            case XmlNodeType.Text:
-                                vocabBoxes[i, 0] = reader.GetAttribute("name");
-                                i += 1;
-                                vocabBoxes[i, 1] = reader.GetAttribute("filePath");
-                                return true;
-                            default:
-                                return false;
-                        }
-
+                        case XmlNodeType.Text:
+                            //vocabBoxes[i, 0] = reader.GetAttribute("name");
+                            //i += 1;
+                            //vocabBoxes[i, 1] = reader.GetAttribute("filePath");
+                            break;
+                        default:
+                            break;
                     }
-                    return false;
+
                 }
+
             }
+
+            return true;
+
         }
+
 
         public bool refreshVocabBoxes()
         {
-            if (!readVocabList())
-            {
-                throw new FileNotReadException("File wasn't read properly");
-            }
+            //if (readVocabList())
+            //{
+            //    throw new FileNotReadException("File wasn't read properly");
+            //}
+            //loadedBox = 0;
+            //loadedVocabes = null;
             return true;
         }
 
@@ -105,6 +128,24 @@ namespace VokabelCarsten
 
         public bool SaveVocabsXML(string name)
         {
+            return true;
+        }
+
+        public bool CreateVocabBox(string name)
+        {
+            foreach (VocabBox item in vocabBoxes)
+            {
+                if (item.getName() == name)
+                {
+                    throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
+                }
+            }
+
+            List<VocabBox> tmpVocabBoxesLsit = vocabBoxes.ToList();
+            VocabBox tmp = new VocabBox("Name","test1","test2");
+            tmp.setFilePath(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBox_" + name + ".xml"));
+            tmpVocabBoxesLsit.Add(tmp);
+            vocabBoxes = tmpVocabBoxesLsit.ToArray();
             return true;
         }
 
