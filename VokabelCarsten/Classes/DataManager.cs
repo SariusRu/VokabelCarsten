@@ -39,7 +39,6 @@ namespace VokabelCarsten
             {
                 throw new FileNotReadException("File wasn't read properly");
             }
-            readVocabListAsync();
         }
 
 
@@ -63,7 +62,7 @@ namespace VokabelCarsten
             }
         }
 
-        private void readVocabListAsync()
+        private bool readVocabList()
         {
             if (vocabFileList == null || !File.Exists(vocabFileList))
             {
@@ -90,6 +89,8 @@ namespace VokabelCarsten
                 }
 
             }
+
+            return true;
 
         }
 
@@ -141,8 +142,7 @@ namespace VokabelCarsten
             }
 
             List<VocabBox> tmpVocabBoxesLsit = vocabBoxes.ToList();
-            VocabBox tmp = new VocabBox();
-            tmp.setName(name);
+            VocabBox tmp = new VocabBox("Name","test1","test2");
             tmp.setFilePath(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBox_" + name + ".xml"));
             tmpVocabBoxesLsit.Add(tmp);
             vocabBoxes = tmpVocabBoxesLsit.ToArray();
