@@ -1,5 +1,20 @@
 # VokabelCarsten
 This Android-Application is a project written for the class "Software-Engineering" at DHBW Ravensburg
 
-# Status
-![.NET Core](https://github.com/SariusRu/VokabelCarsten/workflows/.NET%20Core/badge.svg?branch=master)
+# Build-Status
+![Xamarin](https://github.com/SariusRu/VokabelCarsten/workflows/Xamarin/badge.svg?branch=master)
+
+# Test-Status
+
+# Coding-Standards
+Alle Klassen und Kommentare werden in Englisch geschrieben.
+## Klassen
+ - CamelCase-Convention. DasWäreAlsoEinKlassenName
+ - Klassen werden groß geschrieben.
+## Variablen
+ - CamelCase-Convention. dasWäreEineVariable
+ - Variablen werden klein geschrieben
+## Formatierung
+ - Da alle mit VS Community programmieren, wird die Standard-Formatierung von VS Community als Formatierung festgelegt.
+## Dokumentation
+ - Zur Dokumentation wird Doxygen in der C-Notation verwendet

@@ -1,0 +1,25 @@
+name: Xamarin
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Restoring Packages
+      run: |
+                cd VokabelCarsten
+                msBuild -t:restore
+    - name: Build App
+      run: |
+                cd VokabelCarsten
+                msBuild VokabelCarsten.csproj
