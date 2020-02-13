@@ -35,10 +35,10 @@ namespace VokabelCarsten
 
         public DataManager()
         {
-            //if (!readVocabList())
-            //{
-            //    throw new FileNotReadException("File wasn't read properly");
-            //}
+            if (!readVocabList())
+            {
+                throw new FileNotReadException("File wasn't read properly");
+            }
             readVocabListAsync();
         }
 

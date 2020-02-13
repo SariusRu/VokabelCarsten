@@ -65,6 +65,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Control.cs" />
     <Compile Include="Classes\DataManager.cs" />
     <Compile Include="Classes\Exception.cs" />
     <Compile Include="Classes\VocabBox.cs" />

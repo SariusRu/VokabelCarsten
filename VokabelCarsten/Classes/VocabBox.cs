@@ -1,40 +1,67 @@
-﻿using System;
-using System.Linq;
-using System.Text;
+using System;
+using System.Collections.Generic;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-// von betti
 
 namespace VokabelCarsten
 {
-    class VocabBox
-    {
-        private int ID { get; set; }
-        private string name { get; set; }       //Vocab on side 1 e.g. "to walk2
-        private string filePath { get; set; }
-        private string side1Name { get; set; }
-        private string side2Name { get; set; }
-        private Vocab[] Vokablen { get; set; }
+	//noah
+	class VocabBox
+	{
 
-        public string getName()
-        {
-            return name;
-        }
+	public int id { get; set; }
+	public string name { get; set; }
+	public string spalte1 { get; set; }
+	public string spalte2 { get; set; }
+	public List<Vocab> Vokabeln { get; set; }
+	private Random rndGenerator;
+	
 
-        public void setName(string newName)
-        {
-            name = newName;
-        }
 
-        public void setFilePath(string newFilepath)
+		public VocabBox(string Na, string S1, string S2)
         {
-            filePath = newFilepath;
+			name = Na;
+			spalte1 = S1;
+			spalte2 = S2;
+			Vokabeln = new List<Vocab>();
+			rndGenerator = new Random();
+		}
+		public void addVokabel(Vocab Vokabel)
+        {
+			Vokabeln.Add(Vokabel);
+		}
+		public void removeVokabel(int id)
+        {
+			Vokabeln.RemoveAt(id);
+		}
+		public Vocab getVokabel(int id)
+        {
+			return Vokabeln[id];
         }
-    }
+		public Vocab getRandomVok()
+        {
+			return Vokabeln[rndGenerator.Next(Vokabeln.Count)];
+        }
+		public int getAnzVok()
+        {
+			return Vokabeln.Count;
+        }
+		public List<Vocab> getVokFromFach(int Fachnummer)
+        {
+			List<Vocab> retVocs = new List<Vocab>();
+			for(int i = 0; i < Vokabeln.Count; i++)
+            {
+				if (Vokabeln[i].GetLevel() == Fachnummer)
+					retVocs.Add(Vokabeln[i]);
+            }
+			return retVocs;
+        }
+		public int getId()
+        {
+			return id;
+        }
+		public void sortVokabeln(int id)
+        {
+			//????
+        }
+	}
 }
