@@ -1,19 +1,8 @@
-﻿using System;
-using System.Xml;
+﻿using Android.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using System.Xml.Serialization;
-using Android.Util;
 
 //
 //Diese Klasse wird das bereitstellen, laden und verwalten von Tabellen übernehmen.
@@ -76,12 +65,29 @@ namespace VokabelCarsten
 
         private void restoreLoadedBox()
         {
-            SaveVocabBoxesXML(loadedBox);
+            SaveVocabBoxXML(loadedBox);
             loadedBox.unloadVocabs();
             vocabBoxes.Add(loadedBox);
             loadedBox = null;
         }
 
+        private void SaveVocabBoxXML(VocabBox loadedBox)
+        {
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
+            File.Delete(vocabBoxPath);
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
+                using (Stream writer = new FileStream(vocabBoxPath, FileMode.Create))
+                {
+                    ser.Serialize(writer, loadedBox);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("Exception", ex.InnerException.ToString());
+            }
+        }
 
         public bool refreshVocabBoxes()
         {
@@ -89,10 +95,19 @@ namespace VokabelCarsten
             return readVocabList();
         }
 
+        public bool CreateVocabBox(VocabBox newBox)
+        {
+            if(CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
+            vocabBoxes.Add(newBox);
+            selectVocabBox(vocabBoxes.Count - 1);
+            return true;
+        }
+
         public bool SaveVocabBoxesXML(VocabBox newBox)
         {
             refreshVocabBoxes();
-            vocabBoxes.Add(newBox);
+            restoreLoadedBox();
+
             try
             {
                 XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
