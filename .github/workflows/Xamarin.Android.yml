@@ -26,4 +26,4 @@ jobs:
   Doxygen:
     runs-on: windows-latest
     steps:
-      - run: echo "Hello World"
+      - run: doxygen
