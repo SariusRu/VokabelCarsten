@@ -23,3 +23,7 @@ jobs:
       run: |
                 cd VokabelCarsten
                 msBuild VokabelCarsten.csproj
+  Doxygen:
+    runs-on: windows-latest
+    steps:
+      - run: doxygen
