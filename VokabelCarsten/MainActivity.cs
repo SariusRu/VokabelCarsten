@@ -24,6 +24,11 @@ namespace VokabelCarsten
             //navigation.SetOnNavigationItemSelectedListener(this);
 
             DataManager dataManager = DataManager._obj;
+            VocabBox[] allBoxes = dataManager.getVocabBoxList();
+            dataManager.selectVocabBox(0);
+            Vocab tmp = new Vocab("test", "test", 1);
+            dataManager.loadedBox.addVokabel(tmp);
+            dataManager.SaveVocabBoxesXML();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

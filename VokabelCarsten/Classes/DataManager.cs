@@ -17,23 +17,27 @@ namespace VokabelCarsten
 
         private string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "vocabBoxes.xml");
 
-        private List<VocabBox> vocabBoxes;
+        private List<VocabBox> vocabBoxes = new List<VocabBox>();
 
-        private VocabBox loadedBox;
+        public VocabBox loadedBox { get; set; }
         private List<VocabBox> loadedVocabes = new List<VocabBox>();
 
         public string status = null;
 
         public DataManager()
         {
-            if (!readVocabList())
+            if (!readVocabBoxList())
             {
                 throw new FileNotReadException("File wasn't read properly");
             }
         }
 
-        private bool readVocabList()
+        private bool readVocabBoxList()
         {
+            if(!File.Exists(vocabFileList) || vocabFileList == null)
+            {
+                File.Create(vocabFileList);
+            }
             try
             {
                 string test = File.ReadAllText(vocabFileList);
@@ -46,6 +50,7 @@ namespace VokabelCarsten
             }                
             catch(Exception ex)
             {
+                return true;
                 Log.Debug("Exception:", ex.InnerException.ToString());
             }
             return true;
@@ -59,24 +64,41 @@ namespace VokabelCarsten
         public VocabBox selectVocabBox(int select)
         {
             loadedBox = vocabBoxes[select];
-            vocabBoxes.Remove(loadedBox);
+            readVocabBox(loadedBox);
             return loadedBox;
         }
 
-        private void restoreLoadedBox()
+        public void restoreLoadedBox()
         {
             SaveVocabBoxXML(loadedBox);
             loadedBox.unloadVocabs();
-            vocabBoxes.Add(loadedBox);
             loadedBox = null;
+        }
+
+        private void readVocabBox(VocabBox loadedBox)
+        {
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
+            String test = File.ReadAllText(vocabBoxPath);
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
+                using(Stream reader = new FileStream(vocabBoxPath, FileMode.Open))
+                {
+                    this.loadedBox = (VocabBox)ser.Deserialize(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("Exception", ex.InnerException.ToString());
+            }
         }
 
         private void SaveVocabBoxXML(VocabBox loadedBox)
         {
             string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
-            File.Delete(vocabBoxPath);
             try
             {
+                File.Delete(vocabBoxPath);
                 XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
                 using (Stream writer = new FileStream(vocabBoxPath, FileMode.Create))
                 {
@@ -92,20 +114,23 @@ namespace VokabelCarsten
         public bool refreshVocabBoxes()
         {
             restoreLoadedBox();
-            return readVocabList();
+            return readVocabBoxList();
         }
 
         public bool CreateVocabBox(VocabBox newBox)
         {
-            if(CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
-            vocabBoxes.Add(newBox);
-            selectVocabBox(vocabBoxes.Count - 1);
+            if (CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
+            {
+                vocabBoxes.Add(newBox);
+                selectVocabBox(vocabBoxes.Count - 1);
+            }                  
+                
+            
             return true;
         }
 
-        public bool SaveVocabBoxesXML(VocabBox newBox)
+        public bool SaveVocabBoxesXML()
         {
-            refreshVocabBoxes();
             restoreLoadedBox();
 
             try
@@ -126,18 +151,21 @@ namespace VokabelCarsten
 
         public bool CheckExistenceVocabBox(string name, string filePath)
         {
-            foreach (VocabBox item in vocabBoxes)
+            if (vocabBoxes != null)
             {
-                if (item.getName() == name)
+                foreach (VocabBox item in vocabBoxes)
                 {
-                    throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
+                    if (item.getName() == name)
+                    {
+                        throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
+                    }
                 }
-            }
-            foreach (VocabBox item in vocabBoxes)
-            {
-                if (item.getName() == filePath)
+                foreach (VocabBox item in vocabBoxes)
                 {
-                    throw new VocabBoxAlreadyExists("A Vocabbox with this Filepath already exists.");
+                    if (item.getName() == filePath)
+                    {
+                        throw new VocabBoxAlreadyExists("A Vocabbox with this Filepath already exists.");
+                    }
                 }
             }
             return true;
