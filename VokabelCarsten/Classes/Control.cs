@@ -10,12 +10,12 @@ namespace vokabelcarsten_tests
     {
         #region Global Variables
 
-        private GUI theGUI;
+        private string theGUI; //change back to GUI type
         private List<VocabBox> vocabboxList = new List<VocabBox>();
 
         #endregion
 
-        public Control(GUI pGUI)
+        public Control(string pGUI)
         {
             theGUI = pGUI;
             vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch"));
@@ -47,17 +47,17 @@ namespace vokabelcarsten_tests
 
         public void printAllBoxes()
         {
-            theGUI.appendTB_outputText("List of saved Vocab Boxes");
+            /*theGUI.appendTB_outputText("List of saved Vocab Boxes");
             for (int i = 0; i < vocabboxList.Count; i++)
             {
                 theGUI.appendTB_outputText(vocabboxList[i].name);
-            }
+            }*/
         }
 
         public void createBox(string pName, string pColumn1, string pColumn2)
         {
             vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2));
-            theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");
+            //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");
             vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end"));
         }
 
@@ -66,12 +66,12 @@ namespace vokabelcarsten_tests
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
             if (index == -1)
             {
-                theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
                 return;
             }
             vocabboxList.RemoveAt(index); //If we choose to identify by ID and ID is the list index 
             //IF ID is equal to the index, the IDs of all items have to be adjusted
-            theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
+            //theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
         }
 
         public void renameBoxName(string pName, string pNameNew)
@@ -79,11 +79,11 @@ namespace vokabelcarsten_tests
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
             if (index == -1)
             {
-                theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
                 return;
             }
             vocabboxList[index].name = pNameNew;
-            theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");
+            //theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");
         }
 
         public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
@@ -91,12 +91,12 @@ namespace vokabelcarsten_tests
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
             if (index == -1)
             {
-                theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
                 return;
             }
             vocabboxList[index].spalte1 = pColumn1;
             vocabboxList[index].spalte2 = pColumn2;
-            theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");
+            //theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");
         }
 
         #endregion
