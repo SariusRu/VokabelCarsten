@@ -1,17 +1,8 @@
-﻿using System;
-using System.Xml;
+﻿using Android.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.Xml.Serialization;
 
 //
 //Diese Klasse wird das bereitstellen, laden und verwalten von Tabellen übernehmen.
@@ -24,131 +15,160 @@ namespace VokabelCarsten
     {
         public static readonly DataManager _obj = new DataManager();
 
-        private static readonly string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "vocabBoxes.xml");
+        private string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "vocabBoxes.xml");
 
-        private VocabBox[] vocabBoxes;
+        private List<VocabBox> vocabBoxes = new List<VocabBox>();
 
-        private int loadedBox;
-        private string[,,] loadedVocabes;
+        public VocabBox loadedBox { get; set; }
+        private List<VocabBox> loadedVocabes = new List<VocabBox>();
 
         public string status = null;
 
         public DataManager()
         {
-            if (!readVocabList())
+            if (!readVocabBoxList())
             {
                 throw new FileNotReadException("File wasn't read properly");
             }
         }
 
-
-        async Task TestWriter()
+        private bool readVocabBoxList()
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Async = true;
-
-            using (XmlWriter writer = XmlWriter.Create(vocabFileList, settings))
+            if(!File.Exists(vocabFileList) || vocabFileList == null)
             {
-                await writer.WriteStartElementAsync("pf", "root", "http://ns");
-                await writer.WriteStartElementAsync(null, "sub", null);
-                await writer.WriteAttributeStringAsync(null, "att", null, "val");
-                await writer.WriteStringAsync("text");
-                await writer.WriteEndElementAsync();
-                await writer.WriteProcessingInstructionAsync("pName", "pValue");
-                await writer.WriteCommentAsync("cValue");
-                await writer.WriteCDataAsync("cdata value");
-                await writer.WriteEndElementAsync();
-                await writer.FlushAsync();
+                File.Create(vocabFileList);
             }
-        }
-
-        private bool readVocabList()
-        {
-            if (vocabFileList == null || !File.Exists(vocabFileList))
+            try
             {
-                var task = Task.Run(async () =>
+                string test = File.ReadAllText(vocabFileList);
+                XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
+                using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
                 {
-                    await TestWriter();
-                });
-            }
-            using (XmlReader reader = XmlReader.Create("vocabBoxes.xml"))
-            {
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Text:
-                            //vocabBoxes[i, 0] = reader.GetAttribute("name");
-                            //i += 1;
-                            //vocabBoxes[i, 1] = reader.GetAttribute("filePath");
-                            break;
-                        default:
-                            break;
-                    }
-
+                    // Call the Deserialize method to restore the object's state.
+                    vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
                 }
-
+            }                
+            catch(Exception ex)
+            {
+                return true;
+                Log.Debug("Exception:", ex.InnerException.ToString());
             }
-
             return true;
-
         }
 
+        public VocabBox[] getVocabBoxList()
+        {
+            return vocabBoxes.ToArray();
+        }
+
+        public VocabBox selectVocabBox(int select)
+        {
+            loadedBox = vocabBoxes[select];
+            readVocabBox(loadedBox);
+            return loadedBox;
+        }
+
+        public void restoreLoadedBox()
+        {
+            SaveVocabBoxXML(loadedBox);
+            loadedBox.unloadVocabs();
+            loadedBox = null;
+        }
+
+        private void readVocabBox(VocabBox loadedBox)
+        {
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
+            String test = File.ReadAllText(vocabBoxPath);
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
+                using(Stream reader = new FileStream(vocabBoxPath, FileMode.Open))
+                {
+                    this.loadedBox = (VocabBox)ser.Deserialize(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("Exception", ex.InnerException.ToString());
+            }
+        }
+
+        private void SaveVocabBoxXML(VocabBox loadedBox)
+        {
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
+            try
+            {
+                File.Delete(vocabBoxPath);
+                XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
+                using (Stream writer = new FileStream(vocabBoxPath, FileMode.Create))
+                {
+                    ser.Serialize(writer, loadedBox);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("Exception", ex.InnerException.ToString());
+            }
+        }
 
         public bool refreshVocabBoxes()
         {
-            //if (readVocabList())
-            //{
-            //    throw new FileNotReadException("File wasn't read properly");
-            //}
-            //loadedBox = 0;
-            //loadedVocabes = null;
+            restoreLoadedBox();
+            return readVocabBoxList();
+        }
+
+        public bool CreateVocabBox(VocabBox newBox)
+        {
+            if (CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
+            {
+                vocabBoxes.Add(newBox);
+                selectVocabBox(vocabBoxes.Count - 1);
+            }                  
+                
+            
             return true;
         }
 
         public bool SaveVocabBoxesXML()
         {
-            return true;
-        }
+            restoreLoadedBox();
 
-        public bool ReadVocabsXML(int vocabBoxID)
-        {
-            return true;
-        }
-
-        public bool ReadVocabsXML(string name)
-        {
-            return true;
-        }
-
-        public bool SaveVocabsXML(int vocabBoxID)
-        {
-            return true;
-        }
-
-        public bool SaveVocabsXML(string name)
-        {
-            return true;
-        }
-
-        public bool CreateVocabBox(string name)
-        {
-            foreach (VocabBox item in vocabBoxes)
+            try
             {
-                if (item.getName() == name)
+                XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
+                File.Delete(vocabFileList);
+                using (Stream writer = new FileStream(vocabFileList, FileMode.Create))
                 {
-                    throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
+                    ser.Serialize(writer, vocabBoxes);
                 }
             }
-
-            List<VocabBox> tmpVocabBoxesLsit = vocabBoxes.ToList();
-            VocabBox tmp = new VocabBox("Name","test1","test2");
-            tmp.setFilePath(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "vocabBox_" + name + ".xml"));
-            tmpVocabBoxesLsit.Add(tmp);
-            vocabBoxes = tmpVocabBoxesLsit.ToArray();
+            catch (Exception ex)
+            {
+                Log.Debug("Exception", ex.InnerException.ToString());
+            }
             return true;
         }
 
-
+        public bool CheckExistenceVocabBox(string name, string filePath)
+        {
+            if (vocabBoxes != null)
+            {
+                foreach (VocabBox item in vocabBoxes)
+                {
+                    if (item.getName() == name)
+                    {
+                        throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
+                    }
+                }
+                foreach (VocabBox item in vocabBoxes)
+                {
+                    if (item.getName() == filePath)
+                    {
+                        throw new VocabBoxAlreadyExists("A Vocabbox with this Filepath already exists.");
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
