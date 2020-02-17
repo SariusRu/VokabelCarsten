@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Text;
 
@@ -12,12 +13,18 @@ using Android.Widget;
 
 namespace VokabelCarsten
 {
-    class Vocab
+    [Serializable]
+    public class Vocab
     {
         public string side1 { get; set; }       //Vocab on side 1 e.g. "to walk2
         public string side2 { get; set; }       // Vocab on side 2 e.g."laufen"
         public int level { get; set; } = 0;
         public int id { get; set; }
+
+        public Vocab()
+        {
+
+        }
 
         public Vocab(string si1, string si2, int ID)   //Konstruktor
         {

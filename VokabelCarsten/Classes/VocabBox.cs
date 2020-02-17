@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-
+using System.Xml.Serialization;
 
 namespace VokabelCarsten
 {
 	//noah
-	class VocabBox
+	[Serializable]
+	public class VocabBox
 	{
 
 	public int id { get; set; }
@@ -14,17 +15,24 @@ namespace VokabelCarsten
 	public string spalte2 { get; set; }
 	public List<Vocab> Vokabeln { get; set; }
 	private Random rndGenerator;
-	private string filePath { get; set; }
+	public string filePath { get; set; }
 	
 
+		public VocabBox()
+		{
 
-		public VocabBox(string Na, string S1, string S2)
+		}
+
+
+		public VocabBox(string Na, string S1, string S2, string file)
         {
 			name = Na;
 			spalte1 = S1;
 			spalte2 = S2;
+			this.filePath = filePath;
 			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
+			filePath = file;
 
 		}
 
@@ -73,6 +81,16 @@ namespace VokabelCarsten
 		public void setFilePath(string file)
 		{
 			filePath = file;
+		}
+
+		public string getFilePath()
+		{
+			return filePath;
+		}
+
+		public void unloadVocabs()
+		{
+			Vokabeln.Clear();
 		}
 	}
 }
