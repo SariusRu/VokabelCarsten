@@ -18,9 +18,10 @@ namespace VokabelCarsten
         public Control(string pGUI)
         {
             theGUI = pGUI;
-            vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch", "EngDe.xml"));
+            /*vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch", "EngDe.xml"));
             vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch", "FtDe.xml"));
             vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch", "SpDe.xml"));
+            Dummy data for testing purposes*/
         }
 
         #region From GUI
@@ -47,8 +48,8 @@ namespace VokabelCarsten
 
         public void printAllBoxes()
         {
-            /*theGUI.appendTB_outputText("List of saved Vocab Boxes");
-            for (int i = 0; i < vocabboxList.Count; i++)
+            /*theGUI.appendTB_outputText("List of saved Vocab Boxes
+            for (int i = 0; i < vocabboxList.Count; i)
             {
                 theGUI.appendTB_outputText(vocabboxList[i].name);
             }*/
@@ -83,7 +84,8 @@ namespace VokabelCarsten
                 return;
             }
             vocabboxList[index].name = pNameNew;
-            //theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");
+          
+            //theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");       
         }
 
         public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
@@ -96,7 +98,7 @@ namespace VokabelCarsten
             }
             vocabboxList[index].spalte1 = pColumn1;
             vocabboxList[index].spalte2 = pColumn2;
-            //theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");
+            //theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");        
         }
 
         #endregion
