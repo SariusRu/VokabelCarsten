@@ -23,3 +23,9 @@ jobs:
       run: |
                 cd VokabelCarsten
                 msBuild VokabelCarsten.csproj
+    - name: Upload Result
+      run: mkdir -p LatestBuild
+    - uses: actions/upload-artifact@v1
+      with:
+              name: LatestBuild
+              path: LatestBuild
