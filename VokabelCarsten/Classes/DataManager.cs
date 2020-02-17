@@ -9,6 +9,15 @@ using System.Xml.Serialization;
 //Der Konstructor wird beim Start eine Datei mit allen möglichen öffnen
 //
 
+/**
+* @file DataManager.cs
+* @author Samuel Rundel
+* @date 16.02.2020
+* @brief This file contains the datamanager.
+*
+* The DataManager will take care of the entire file and data interaction between Android file system and the App.
+*/
+
 namespace VokabelCarsten
 {
     class DataManager
@@ -24,6 +33,14 @@ namespace VokabelCarsten
 
         public string status = null;
 
+        /**
+* @file DataManager.cs
+* @author Samuel Rundel
+* @date 16.02.2020
+* @brief This file contains the datamanager.
+*
+* The DataManager will take care of the entire file and data interaction between Android file system and the App.
+*/
         public DataManager()
         {
             if (!readVocabBoxList())
@@ -50,7 +67,6 @@ namespace VokabelCarsten
             }                
             catch(Exception ex)
             {
-                return true;
                 Log.Debug("Exception:", ex.InnerException.ToString());
             }
             return true;
