@@ -26,7 +26,7 @@ namespace VokabelCarsten.Classes
             EndMode = 2
 
         }
-        private Mode_t selectedLearningMode= Mode_t.Linear;
+        private Mode_t selectedLearningMode = Mode_t.Linear;
         private int selectedVocabBoxIdx = 0 ;
         private int vocabIdx = 0;
 
