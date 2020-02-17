@@ -2,34 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-namespace VokabelCarsten.Classes
+namespace vokabelcarsten_tests
 {
     class Control
     {
         #region Global Variables
 
-        private string theGUI; //Change type to GUI-class name
-        
+        private GUI theGUI;
+        private List<VocabBox> vocabboxList = new List<VocabBox>();
+
         #endregion
 
-        public Control(string pGUI) 
+        public Control(GUI pGUI)
         {
             theGUI = pGUI;
+            vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch"));
+            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch"));
+            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch"));
         }
 
         #region From GUI
 
         public void selectedBox(string pName)
-        { 
-        
+        {
+
         }
 
         public void selectedMode(string pName)
@@ -47,25 +45,43 @@ namespace VokabelCarsten.Classes
 
         //How to identify Kasten? By Name, ID, something different?
 
-        public void createBox(string pName, string pColumn1, string pColumn2)
+        public void printAllBoxes()
         {
-            //kasten.VocabBox(pName, pColumn1, pColumn2);
+            theGUI.appendTB_outputText("List of saved Vocab Boxes");
+            for (int i = 0; i < vocabboxList.Count; i++)
+            {
+                theGUI.appendTB_outputText(vocabboxList[i].name);
+            }
         }
 
-        public void deleteBox(int pID)
+        public void createBox(string pName, string pColumn1, string pColumn2)
         {
+            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2));
+            theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");
+            vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end"));
+        }
 
+        public void deleteBox(string pName)
+        {
+            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            vocabboxList.RemoveAt(index); //If we choose to identify by ID and ID is the list index 
+            //IF ID is equal to the index, the IDs of all items have to be adjusted
+            theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
         }
 
         public void renameBoxName(string pName, string pNameNew)
         {
-            //kasten.setName(pNameNew);
+            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            vocabboxList[index].name = pNameNew;
+            theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");
         }
 
         public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
         {
-            //kasten.setColumn1(pColumn1);
-            //kasten.setColumn2(pColumn2);
+            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            vocabboxList[index].spalte1 = pColumn1;
+            vocabboxList[index].spalte2 = pColumn2;
+            theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");
         }
 
         #endregion
@@ -76,7 +92,11 @@ namespace VokabelCarsten.Classes
 
         public void createVocab(string pSide1, string pSide2, int pBox)
         {
-            //vokabel.Vokabel(pSide1, pSide2, pBox);
+            /*How to proceed with Vocabs?
+             Where/how are Vocabs generated? (VocabBox takes an existing Vocab and adds it to its list of Vocabularies,
+             but giving VocabBox parameters and letting VocabBox generate the Vocab might be easier(?))
+             If that is decided: How to find a specific Vocab inside the Vocab lsit?
+             Searching bei Side 1 and Side 2 or by ID/name/whatever?*/
         }
 
         public void rmVocab(int pID)
@@ -96,8 +116,8 @@ namespace VokabelCarsten.Classes
         #region Learning
 
         public void startLearning(string pBox, string pMode)
-        { 
-        
+        {
+
         }
 
         #endregion
@@ -105,13 +125,13 @@ namespace VokabelCarsten.Classes
         #region DataManager
 
         public void loadData()
-        { 
-        
+        {
+
         }
 
         public void storeData()
-        { 
-        
+        {
+
         }
 
         #endregion
