@@ -64,6 +64,11 @@ namespace vokabelcarsten_tests
         public void deleteBox(string pName)
         {
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            if (index == -1)
+            {
+                theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                return;
+            }
             vocabboxList.RemoveAt(index); //If we choose to identify by ID and ID is the list index 
             //IF ID is equal to the index, the IDs of all items have to be adjusted
             theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
@@ -72,6 +77,11 @@ namespace vokabelcarsten_tests
         public void renameBoxName(string pName, string pNameNew)
         {
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            if (index == -1)
+            {
+                theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                return;
+            }
             vocabboxList[index].name = pNameNew;
             theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");
         }
@@ -79,6 +89,11 @@ namespace vokabelcarsten_tests
         public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
         {
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            if (index == -1)
+            {
+                theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                return;
+            }
             vocabboxList[index].spalte1 = pColumn1;
             vocabboxList[index].spalte2 = pColumn2;
             theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");
