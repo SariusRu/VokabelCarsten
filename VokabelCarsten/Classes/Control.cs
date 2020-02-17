@@ -1,134 +1,43 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-namespace VokabelCarsten.Classes
+namespace VokabelCarsten
 {
     class Control
     {
         #region Global Variables
 
-        private string theGUI; //Change type to GUI-class name
+        private string theGUI; //change back to GUI type
         private List<VocabBox> vocabboxList = new List<VocabBox>();
-        public enum Mode_t
-        {
-            Linear = 0,
-            LinearLvl = 1,
 
-            EndMode = 2
-
-        }
-        private Mode_t selectedLearningMode= Mode_t.Linear;
-        private int selectedVocabBoxIdx = 0 ;
-        private int vocabIdx = 0;
-
-
+        #endregion
 
         public Control(string pGUI)
         {
             theGUI = pGUI;
-            /*vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch"));
-            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch"));
-            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch")); 
+            /*vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch", "EngDe.xml"));
+            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch", "FtDe.xml"));
+            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch", "SpDe.xml"));
             Dummy data for testing purposes*/
         }
-        #endregion
-
 
         #region From GUI
-        /// <summary>
-        /// Handle for GUI to transfare vocab box name when selected.
-        /// </summary>
-        /// <param name="pName"></param>
+
         public void selectedBox(string pName)
         {
-            int tempBoxIdx = convertBoxNametoBoxIdx(pName);
-            if (tempBoxIdx >=0)
-            {
-                setActualVocabBox(tempBoxIdx);
-            }
-            else
-            {
-                //TO DO : show error message "Kasten not found"
-            }
+
         }
 
-        /// <summary>
-        /// Handle Level, display next vocab and increase vocab index.
-        /// </summary>
-        /// <param name="known"></param>
-        public void selectVocabCheck(bool known)
+        public void selectedMode(string pName)
         {
-            if (known == true) 
-            {
-                increaseVocabLvl();
-            }
-            else
-            {
-                decreaseVocabLvl();
-            }
-
-            increaseVocabIdx();
-            displayVocabSide1();
- 
-        }
-
-        /// <summary>
-        /// Show vocab side 2
-        /// </summary>
-        public void selectShowVocabSide2()
-        {
-            displayVocabSide2();
-        }
-
- 
-        /// <summary>
-        /// Handle for GUI to transfare mode when selected.
-        /// </summary>
-        /// <param name="mode"></param>
-        public void selectedMode(Mode_t mode)
-        {
-            setLearnMode(mode);
-            //GUI Learn mode 1 muss geöffnet werden
-            displayVocabSide1();
 
         }
 
         #endregion
 
-        #region Convert From GUI
-        /// <summary>
-        /// Searches for matching string in vocabBoxlist an returns list index.
-        /// </summary>
-        /// <param name="pName"></param>
-        /// <returns>List Index or -1 if not found</returns>
-        public int convertBoxNametoBoxIdx(string pName)
-        {
-            int findListIdx = 0;
-            foreach (VocabBox tempVocabBox in vocabboxList)
-            {
-               if (String.Equals(tempVocabBox.getName(), pName))
-                {
-                    return findListIdx;
-                }
-               else
-                {
-                    findListIdx++;
-                }
-            }
-
-
-            return -1; //String does not match listelement
-        }
-        #endregion
         #region To GUI
 
         #endregion
@@ -148,12 +57,12 @@ namespace VokabelCarsten.Classes
 
         public void createBox(string pName, string pColumn1, string pColumn2)
         {
-            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2));
+            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, "test.xml"));
             //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");
-            vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end"));     
+            vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end", "test.xml"));
         }
 
-        public void deleteBox(int pID)
+        public void deleteBox(string pName)
         {
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
             if (index == -1)
@@ -175,6 +84,7 @@ namespace VokabelCarsten.Classes
                 return;
             }
             vocabboxList[index].name = pNameNew;
+          
             //theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");       
         }
 
@@ -221,88 +131,24 @@ namespace VokabelCarsten.Classes
         #endregion
 
         #region Learning
-        
-        /// <summary>
-        /// Call if a vocabBox is selected for learning.
-        /// </summary>
-        /// <param name="vocabBoxListIdx"></param>
-        public void setActualVocabBox(int vocabBoxListIdx)
+
+        public void startLearning(string pBox, string pMode)
         {
-            selectedVocabBoxIdx = vocabBoxListIdx;
-        }        
-        /// <summary>
-        /// Call if lerning mode is selected.
-        /// </summary>
-        /// <param name="mode"></param>
-        public void setLearnMode(Mode_t mode)
-        {
-            if (mode >= 0 && mode <= Mode_t.EndMode)
-            {
-                selectedLearningMode = mode;
-            }
-            else
-            {
-                selectedLearningMode = Mode_t.Linear; //default mode is linear
-            }
 
         }
-        /// <summary>
-        /// increase vocab index
-        /// </summary>
-        private void increaseVocabIdx()
-        {
-            vocabIdx++;
-        }
-        /// <summary>
-        /// Display next vocab side 1
-        /// </summary>
-        public void displayVocabSide1()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide1 = vocab.side1;
-            //string anzeigen   
-            //TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
-        }
-        /// <summary>
-        /// Display next vocab side 2
-        /// </summary>
-        public void displayVocabSide2()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide2 = vocab.side2;
-            //string anzeigen TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
-        }
-
-        /// <summary>
-        /// increase vocab level.
-        /// </summary>
-        public void increaseVocabLvl()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            vocab.increaseLevel();
-        }
-
-        /// <summary>
-        /// decrease vocab level.
-        /// </summary>
-        public void decreaseVocabLvl()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            vocab.decreaseLevel();
-        }
-
 
         #endregion
+
         #region DataManager
 
         public void loadData()
-        { 
-        
+        {
+
         }
 
         public void storeData()
-        { 
-        
+        {
+
         }
 
         #endregion
