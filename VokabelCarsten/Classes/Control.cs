@@ -156,9 +156,10 @@ namespace VokabelCarsten.Classes
         /// <param name="pColumn2"></param>
         public void createBox(string pName, string pColumn1, string pColumn2)
         {
-            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2));
-            //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");
-            vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end"));     
+            string filepath = ""; //Need to generate safe location of JSON file
+            //Need to check if pName is already existing
+            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, filepath));
+            //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");  
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace VokabelCarsten.Classes
         /// Return on error to be done.
         /// </summary>
         /// <param name="pName"></param>
-        public void deleteBox(int pName)
+        public void deleteBox(string pName)
         {
             int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
             if (index == -1)
@@ -174,8 +175,7 @@ namespace VokabelCarsten.Classes
                 //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
                 return;
             }
-            vocabboxList.RemoveAt(index); //If we choose to identify by ID and ID is the list index 
-            //IF ID is equal to the index, the IDs of all items have to be adjusted
+            vocabboxList.RemoveAt(index); 
             //theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
         }
 
@@ -231,7 +231,7 @@ namespace VokabelCarsten.Classes
         /// <param name="pSide2"></param>
         public void createVocab(int pID, int pBox, string pSide1, string pSide2)
         {
-            
+            //Need to check if pID is already existing            
         }
 
         /// <summary>
