@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace vokabelcarsten_tests
+namespace VokabelCarsten
 {
     class Control
     {
@@ -18,9 +18,9 @@ namespace vokabelcarsten_tests
         public Control(string pGUI)
         {
             theGUI = pGUI;
-            vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch"));
-            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch"));
-            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch"));
+            vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch", "EngDe.xml"));
+            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch", "FtDe.xml"));
+            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch", "SpDe.xml"));
         }
 
         #region From GUI
@@ -56,9 +56,9 @@ namespace vokabelcarsten_tests
 
         public void createBox(string pName, string pColumn1, string pColumn2)
         {
-            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2));
+            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, "test.xml"));
             //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");
-            vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end"));
+            vocabboxList.Add(new VocabBox("test", "to find items", "in between beginning and end", "test.xml"));
         }
 
         public void deleteBox(string pName)
