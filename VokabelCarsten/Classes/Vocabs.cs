@@ -40,7 +40,6 @@ namespace VokabelCarsten
         {
 
         }
-
         /**
           * @brief Constructor of Vocab Element
           *
