@@ -37,10 +37,10 @@ namespace VokabelCarsten
 
 		}
 
-		/*public string getName() //Unnecessary as the attribute is declared having getter and setter methods
+		public string getName()
 		{
 			return name;
-		*/
+		}
 
         /// <summary>
         /// Create new Vocab with given parameters.
