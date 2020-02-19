@@ -116,9 +116,12 @@ namespace VokabelCarsten.Classes
 
         #endregion
 
-        public void exit()
+        public void exit(Activity ActivityContext)
         {
             //What is the proper way to close this application?
+            //
+            storeData();
+            ActivityContext.FinishAffinity(); // (On Android)
         }
     }
 }

@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 
@@ -17,20 +18,24 @@ namespace VokabelCarsten
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            //Set Up Ui
             SetContentView(Resource.Layout.Main_Activity);
+            RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelKastenRecycler);
+            recyclerView.SetAdapter(new VokabelKastenAdapter(this));
 
+            //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            //BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
-            //navigation.SetOnNavigationItemSelectedListener(this);
-
             DataManager dataManager = DataManager._obj;
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
