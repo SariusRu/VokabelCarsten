@@ -18,42 +18,48 @@ namespace VokabelCarsten
 		public List<Vocab> Vokabeln { get; set; }
 		private Random rndGenerator;
 		public string filePath { get; set; }
-	
-		/*Commented empty constructor without parameters (why overload it?)
-		public VocabBox()
-		{
 
-		}*/
 
+		/// <summary>
+		/// Create new VocabBox with given parameters.
+		/// Return on error to be done.
+		/// </summary>
+		/// <param name="Na"<>/param>
+		/// <param name="S1"></param>
+		/// <param name="S2"></param>
+		/// <param name="file"></param>
 		public VocabBox(string Na, string S1, string S2, string file)
         {
 			name = Na;
 			spalte1 = S1;
 			spalte2 = S2;
-			this.filePath = filePath;
 			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
 			filePath = file;
 
 		}
 
-        //Do we need this method? Already have getter/setter method for name
-		public string getName()
-		{
-			return name;
-		}
-
         /// <summary>
         /// Create new Vocab with given parameters.
-        /// Return on error to be done.
+        /// Return false on error.
         /// </summary>
         /// <param name="pSide1"<>/param>
         /// <param name="pSide2"></param>
-		public void addVokabel(string pSide1, string pSide2)
+		public bool addVokabel(string pSide1, string pSide2)
         {
 			//How to handle if Vocab already exists with both or one of the sides?
-			Vokabeln.Add(new Vocab(pSide1, pSide2, countVocs));
-			countVocs++;
+			Vocab voc = new Vocab(pSide1, pSide2, countVocs);
+			if (!Vokabeln.Contains(voc))
+			{
+				Vokabeln.Add(voc);
+				countVocs++;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			
 		}
 
         /// <summary>
@@ -91,18 +97,43 @@ namespace VokabelCarsten
 			Vokabeln[index].EditVocab(pSide1, pSide2, pLevel);
 		}
 
+
+		/// <summary>
+		/// Get Vocab with certain Id.
+		/// </summary>
+		/// <param name="id"<>/param>
 		public Vocab getVokabel(int id)
         {
-			return Vokabeln[id];
+			try
+			{
+				return Vokabeln[id];
+			}
+			catch
+			{
+				return new Vocab("empty", "empty", 0);
+			}
+			
         }
+
+		/// <summary>
+		/// Get random Vocab.
+		/// </summary>
 		public Vocab getRandomVok()
         {
 			return Vokabeln[rndGenerator.Next(Vokabeln.Count)];
         }
+		/// <summary>
+		/// Get Vocab count.
+		/// </summary>
 		public int getAnzVok()
         {
 			return Vokabeln.Count;
         }
+		/// <summary>
+		/// Get Vocabs from certain Fach.
+		/// returns VocabList
+		/// </summary>
+		/// <param name="Fachnummer"<>/param>
 		public List<Vocab> getVokFromFach(int Fachnummer)
         {
 			List<Vocab> retVocs = new List<Vocab>();
@@ -113,24 +144,43 @@ namespace VokabelCarsten
             }
 			return retVocs;
         }
+
+		/// <summary>
+		/// Get VocabBox Id.
+		/// returns id
+		/// </summary>
 		public int getId()
         {
 			return id;
         }
+
+
 		public void sortVokabeln(int id)
         {
 			//????
         }
+
+		/// <summary>
+		/// Set file path
+		/// </summary>
+		/// <param name="file"<>/param>
 		public void setFilePath(string file)
 		{
 			filePath = file;
 		}
 
+		/// <summary>
+		/// Get Filepath.
+		/// </summary>
 		public string getFilePath()
 		{
 			return filePath;
 		}
 
+
+		/// <summary>
+		/// Clear Vocabs.
+		/// </summary>
 		public void unloadVocabs()
 		{
 			Vokabeln.Clear();
