@@ -11,12 +11,12 @@ namespace VokabelCarsten
 		//Make attributes private and create extra getter/setter methods, data encapsulation, it should never be possible to directly access attributes from outside the containing class
 		public int id { get; set; } //Is ID really required? Control identifies Vocab Box after its name
 		//Counts total number of added Vocabs and serves as Vocab-ID for creating a new Vocab; does not include removing Vocabs intentionally
-		public int countVocs = 0;
+		private int countVocs = 0;
 		public string name { get; set; }
 		public string spalte1 { get; set; }
 		public string spalte2 { get; set; }
 		public List<Vocab> Vokabeln { get; set; }
-		public Random rndGenerator;
+		private Random rndGenerator;
 		public string filePath { get; set; }
 	
 		/*Commented empty constructor without parameters (why overload it?)
@@ -37,6 +37,7 @@ namespace VokabelCarsten
 
 		}
 
+        //Do we need this method? Already have getter/setter method for name
 		public string getName()
 		{
 			return name;

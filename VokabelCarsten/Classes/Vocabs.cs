@@ -28,6 +28,13 @@ namespace VokabelCarsten
 
         }*/
 
+        /// <summary>
+        /// Konstructor for Vocab Element
+        /// </summary>
+        /// <param name="si1"></param>
+        /// <param name="si2"></param>
+        /// <param name="ID"></param>
+        /// <returns>List Index or -1 if not found</returns>
         public Vocab(string si1, string si2, int ID)   //Konstruktor
         {
             side1 = si1;
@@ -35,6 +42,13 @@ namespace VokabelCarsten
             id = ID;
         }
 
+        /// <summary>
+        /// Function to edit a vocab element
+        /// </summary>
+        /// <param name="si1"></param>
+        /// <param name="si2"></param>
+        /// <param name="lev"></param>
+        /// <returns>List Index or -1 if not found</returns>
         public void EditVocab(string si1, string si2, int lev)
         {
             side1 = si1;
@@ -42,16 +56,18 @@ namespace VokabelCarsten
             level = lev;
         }
 
-        public void SetLevel(int lev)
-        {
-            level = lev;
-        }
-
+        /// <summary>
+        /// Function to get the level of a vocab
+        /// </summary>
+        /// <returns>List Index or -1 if not found</returns>
         public int GetLevel()
         {
             return level;
         }
 
+        /// <summary>
+        /// Increases the level of a vocab
+        /// </summary>
         public void increaseLevel()
         {
             if (level == 0)
@@ -59,6 +75,9 @@ namespace VokabelCarsten
             else { level--; }
         }
 
+        /// <summary>
+        /// Decreases the level of a vocab
+        /// </summary>
         public void decreaseLevel()
         {
             if (level == 6) { }
