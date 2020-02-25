@@ -10,14 +10,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace VokabelCarsten.Classes
+namespace VokabelCarsten
 {
     class Control
     {
         #region Global Variables
 
         private string theGUI; //Change type to GUI-class name
-        private List<VocabBox> vocabboxList = new List<VocabBox>();
+        private static List<VocabBox> vocabboxList = new List<VocabBox>();
         public enum Mode_t
         {
             Linear = 0,
@@ -25,9 +25,9 @@ namespace VokabelCarsten.Classes
             EndMode = 2
 
         }
-        private Mode_t selectedLearningMode = Mode_t.Linear;
-        private int selectedVocabBoxIdx = 0 ;
-        private int vocabIdx = 0;
+        private static Mode_t selectedLearningMode = Mode_t.Linear;
+        private static int selectedVocabBoxIdx = 0 ;
+        private static int selectedvocabIdx = 0;
 
         #endregion
 
@@ -43,27 +43,10 @@ namespace VokabelCarsten.Classes
         #region From GUI
 
         /// <summary>
-        /// Handle for GUI to transfare vocab box name when selected.
-        /// </summary>
-        /// <param name="pName"></param>
-        public void selectedBox(string pName)
-        {
-            int tempBoxIdx = convertBoxNametoBoxIdx(pName);
-            if (tempBoxIdx >=0)
-            {
-                setActualVocabBox(tempBoxIdx);
-            }
-            else
-            {
-                //TO DO : show error message "Kasten not found"
-            }
-        }
-
-        /// <summary>
         /// Handle Level, display next vocab and increase vocab index.
         /// </summary>
         /// <param name="known"></param>
-        public void selectVocabCheck(bool known)
+        public static void selectVocabCheck(bool known)
         {
             if (known == true) 
             {
@@ -73,30 +56,9 @@ namespace VokabelCarsten.Classes
             {
                 decreaseVocabLvl();
             }
-
             increaseVocabIdx();
-            displayVocabSide1();
+            displayVocabQuestion();
         }
-
-        /// <summary>
-        /// Show vocab side 2
-        /// </summary>
-        public void selectShowVocabSide2()
-        {
-            displayVocabSide2();
-        }
- 
-        /// <summary>
-        /// Handle for GUI to transfare mode when selected.
-        /// </summary>
-        /// <param name="mode"></param>
-        public void selectedMode(Mode_t mode)
-        {
-            setLearnMode(mode);
-            //GUI Learn mode 1 muss geöffnet werden
-            displayVocabSide1();
-        }
-
         #endregion
 
         #region Convert From GUI
@@ -124,7 +86,6 @@ namespace VokabelCarsten.Classes
 
             return -1; //String does not match listelement
         }
-
         #endregion
 
         #region To GUI
@@ -132,24 +93,21 @@ namespace VokabelCarsten.Classes
         /// <summary>
         /// Display next vocab side 1
         /// </summary>
-        public void displayVocabSide1()
+        public static string displayVocabQuestion()
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide1 = vocab.side1;
-            //string anzeigen   
-            //TO DO sobald button gedrückt ist  diplay buttons deaktivieren bzw aktivieren
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            return vocab.side1;
         }
 
         /// <summary>
         /// Display next vocab side 2
         /// </summary>
-        public void displayVocabSide2()
+        public static string displayVocabAnswer()
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide2 = vocab.side2;
-            //string anzeigen TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            return vocab.side2;
         }
 
         #endregion
@@ -197,6 +155,11 @@ namespace VokabelCarsten.Classes
             {
                 theGUI.appendTB_outputText(vocabboxList[i].name);
             }*/
+        }
+
+        public static List<VocabBox> GetVocabBoxes()
+        {
+            return vocabboxList;
         }
 
         /// <summary>
@@ -278,6 +241,11 @@ namespace VokabelCarsten.Classes
             vocabboxList[pBox].changeVokabel(pID, pSide1, pSide2, pLevel);
         }
 
+        public static List<Vocab> getCurrentVokabelList()
+        {
+            return vocabboxList[selectedVocabBoxIdx].Vokabeln;
+        }
+
         #endregion
 
         #region Learning
@@ -286,7 +254,7 @@ namespace VokabelCarsten.Classes
         /// Call if a vocabBox is selected for learning.
         /// </summary>
         /// <param name="vocabBoxListIdx"></param>
-        public void setActualVocabBox(int vocabBoxListIdx)
+        public static void setSelectedVocabBox(int vocabBoxListIdx)
         {
             selectedVocabBoxIdx = vocabBoxListIdx;
         }    
@@ -295,7 +263,7 @@ namespace VokabelCarsten.Classes
         /// Call if lerning mode is selected.
         /// </summary>
         /// <param name="mode"></param>
-        public void setLearnMode(Mode_t mode)
+        public static void setLearnMode(Mode_t mode)
         {
             if (mode >= 0 && mode <= Mode_t.EndMode)
             {
@@ -311,9 +279,9 @@ namespace VokabelCarsten.Classes
         /// <summary>
         /// increase vocab index
         /// </summary>
-        private void increaseVocabIdx()
+        private static void increaseVocabIdx()
         {
-            vocabIdx++;
+            selectedvocabIdx++;
         }
 
         //Moved display-methods to region "To GUI" as they are directly communicating from Control to GUI
@@ -321,20 +289,20 @@ namespace VokabelCarsten.Classes
         /// <summary>
         /// increase vocab level.
         /// </summary>
-        public void increaseVocabLvl()
+        public static void increaseVocabLvl()
         {
             //Does Control know class Vocab? Might be better to directly increase level without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
             vocab.increaseLevel();
         }
 
         /// <summary>
         /// decrease vocab level.
         /// </summary>
-        public void decreaseVocabLvl()
+        public static void decreaseVocabLvl()
         {
             //Does Control know class Vocab? Might be better to directly decrease without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
             vocab.decreaseLevel();
         }
 

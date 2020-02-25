@@ -19,7 +19,7 @@ namespace VokabelCarsten
             //ToDo: title.Text = Kasten Name Here
 
             RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelRecycler);
-            recyclerView.SetAdapter(new VokabelAdapter(this));
+            recyclerView.SetAdapter(new VokabelAdapter(this, Control.getCurrentVokabelList()));
         }
     }
 }

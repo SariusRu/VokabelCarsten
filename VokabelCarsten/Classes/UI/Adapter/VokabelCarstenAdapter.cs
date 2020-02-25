@@ -44,6 +44,8 @@ namespace VokabelCarsten
             //Handle Creation of Cards
             vh.edit.Click += delegate
             {
+                Control.setSelectedVocabBox(vh.AdapterPosition);
+
                 //ToDo: Do Stuff Here
                 Toast.MakeText(context, "Edit was Clicked", ToastLength.Short);
                 context.StartActivity(typeof(EditVokabelKasten));
@@ -51,13 +53,11 @@ namespace VokabelCarsten
 
             vh.learn.Click += delegate
             {
+                Control.setSelectedVocabBox(vh.AdapterPosition);
+                context.StartActivity(typeof(Learn));
+
                 //ToDo: Do Stuff Here
                 Toast.MakeText(context, "Learn was Clicked", ToastLength.Short);
-
-                /*if(selectedMode == Mode1){
-                    context.StartActivity(typeof(Learn1));
-                }
-                */
             };
 
             //Return View Holder

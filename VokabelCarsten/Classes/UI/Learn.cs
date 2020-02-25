@@ -3,10 +3,10 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace VokabelCarsten.Classes.UI
+namespace VokabelCarsten
 {
     [Activity(Label = "Learn1")]
-    public class Learn1 : Activity
+    public class Learn : Activity
     {
         // Get Ui Elements
         Button vokabelQuery;
@@ -30,19 +30,24 @@ namespace VokabelCarsten.Classes.UI
             //Handle Show Solution Button
             showSolution.Click += delegate
             {
-                
+                string answer = Control.displayVocabAnswer();
+                showQuestion(answer);
             };
 
             //Handle Solution was Known Button
             solutionWasKnown.Click += delegate
             {
-
+                Control.selectVocabCheck(true);
+                string Question = Control.displayVocabQuestion();
+                showQuestion(Question);
             };
 
             //Handle Solution was not Known Button
             solutionWasNotKnown.Click += delegate
             {
-                
+                Control.selectVocabCheck(false);
+                string Question = Control.displayVocabQuestion();
+                showQuestion(Question);
             };
         }
 

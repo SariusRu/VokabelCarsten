@@ -27,7 +27,7 @@ namespace VokabelCarsten
             //Set Up Ui
             SetContentView(Resource.Layout.Main_Activity);
             RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelKastenRecycler);
-            recyclerView.SetAdapter(new VokabelKastenAdapter(this, new List<VocabBox>()));
+            recyclerView.SetAdapter(new VokabelKastenAdapter(this, Control.GetVocabBoxes()));
 
             //Set Up Menu
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);

@@ -2,6 +2,7 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace VokabelCarsten
 {
@@ -21,10 +22,12 @@ namespace VokabelCarsten
     public class VokabelAdapter : RecyclerView.Adapter
     {
         Context context;
+        List<Vocab> vocabList;
 
-        public VokabelAdapter(Context Context)
+        public VokabelAdapter(Context Context, List<Vocab> VocabelListe)
         {
             context = Context;
+            vocabList = VocabelListe;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -52,16 +55,15 @@ namespace VokabelCarsten
             VokabelViewHolder vh = holder as VokabelViewHolder;
 
             //Load Text into Specific Cards
-            //ToDo: vh.native.Text = Vokabel Array Here[position];  
-            //ToDo: vh.foreign.Text = Vokabel Array Here[position]; 
+            vh.native.Text = vocabList[position].side1;
+            vh.foreign.Text = vocabList[position].side2;
         }
 
         public override int ItemCount
         {
             get
             {
-                //ToDo: return Vokabel Array Here.Count (Without - 1 !!)
-                throw new System.NotImplementedException();
+                return vocabList.Count;
             }
         }
     }
