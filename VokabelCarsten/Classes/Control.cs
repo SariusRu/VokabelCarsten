@@ -22,7 +22,6 @@ namespace VokabelCarsten.Classes
         {
             Linear = 0,
             LinearLvl = 1,
-
             EndMode = 2
 
         }
@@ -77,7 +76,6 @@ namespace VokabelCarsten.Classes
 
             increaseVocabIdx();
             displayVocabSide1();
- 
         }
 
         /// <summary>
@@ -97,7 +95,6 @@ namespace VokabelCarsten.Classes
             setLearnMode(mode);
             //GUI Learn mode 1 muss geöffnet werden
             displayVocabSide1();
-
         }
 
         #endregion
@@ -363,9 +360,10 @@ namespace VokabelCarsten.Classes
         /// <summary>
         /// To be done.
         /// </summary>
-        public void exit()
+        public void exit(Activity contextActivity)
         {
             //What is the proper way to close this application?
+            contextActivity.FinishAffinity();
         }
     }
 }

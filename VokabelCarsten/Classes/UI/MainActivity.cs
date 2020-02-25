@@ -2,17 +2,22 @@
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using System.Collections.Generic;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace VokabelCarsten
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
+    public class MainActivity : AppCompatActivity
     {
         TextView textMessage;
+        DrawerLayout drawerLayout;
+        NavigationView navigationView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,7 +27,17 @@ namespace VokabelCarsten
             //Set Up Ui
             SetContentView(Resource.Layout.Main_Activity);
             RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelKastenRecycler);
-            recyclerView.SetAdapter(new VokabelKastenAdapter(this));
+            recyclerView.SetAdapter(new VokabelKastenAdapter(this, new List<VocabBox>()));
+
+            //Set Up Menu
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
+            drawerLayout.AddDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
+            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            setupDrawerContent(navigationView); //Calling Function  
 
             //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
@@ -36,21 +51,19 @@ namespace VokabelCarsten
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public bool OnNavigationItemSelected(IMenuItem item)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            switch (item.ItemId)
+            navigationView.InflateMenu(Resource.Menu.nav_menu); //Navigation Drawer Layout Menu Creation  
+            return true;
+        }
+
+        void setupDrawerContent(NavigationView navigationView)
+        {
+            navigationView.NavigationItemSelected += (sender, e) =>
             {
-                case Resource.Id.navigation_home:
-                    textMessage.SetText(Resource.String.title_home);
-                    return true;
-                case Resource.Id.navigation_dashboard:
-                    textMessage.SetText(Resource.String.title_dashboard);
-                    return true;
-                case Resource.Id.navigation_notifications:
-                    textMessage.SetText(Resource.String.title_notifications);
-                    return true;
-            }
-            return false;
+                e.MenuItem.SetChecked(true);
+                drawerLayout.CloseDrawers();
+            };
         }
     }
 }
