@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,20 +26,23 @@ namespace VokabelCarsten.Classes
             EndMode = 2
 
         }
-        private Mode_t selectedLearningMode= Mode_t.Linear;
+        private Mode_t selectedLearningMode = Mode_t.Linear;
         private int selectedVocabBoxIdx = 0 ;
         private int vocabIdx = 0;
 
-
+        #endregion
 
         public Control(string pGUI)
         {
             theGUI = pGUI;
+            /*vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch"));
+            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch"));
+            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch")); 
+            Dummy data for testing purposes*/
         }
-        #endregion
-
 
         #region From GUI
+
         /// <summary>
         /// Handle for GUI to transfare vocab box name when selected.
         /// </summary>
@@ -84,7 +87,6 @@ namespace VokabelCarsten.Classes
         {
             displayVocabSide2();
         }
-
  
         /// <summary>
         /// Handle for GUI to transfare mode when selected.
@@ -101,6 +103,7 @@ namespace VokabelCarsten.Classes
         #endregion
 
         #region Convert From GUI
+
         /// <summary>
         /// Searches for matching string in vocabBoxlist an returns list index.
         /// </summary>
@@ -124,57 +127,158 @@ namespace VokabelCarsten.Classes
 
             return -1; //String does not match listelement
         }
+
         #endregion
+
         #region To GUI
+
+        /// <summary>
+        /// Display next vocab side 1
+        /// </summary>
+        public void displayVocabSide1()
+        {
+            //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
+            string vocabSide1 = vocab.side1;
+            //string anzeigen   
+            //TO DO sobald button gedrückt ist  diplay buttons deaktivieren bzw aktivieren
+        }
+
+        /// <summary>
+        /// Display next vocab side 2
+        /// </summary>
+        public void displayVocabSide2()
+        {
+            //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
+            string vocabSide2 = vocab.side2;
+            //string anzeigen TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
+        }
 
         #endregion
 
         #region VocabBox
 
-        //How to identify Kasten? By Name, ID, something different?
-
+        /// <summary>
+        /// Adds new Vocab Box to the list, handing over params to Vocab Box class constructor to create new Vocab Box.
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <param name="pColumn1"></param>
+        /// <param name="pColumn2"></param>
         public void createBox(string pName, string pColumn1, string pColumn2)
         {
-            //kasten.VocabBox(pName, pColumn1, pColumn2);
+            string filepath = ""; //Need to generate safe location of JSON file
+            //Need to check if pName is already existing
+            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, filepath));
+            //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");  
         }
 
-        public void deleteBox(int pID)
+        /// <summary>
+        /// Takes name of a Vocab Box given by GUI, searches the Vocab Box List and deletes the object with matching name.
+        /// Return on error to be done.
+        /// </summary>
+        /// <param name="pName"></param>
+        public void deleteBox(string pName)
         {
-
+            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            if (index == -1)
+            {
+                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                return;
+            }
+            vocabboxList.RemoveAt(index); 
+            //theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
         }
 
+        /// <summary>
+        /// Takes Vocab Box List and hands every name of boxes to the GUI to display all Vocab Box names.
+        /// </summary>
+        public void printAllBoxes()
+        {
+            /*theGUI.appendTB_outputText("List of saved Vocab Boxes
+            for (int i = 0; i < vocabboxList.Count; i)
+            {
+                theGUI.appendTB_outputText(vocabboxList[i].name);
+            }*/
+        }
+
+        /// <summary>
+        /// Takes name of a Vocab Box given by GUI, searches the Vocab Box List and renames the object with matching name.
+        /// Return on error to be done.
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <param name="pNameNew"></param>
         public void renameBoxName(string pName, string pNameNew)
         {
-            //kasten.setName(pNameNew);
+            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            if (index == -1)
+            {
+                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                return;
+            }
+            vocabboxList[index].name = pNameNew;
+            //theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");       
         }
 
+        /// <summary>
+        /// Takes name of a Vocab Box given by GUI, searches the Vocab Box List and renames columns of the object with matching name.
+        /// Return on error to be done.
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <param name="pColumn1"></param>
+        /// <param name="pCOlumn2"></param>
         public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
         {
-            //kasten.setColumn1(pColumn1);
-            //kasten.setColumn2(pColumn2);
+            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
+            if (index == -1)
+            {
+                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+                return;
+            }
+            vocabboxList[index].spalte1 = pColumn1;
+            vocabboxList[index].spalte2 = pColumn2;
+            //theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");        
         }
 
         #endregion
 
         #region Vocab
 
-        //How to identify Vokabel? By Name, ID, something different?
-
-        public void createVocab(string pSide1, string pSide2, int pBox)
+        /// <summary>
+        /// Hands over the params to the given Vocab Box to create a new Vocab.
+        /// Return on error to be done.
+        /// </summary>
+        /// <param name="pBox"></param>
+        /// <param name="pSide1"<>/param>
+        /// <param name="pSide2"></param>
+        public void createVocab(int pBox, string pSide1, string pSide2)
         {
-            //vokabel.Vokabel(pSide1, pSide2, pBox);
+            vocabboxList[pBox].addVokabel(pSide1, pSide2);           
         }
 
-        public void rmVocab(int pID)
+        /// <summary>
+        /// Hands over the pID to the given Vocab Box to remave the Vocab identified by pID.
+        /// Return on error to be done.
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <param name="pBox"></param>
+        public void rmVocab(int pID, int pBox)
         {
-
+            vocabboxList[pBox].removeVokabel(pID);
         }
 
-        public void changeVokabel(string pSide1, string pSide2, string pBox, int pLevel)
+        /// <summary>
+        /// Hands over the params to the given Vocab Box to cahnge a new Vocab.
+        /// Return on error to be done.
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <param name="pBox"></param>
+        /// <param name="pSide1"<>/param>
+        /// <param name="pSide2"></param>
+        /// <param name="pLevel"></param>
+        public void changeVokabel(int pID, int pBox, string pSide1, string pSide2, int pLevel)
         {
-            /*vokabel.setSide1(pSide1);
-            vokabel.setSide2(pSide2);
-            vokabel.setLevel(pLevel);*/
+            vocabboxList[pBox].changeVokabel(pID, pSide1, pSide2, pLevel);
         }
 
         #endregion
@@ -188,7 +292,8 @@ namespace VokabelCarsten.Classes
         public void setActualVocabBox(int vocabBoxListIdx)
         {
             selectedVocabBoxIdx = vocabBoxListIdx;
-        }        
+        }    
+        
         /// <summary>
         /// Call if lerning mode is selected.
         /// </summary>
@@ -205,6 +310,7 @@ namespace VokabelCarsten.Classes
             }
 
         }
+
         /// <summary>
         /// increase vocab index
         /// </summary>
@@ -212,31 +318,15 @@ namespace VokabelCarsten.Classes
         {
             vocabIdx++;
         }
-        /// <summary>
-        /// Display next vocab side 1
-        /// </summary>
-        public void displayVocabSide1()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide1 = vocab.side1;
-            //string anzeigen   
-            //TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
-        }
-        /// <summary>
-        /// Display next vocab side 2
-        /// </summary>
-        public void displayVocabSide2()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide2 = vocab.side2;
-            //string anzeigen TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
-        }
+
+        //Moved display-methods to region "To GUI" as they are directly communicating from Control to GUI
 
         /// <summary>
         /// increase vocab level.
         /// </summary>
         public void increaseVocabLvl()
         {
+            //Does Control know class Vocab? Might be better to directly increase level without storing a complete object
             Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
             vocab.increaseLevel();
         }
@@ -246,19 +336,26 @@ namespace VokabelCarsten.Classes
         /// </summary>
         public void decreaseVocabLvl()
         {
+            //Does Control know class Vocab? Might be better to directly decrease without storing a complete object
             Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
             vocab.decreaseLevel();
         }
 
-
         #endregion
+
         #region DataManager
 
+        /// <summary>
+        /// To be done.
+        /// </summary>
         public void loadData()
         { 
         
         }
 
+        /// <summary>
+        /// To be done.
+        /// </summary>
         public void storeData()
         { 
         
@@ -266,6 +363,9 @@ namespace VokabelCarsten.Classes
 
         #endregion
 
+        /// <summary>
+        /// To be done.
+        /// </summary>
         public void exit()
         {
             //What is the proper way to close this application?
