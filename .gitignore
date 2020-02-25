@@ -5,3 +5,4 @@ VokabelCarsten/bin/
 VokabelCarsten/obj/
 /VokabelCarsten.Test/obj/Debug/netcoreapp3.1
 /VokabelCarsten.Test/obj
+/VokabelCarsten.Test/bin/Debug/netcoreapp3.1
