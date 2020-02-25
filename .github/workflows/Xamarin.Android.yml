@@ -17,15 +17,23 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Restoring Packages
       run: |
-                cd VokabelCarsten
+                cd VokabelCarsten.Android
                 msBuild -t:restore
     - name: Build App
       run: |
-                cd VokabelCarsten
-                msBuild VokabelCarsten.csproj
-    - name: Upload Result
-      run: mkdir -p LatestBuild
-    - uses: actions/upload-artifact@v1
-      with:
-              name: LatestBuild
-              path: LatestBuild
+                cd VokabelCarsten.Android
+                msBuild VokabelCarsten.Android.csproj
+  test:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Restoring Packages
+      run: |
+                cd VokabelCarsten.Test
+                msBuild -t:restore
+    - name: Build App
+      run: |
+                cd VokabelCarsten.Test
+                msBuild VokabelCarsten.Test.csproj
