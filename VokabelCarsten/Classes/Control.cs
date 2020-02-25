@@ -129,21 +129,32 @@ namespace VokabelCarsten.Classes
 
         #region To GUI
 
+        /// <summary>
+        /// Display next vocab side 1
+        /// </summary>
+        public void displayVocabSide1()
+        {
+            //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
+            string vocabSide1 = vocab.side1;
+            //string anzeigen   
+            //TO DO sobald button gedrückt ist  diplay buttons deaktivieren bzw aktivieren
+        }
+
+        /// <summary>
+        /// Display next vocab side 2
+        /// </summary>
+        public void displayVocabSide2()
+        {
+            //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
+            string vocabSide2 = vocab.side2;
+            //string anzeigen TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
+        }
+
         #endregion
 
         #region VocabBox
-
-        /// <summary>
-        /// Takes Vocab Box List and hands every name of boxes to the GUI to display all Vocab Box names.
-        /// </summary>
-        public void printAllBoxes()
-        {
-            /*theGUI.appendTB_outputText("List of saved Vocab Boxes
-            for (int i = 0; i < vocabboxList.Count; i)
-            {
-                theGUI.appendTB_outputText(vocabboxList[i].name);
-            }*/
-        }
 
         /// <summary>
         /// Adds new Vocab Box to the list, handing over params to Vocab Box class constructor to create new Vocab Box.
@@ -174,6 +185,18 @@ namespace VokabelCarsten.Classes
             }
             vocabboxList.RemoveAt(index); 
             //theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
+        }
+
+        /// <summary>
+        /// Takes Vocab Box List and hands every name of boxes to the GUI to display all Vocab Box names.
+        /// </summary>
+        public void printAllBoxes()
+        {
+            /*theGUI.appendTB_outputText("List of saved Vocab Boxes
+            for (int i = 0; i < vocabboxList.Count; i)
+            {
+                theGUI.appendTB_outputText(vocabboxList[i].name);
+            }*/
         }
 
         /// <summary>
@@ -222,13 +245,12 @@ namespace VokabelCarsten.Classes
         /// Hands over the params to the given Vocab Box to create a new Vocab.
         /// Return on error to be done.
         /// </summary>
-        /// <param name="pID"></param>
         /// <param name="pBox"></param>
         /// <param name="pSide1"<>/param>
         /// <param name="pSide2"></param>
-        public void createVocab(int pID, int pBox, string pSide1, string pSide2)
+        public void createVocab(int pBox, string pSide1, string pSide2)
         {
-            //Need to check if pID is already existing            
+            vocabboxList[pBox].addVokabel(pSide1, pSide2);           
         }
 
         /// <summary>
@@ -239,7 +261,7 @@ namespace VokabelCarsten.Classes
         /// <param name="pBox"></param>
         public void rmVocab(int pID, int pBox)
         {
-
+            vocabboxList[pBox].removeVokabel(pID);
         }
 
         /// <summary>
@@ -253,9 +275,7 @@ namespace VokabelCarsten.Classes
         /// <param name="pLevel"></param>
         public void changeVokabel(int pID, int pBox, string pSide1, string pSide2, int pLevel)
         {
-            /*vokabel.setSide1(pSide1);
-            vokabel.setSide2(pSide2);
-            vokabel.setLevel(pLevel);*/
+            vocabboxList[pBox].changeVokabel(pID, pSide1, pSide2, pLevel);
         }
 
         #endregion
@@ -296,32 +316,14 @@ namespace VokabelCarsten.Classes
             vocabIdx++;
         }
 
-        /// <summary>
-        /// Display next vocab side 1
-        /// </summary>
-        public void displayVocabSide1()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide1 = vocab.side1;
-            //string anzeigen   
-            //TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
-        }
-
-        /// <summary>
-        /// Display next vocab side 2
-        /// </summary>
-        public void displayVocabSide2()
-        {
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
-            string vocabSide2 = vocab.side2;
-            //string anzeigen TO DO sobald button gedrückt ist  diplay buttons inaktivieren bzw aktivieren
-        }
+        //Moved display-methods to region "To GUI" as they are directly communicating from Control to GUI
 
         /// <summary>
         /// increase vocab level.
         /// </summary>
         public void increaseVocabLvl()
         {
+            //Does Control know class Vocab? Might be better to directly increase level without storing a complete object
             Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
             vocab.increaseLevel();
         }
@@ -331,6 +333,7 @@ namespace VokabelCarsten.Classes
         /// </summary>
         public void decreaseVocabLvl()
         {
+            //Does Control know class Vocab? Might be better to directly decrease without storing a complete object
             Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(vocabIdx);
             vocab.decreaseLevel();
         }
