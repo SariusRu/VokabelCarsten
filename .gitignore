@@ -9,3 +9,6 @@ VokabelCarsten/obj/
 VokabelCarsten/VokabelCarsten.csproj.user
 VokabelCarsten.csproj.user
 >>>>>>> DataManager
+/VokabelCarsten.Android/Assets
+/VokabelCarsten.Android/bin/Debug
+/VokabelCarsten.Android/obj
