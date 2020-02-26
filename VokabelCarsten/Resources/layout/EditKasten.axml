@@ -18,6 +18,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/VokabelnDesc"
 	/>
+
 	<!--Line-->
 	<View
 		android:layout_width="match_parent"
@@ -29,4 +30,18 @@
 		android:layout_height="wrap_content"
 		android:id="@+id/VokabelRecycler"
 	/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<Button
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_margin="25dp"
+				android:id="@+id/AddVokabel"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentRight="true"
+				android:text="+"
+			/>
+	</RelativeLayout>
 </LinearLayout>

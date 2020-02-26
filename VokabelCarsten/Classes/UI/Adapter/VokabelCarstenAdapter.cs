@@ -24,7 +24,7 @@ namespace VokabelCarsten
     public class VokabelKastenAdapter : RecyclerView.Adapter
     {
         Context context;
-        List<VocabBox> list = new List<VocabBox>();
+        public List<VocabBox> list;
 
         public VokabelKastenAdapter(Context Context, List<VocabBox> List)
         {

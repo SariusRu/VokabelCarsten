@@ -72,6 +72,8 @@
     <Compile Include="Classes\Exception.cs" />
     <Compile Include="Classes\UI\Adapter\VokabelAdapter.cs" />
     <Compile Include="Classes\UI\Adapter\VokabelCarstenAdapter.cs" />
+    <Compile Include="Classes\UI\AddVokabelBoxDialog.cs" />
+    <Compile Include="Classes\UI\EditVokabelDialog.cs" />
     <Compile Include="Classes\UI\EditVokabelKasten.cs" />
     <Compile Include="Classes\UI\Learn.cs" />
     <Compile Include="Classes\VocabBox.cs" />
@@ -160,6 +162,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\toolbar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AddVokabelBox.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AddVokabel.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

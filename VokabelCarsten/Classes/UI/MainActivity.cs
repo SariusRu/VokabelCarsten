@@ -8,6 +8,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
+using VokabelCarsten.Classes.UI;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace VokabelCarsten
@@ -24,20 +25,29 @@ namespace VokabelCarsten
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
+            //Add For Debugging
+            Control.createVocabelKasten("Vokabluar 1", "Englisch", "Deutsch");
+            Control.createVocabelKasten("Vokabluar 2", "Englisch", "Deutsch");
+            Control.createVocabelKasten("Vokabluar 3", "Englisch", "Deutsch");
+
             //Set Up Ui
             SetContentView(Resource.Layout.Main_Activity);
+            //Set Up Recycler View
             RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelKastenRecycler);
-            recyclerView.SetAdapter(new VokabelKastenAdapter(this, Control.GetVocabBoxes()));
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+            recyclerView.SetLayoutManager(mLayoutManager);
+            VokabelKastenAdapter adapter = new VokabelKastenAdapter(this, Control.GetVocabBoxes());
+            recyclerView.SetAdapter(adapter);
 
-            //Set Up Menu
-            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
-            drawerLayout.AddDrawerListener(drawerToggle);
-            drawerToggle.SyncState();
-            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-            setupDrawerContent(navigationView); //Calling Function  
+            Button addVokabelKastenButton = FindViewById<Button>(Resource.Id.AddVokabelKasten);
+            addVokabelKastenButton.Click += delegate
+            {
+                AddVokabelBoxDialog dialog = new AddVokabelBoxDialog(this);
+                dialog.Show();
+
+                adapter.NotifyDataSetChanged();
+            };
+
 
             //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
@@ -49,21 +59,6 @@ namespace VokabelCarsten
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            navigationView.InflateMenu(Resource.Menu.nav_menu); //Navigation Drawer Layout Menu Creation  
-            return true;
-        }
-
-        void setupDrawerContent(NavigationView navigationView)
-        {
-            navigationView.NavigationItemSelected += (sender, e) =>
-            {
-                e.MenuItem.SetChecked(true);
-                drawerLayout.CloseDrawers();
-            };
         }
     }
 }

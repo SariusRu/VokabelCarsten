@@ -4,40 +4,26 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
- 
-	<!-- Toolbar -->
-	<include layout="@layout/toolbar" />    
 
     <!-- The main content view -->
     <RelativeLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 		<android.support.v7.widget.RecyclerView
 			android:layout_width="match_parent"
 			android:layout_height="fill_parent"
 			android:id="@+id/VokabelKastenRecycler"/>
 
 		<Button
-			android:layout_width="25dp"
-			android:layout_height="25dp"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
 			android:layout_margin="25dp"
-			android:text="+"
+			android:id="@+id/AddVokabelKasten"
 			android:layout_alignParentBottom="true"
 			android:layout_alignParentRight="true"
-			/>
+			android:text="+"
+		/>
 	</RelativeLayout>
-
-	<!-- Navigation View -->
-	<android.support.v4.widget.DrawerLayout xmlns:app="http://schemas.android.com/apk/res-auto"    
-         android:id="@+id/drawer_layout"    
-         android:layout_height="match_parent"    
-         android:layout_width="fill_parent"    
-         android:fitsSystemWindows="true">
-		  <android.support.design.widget.NavigationView    
-			 android:id="@+id/nav_view"    
-			 android:layout_height="match_parent"    
-			 android:layout_width="300dp"    
-			 android:layout_gravity="start"/>    
-     </android.support.v4.widget.DrawerLayout>    
 </LinearLayout>

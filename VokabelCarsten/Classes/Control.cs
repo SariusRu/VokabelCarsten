@@ -120,7 +120,7 @@ namespace VokabelCarsten
         /// <param name="pName"></param>
         /// <param name="pColumn1"></param>
         /// <param name="pColumn2"></param>
-        public void createBox(string pName, string pColumn1, string pColumn2)
+        public static void createVocabelKasten(string pName, string pColumn1, string pColumn2)
         {
             string filepath = ""; //Need to generate safe location of JSON file
             //Need to check if pName is already existing
@@ -211,9 +211,14 @@ namespace VokabelCarsten
         /// <param name="pBox"></param>
         /// <param name="pSide1"<>/param>
         /// <param name="pSide2"></param>
-        public void createVocab(int pBox, string pSide1, string pSide2)
+        public static void createVocab(int pBox, string pSide1, string pSide2)
         {
             vocabboxList[pBox].addVokabel(pSide1, pSide2);           
+        }
+
+        public static void createVocab(string pSide1, string pSide2)
+        {
+            vocabboxList[selectedVocabBoxIdx].addVokabel(pSide1, pSide2);
         }
 
         /// <summary>
