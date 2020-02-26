@@ -1,7 +1,7 @@
 .vs/
-VokabelCarsten/bin/
-VokabelCarsten/obj/
-VokabelCarsten.Android/bin/
-VokabelCarsten.Android/obj/
-VokabelCarsten.Test/bin/
-VokabelCarsten.Test/obj/
+VokabelCarsten/bin
+VokabelCarsten/obj
+VokabelCarsten.Android/bin
+VokabelCarsten.Android/obj
+VokabelCarsten.Test/bin
+VokabelCarsten.Test/obj
