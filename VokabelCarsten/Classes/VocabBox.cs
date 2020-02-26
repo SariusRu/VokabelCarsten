@@ -22,7 +22,6 @@ namespace VokabelCarsten
 
 		/// <summary>
 		/// Create new VocabBox with given parameters.
-		/// Return on error to be done.
 		/// </summary>
 		/// <param name="Na"<>/param>
 		/// <param name="S1"></param>
@@ -41,30 +40,22 @@ namespace VokabelCarsten
 
         /// <summary>
         /// Create new Vocab with given parameters.
-        /// Return false on error.
+        /// We allow vocabs to exist as duplicates.
         /// </summary>
         /// <param name="pSide1"<>/param>
         /// <param name="pSide2"></param>
-		public bool addVokabel(string pSide1, string pSide2)
+		public void addVokabel(string pSide1, string pSide2)
         {
 			//How to handle if Vocab already exists with both or one of the sides?
 			Vocab voc = new Vocab(pSide1, pSide2, countVocs);
-			if (!Vokabeln.Contains(voc))
-			{
-				Vokabeln.Add(voc);
-				countVocs++;
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			Vokabeln.Add(voc);
+			countVocs++;
 			
 		}
 
         /// <summary>
         /// Delete Vocab identified by given ID.
-        /// Return on error to be done.
+        /// RWe assume that 
         /// </summary>
         /// <param name="pID"></param>
 		public void removeVokabel(int id)
@@ -100,28 +91,26 @@ namespace VokabelCarsten
 
 		/// <summary>
 		/// Get Vocab with certain Id.
+		/// Method is not necessary until later versions
 		/// </summary>
 		/// <param name="id"<>/param>
-		public Vocab getVokabel(int id)
+		/*public Vocab getVokabel(int id)
         {
-			try
-			{
+
 				return Vokabeln[id];
-			}
-			catch
-			{
-				return new Vocab("empty", "empty", 0);
-			}
+
 			
-        }
+        }*/
 
 		/// <summary>
 		/// Get random Vocab.
+		/// Method is not necessary until later versions
 		/// </summary>
-		public Vocab getRandomVok()
+		/*public Vocab getRandomVok()
         {
 			return Vokabeln[rndGenerator.Next(Vokabeln.Count)];
-        }
+        }*/
+
 		/// <summary>
 		/// Get Vocab count.
 		/// </summary>
@@ -129,12 +118,14 @@ namespace VokabelCarsten
         {
 			return Vokabeln.Count;
         }
+
 		/// <summary>
 		/// Get Vocabs from certain Fach.
+		/// Method is not necessary until later versions
 		/// returns VocabList
 		/// </summary>
 		/// <param name="Fachnummer"<>/param>
-		public List<Vocab> getVokFromFach(int Fachnummer)
+		/*public List<Vocab> getVokFromFach(int Fachnummer)
         {
 			List<Vocab> retVocs = new List<Vocab>();
 			for(int i = 0; i < Vokabeln.Count; i++)
@@ -143,7 +134,7 @@ namespace VokabelCarsten
 					retVocs.Add(Vokabeln[i]);
             }
 			return retVocs;
-        }
+        }*/
 
 		/// <summary>
 		/// Get VocabBox Id.
@@ -152,12 +143,6 @@ namespace VokabelCarsten
 		public int getId()
         {
 			return id;
-        }
-
-
-		public void sortVokabeln(int id)
-        {
-			//????
         }
 
 		/// <summary>
