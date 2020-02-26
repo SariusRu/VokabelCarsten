@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VokabelCarsten", "VokabelCarsten\VokabelCarsten.csproj", "{DA63BAB5-A198-47E3-8BB2-6A0D8F09B27D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VokabelCarsten.Test", "VokabelCarsten.Test\VokabelCarsten.Test.csproj", "{5DB4C9F5-DA5F-43B4-B6CC-9DAFFFADCA56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VokabelCarsten.Android", "VokabelCarsten.Android\VokabelCarsten.Android.csproj", "{DA63BAB5-A198-47E3-8BB2-6A0D8F09B27D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DB4C9F5-DA5F-43B4-B6CC-9DAFFFADCA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB4C9F5-DA5F-43B4-B6CC-9DAFFFADCA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB4C9F5-DA5F-43B4-B6CC-9DAFFFADCA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB4C9F5-DA5F-43B4-B6CC-9DAFFFADCA56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA63BAB5-A198-47E3-8BB2-6A0D8F09B27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA63BAB5-A198-47E3-8BB2-6A0D8F09B27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA63BAB5-A198-47E3-8BB2-6A0D8F09B27D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
