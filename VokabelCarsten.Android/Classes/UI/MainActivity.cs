@@ -51,7 +51,7 @@ namespace VokabelCarsten
 
             //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            DataManager dataManager = DataManager._obj;
+            DataManager dataManager = DataManager.staticDataManager;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
