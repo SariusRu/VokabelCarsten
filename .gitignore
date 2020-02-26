@@ -1,14 +1,6 @@
-.vs/
-VokabelCarsten/bin/
-VokabelCarsten/obj/
-<<<<<<< HEAD
-/VokabelCarsten.Test/obj/Debug/netcoreapp3.1
-/VokabelCarsten.Test/obj
-/VokabelCarsten.Test/bin/Debug/netcoreapp3.1
-=======
-VokabelCarsten/VokabelCarsten.csproj.user
-VokabelCarsten.csproj.user
->>>>>>> DataManager
-/VokabelCarsten.Android/Assets
-/VokabelCarsten.Android/bin/Debug
-/VokabelCarsten.Android/obj
+.vs
+Build
+VokabelCarsten.Android/obj
+VokabelCarsten.Android/bin
+VokabelCarsten.Test/obj
+VokabelCarsten.Test/bin
