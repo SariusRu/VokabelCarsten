@@ -7,4 +7,7 @@
     <string name="LearnButton">Learn</string>
     <string name="EditButton">Edit</string>
     <string name="VokabelnDesc">Vokabeln:</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 </resources>

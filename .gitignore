@@ -1,6 +1,6 @@
-.vs
-Build
-VokabelCarsten.Android/obj
+.vs/
 VokabelCarsten.Android/bin
-VokabelCarsten.Test/obj
+VokabelCarsten.Android/obj
 VokabelCarsten.Test/bin
+VokabelCarsten.Test/obj
+Build

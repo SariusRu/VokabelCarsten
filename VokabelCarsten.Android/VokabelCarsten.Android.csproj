@@ -70,9 +70,15 @@
     <Compile Include="Classes\Control.cs" />
     <Compile Include="Classes\DataManager.cs" />
     <Compile Include="Classes\Exception.cs" />
+    <Compile Include="Classes\UI\Adapter\VokabelAdapter.cs" />
+    <Compile Include="Classes\UI\Adapter\VokabelCarstenAdapter.cs" />
+    <Compile Include="Classes\UI\AddVokabelBoxDialog.cs" />
+    <Compile Include="Classes\UI\EditVokabelDialog.cs" />
+    <Compile Include="Classes\UI\EditVokabelKasten.cs" />
+    <Compile Include="Classes\UI\Learn.cs" />
     <Compile Include="Classes\VocabBox.cs" />
     <Compile Include="Classes\Vocabs.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="Classes\UI\MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
   </ItemGroup>
@@ -148,6 +154,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\VokabelCard.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\nav_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\toolbar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AddVokabelBox.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AddVokabel.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
