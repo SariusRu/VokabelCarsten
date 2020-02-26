@@ -1,5 +1,7 @@
 .vs/
 VokabelCarsten/bin/
 VokabelCarsten/obj/
-VokabelCarsten/VokabelCarsten.csproj.user
-VokabelCarsten.csproj.user
+VokabelCarsten.Android/bin/
+VokabelCarsten.Android/obj/
+VokabelCarsten.Test/bin/
+VokabelCarsten.Test/obj/
