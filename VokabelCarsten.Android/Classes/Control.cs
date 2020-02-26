@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VokabelCarsten.Classes
+namespace VokabelCarsten
 {
     class Control
     {

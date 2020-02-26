@@ -1,5 +1,8 @@
 ﻿using System;
 
+
+namespace VokabelCarsten.Exceptions
+{
 [Serializable()]
 public class FileNotReadException : System.Exception
 {
@@ -23,4 +26,5 @@ public class VocabBoxAlreadyExists : System.Exception
     // exception propagates from a remoting server to the client. 
     protected VocabBoxAlreadyExists(System.Runtime.Serialization.SerializationInfo info,
         System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+}
 }
