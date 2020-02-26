@@ -1,8 +1,6 @@
-.git
-.github
 .vs
-.vscode
 Build
 VokabelCarsten.Android/obj
+VokabelCarsten.Android/bin
 VokabelCarsten.Test/obj
 VokabelCarsten.Test/bin
