@@ -18,13 +18,15 @@ namespace VokabelCarsten
 		public List<Vocab> Vokabeln { get; set; }
 		private Random rndGenerator;
 		public string filePath { get; set; }
-	
-		/*Commented empty constructor without parameters (why overload it?)
-		public VocabBox()
-		{
 
-		}*/
 
+		/// <summary>
+		/// Create new VocabBox with given parameters.
+		/// </summary>
+		/// <param name="Na"<>/param>
+		/// <param name="S1"></param>
+		/// <param name="S2"></param>
+		/// <param name="file"></param>
 		public VocabBox(string Na, string S1, string S2, string file)
         {
 			name = Na;
@@ -37,23 +39,19 @@ namespace VokabelCarsten
 
 		}
 
-        //Do we need this method? Already have getter/setter method for name
-		public string GetName()
-		{
-			return name;
-		}
-
         /// <summary>
         /// Create new Vocab with given parameters.
-        /// Return on error to be done.
+        /// We allow vocabs to exist as duplicates.
         /// </summary>
         /// <param name="pSide1"<>/param>
         /// <param name="pSide2"></param>
 		public void AddVokabel(string pSide1, string pSide2)
         {
 			//How to handle if Vocab already exists with both or one of the sides?
-			Vokabeln.Add(new Vocab(pSide1, pSide2, countVocs));
+			Vocab voc = new Vocab(pSide1, pSide2, countVocs);
+			Vokabeln.Add(voc);
 			countVocs++;
+			
 		}
 
         /// <summary>
@@ -150,10 +148,18 @@ namespace VokabelCarsten
 			return filePath;
 		}
 
-        //Remove all Vocabeln
+
+		/// <summary>
+		/// Clear Vocabs.
+		/// </summary>
 		public void UnloadVocabs()
 		{
 			Vokabeln.Clear();
+		}
+
+		public string getName()
+		{
+			return name;
 		}
 	}
 }
