@@ -94,13 +94,13 @@ namespace VokabelCarsten
 		/// Method is not necessary until later versions
 		/// </summary>
 		/// <param name="id"<>/param>
-		/*public Vocab getVokabel(int id)
+		public Vocab getVokabel(int id)
         {
 
 				return Vokabeln[id];
 
 			
-        }*/
+        }
 
 		/// <summary>
 		/// Get random Vocab.
@@ -169,6 +169,11 @@ namespace VokabelCarsten
 		public void unloadVocabs()
 		{
 			Vokabeln.Clear();
+		}
+
+		public string getName()
+		{
+			return name;
 		}
 	}
 }
