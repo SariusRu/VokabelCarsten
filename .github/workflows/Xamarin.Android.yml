@@ -28,3 +28,4 @@ jobs:
     steps:
     - name: Setup MSTest.exe
       uses: SariusRu/Setup-MSTest@v2
+      
