@@ -26,14 +26,5 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
     - name: Setup MSTest.exe
-      uses: SariusRu/Setup-MSTest@v1.1
-    - name: Restoring Packages
-      run: |
-                cd VokabelCarsten.Test
-                msBuild -t:restore
-    - name: Build App
-      run: |
-                cd VokabelCarsten.Test
-                msBuild VokabelCarsten.Test.csproj
+      uses: SariusRu/Setup-MSTest@v1
