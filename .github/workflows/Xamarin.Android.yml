@@ -27,4 +27,4 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Setup MSTest.exe
-      uses: SariusRu/Setup-MSTest@v1.1
+      uses: SariusRu/Setup-MSTest@Test
