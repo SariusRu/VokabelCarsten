@@ -8,7 +8,7 @@ using VokabelCarsten.Classes.UI;
 
 namespace VokabelCarsten
 {
-    [Activity(Label = "EditVokabelKasten")]
+    [Activity(Label = "Vokabel Kasten")]
     public class VokabelActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -24,7 +24,7 @@ namespace VokabelCarsten
             VokabelAdapter adapter = new VokabelAdapter(this, Control.GetCurrentVokabelList());
             recyclerView.SetAdapter(adapter);
 
-            EditText title = FindViewById<EditText>(Resource.Id.EditTitle);
+            TextView title = FindViewById<TextView>(Resource.Id.EditTitle);
             //Load in Name
             if (Control.GetCurrentVocabBox() != null)
             {

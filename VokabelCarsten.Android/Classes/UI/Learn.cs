@@ -6,7 +6,7 @@ using Android.Widget;
 
 namespace VokabelCarsten
 {
-    [Activity(Label = "Learn1")]
+    [Activity(Label = "Learn")]
     public class LearnActivity : AppCompatActivity
     {
         // Get Ui Elements
@@ -29,6 +29,7 @@ namespace VokabelCarsten
             answerView = FindViewById<LinearLayout>(Resource.Id.AnswerContainerView);
 
             //Show the First Question
+            Control.SetSelectedVocabel(0);
             string Question = Control.DisplayVocabQuestion();
             showQuestion(Question);
 
@@ -36,7 +37,7 @@ namespace VokabelCarsten
             showSolution.Click += delegate
             {
                 string answer = Control.DisplayVocabAnswer();
-                showQuestion(answer);
+                showAnswer(answer);
             };
 
             //Handle Solution was Known Button
@@ -51,7 +52,7 @@ namespace VokabelCarsten
             solutionWasNotKnown.Click += delegate
             {
                 Control.SelectVocabCheck(false);
-                string Question = Control.DisplayVocabQuestion();
+                Question = Control.DisplayVocabQuestion();
                 showQuestion(Question);
             };
         }

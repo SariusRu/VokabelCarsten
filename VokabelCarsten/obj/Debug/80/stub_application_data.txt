@@ -1,0 +1,2 @@
+android.app.Application
+com.DHBW_SoftEng.vokabelcarsten

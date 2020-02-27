@@ -1633,20 +1633,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Drop Tec\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\source\\repos\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Drop Tec\\Source\\Repos\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
       "projectName": "VokabelCarsten.Android",
-      "projectPath": "C:\\Users\\admin\\source\\repos\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\source\\repos\\VokabelCarsten\\VokabelCarsten.Android\\obj\\",
+      "projectPath": "C:\\Users\\Drop Tec\\Source\\Repos\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
+      "packagesPath": "C:\\Users\\Drop Tec\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Drop Tec\\Source\\Repos\\VokabelCarsten\\VokabelCarsten.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Drop Tec\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -97,7 +97,14 @@ namespace VokabelCarsten
         /// <returns>Vokabel</returns>
 		public Vocab GetVokabel(int id)
         {
-			return Vokabeln[id];
+            if (id >= 0 && id < Vokabeln.Count)
+            {
+                return Vokabeln[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

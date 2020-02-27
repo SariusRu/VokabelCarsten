@@ -52,7 +52,13 @@ namespace VokabelCarsten
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
             Vocab vocab = vocabboxList[selectedVocabBoxIdx].GetVokabel(selectedVocabIdx);
-            return vocab.Question;
+            if (vocab != null)
+            {
+                return vocab.Question;
+            }else
+            {
+                return "No More Vokable Found";
+            }
         }
 
         /// <summary>
@@ -62,7 +68,14 @@ namespace VokabelCarsten
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
             Vocab vocab = vocabboxList[selectedVocabBoxIdx].GetVokabel(selectedVocabIdx);
-            return vocab.Answer;
+            if (vocab != null)
+            {
+                return vocab.Answer;
+            }
+            else
+            {
+                return "No More Vokable Found";
+            }
         }
 
         #endregion
