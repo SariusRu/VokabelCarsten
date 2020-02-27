@@ -148,7 +148,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\LearnModus1.axml">
+    <AndroidResource Include="Resources\layout\LearnModus.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -159,11 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\nav_menu.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\toolbar.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AddVokabelBox.axml">

@@ -38,7 +38,7 @@ namespace VokabelCarsten
 		}
 
         //Do we need this method? Already have getter/setter method for name
-		public string getName()
+		public string GetName()
 		{
 			return name;
 		}
@@ -49,7 +49,7 @@ namespace VokabelCarsten
         /// </summary>
         /// <param name="pSide1"<>/param>
         /// <param name="pSide2"></param>
-		public void addVokabel(string pSide1, string pSide2)
+		public void AddVokabel(string pSide1, string pSide2)
         {
 			//How to handle if Vocab already exists with both or one of the sides?
 			Vokabeln.Add(new Vocab(pSide1, pSide2, countVocs));
@@ -61,7 +61,7 @@ namespace VokabelCarsten
         /// Return on error to be done.
         /// </summary>
         /// <param name="pID"></param>
-		public void removeVokabel(int id)
+		public void RemoveVokabel(int id)
         {
             int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
             if (index == -1)
@@ -79,7 +79,7 @@ namespace VokabelCarsten
         /// <param name="pID"></param>
         /// <param name="pSide1"></param>
         /// <param name="pSide2"></param>
-		public void changeVokabel(int pID, string pSide1, string pSide2)
+		public void ChangeVokabel(int pID, string pSide1, string pSide2)
         {
             int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
             if (index == -1)
@@ -90,47 +90,61 @@ namespace VokabelCarsten
 			Vokabeln[index].EditVocab(pSide1, pSide2);
 		}
 
-		public Vocab getVokabel(int id)
+        /// <summary>
+        /// Return the Vokabel given by the ID
+        /// </summary>
+        /// <param name="id">The Vokabel ID</param>
+        /// <returns>Vokabel</returns>
+		public Vocab GetVokabel(int id)
         {
 			return Vokabeln[id];
         }
-		public Vocab getRandomVok()
+
+        /// <summary>
+        /// Returns a Random Vokabel from the List
+        /// </summary>
+        /// <returns>Vokabel</returns>
+		public Vocab GetRandomVok()
         {
 			return Vokabeln[rndGenerator.Next(Vokabeln.Count)];
         }
-		public int getAnzVok()
-        {
-			return Vokabeln.Count;
-        }
-		public List<Vocab> getVokFromFach(int Fachnummer)
+
+        /// <summary>
+        /// Return a Vokabel from an Compartment
+        /// </summary>
+        /// <param name="Compartment">Compartment Number</param>
+        /// <returns>Vocable List from Compartment</returns>
+		public List<Vocab> GetVokFromFach(int Compartment)
         {
 			List<Vocab> retVocs = new List<Vocab>();
 			for(int i = 0; i < Vokabeln.Count; i++)
             {
-				if (Vokabeln[i].GetLevel() == Fachnummer)
+				if (Vokabeln[i].GetLevel() == Compartment)
 					retVocs.Add(Vokabeln[i]);
             }
 			return retVocs;
         }
-		public int getId()
-        {
-			return id;
-        }
-		public void sortVokabeln(int id)
-        {
-			//????
-        }
-		public void setFilePath(string file)
+
+        /// <summary>
+        /// Set File Path for the Box to Save it to
+        /// </summary>
+        /// <param name="FilePath">Filepath</param>
+		public void SetFilePath(string FilePath)
 		{
-			filePath = file;
+			filePath = FilePath;
 		}
 
-		public string getFilePath()
+        /// <summary>
+        /// Get the File Path for the Box
+        /// </summary>
+        /// <returns>String Filepath</returns>
+		public string GetFilePath()
 		{
 			return filePath;
 		}
 
-		public void unloadVocabs()
+        //Remove all Vocabeln
+		public void UnloadVocabs()
 		{
 			Vokabeln.Clear();
 		}

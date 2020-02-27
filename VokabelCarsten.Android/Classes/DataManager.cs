@@ -103,7 +103,7 @@ namespace VokabelCarsten
         public void restoreLoadedBox()
         {
             SaveVocabBoxXML();
-            loadedBox.unloadVocabs();
+            loadedBox.UnloadVocabs();
             loadedBox = null;
         }
 
@@ -114,7 +114,7 @@ namespace VokabelCarsten
         /// This fileStream is used by the XMLSerializer. The result are casted to a VocabBox and saved in the loadedBox-member
         private void readVocabBox()
         {
-            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.GetFilePath());
             String test = File.ReadAllText(vocabBoxPath);
             try
             {
@@ -138,7 +138,7 @@ namespace VokabelCarsten
         /// This fileStream is used by the XMLSerializer. The serializer is saving the data into the file.
         private void SaveVocabBoxXML()
         {
-            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.getFilePath());
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.GetFilePath());
             try
             {
                 File.Delete(vocabBoxPath);
@@ -173,7 +173,7 @@ namespace VokabelCarsten
         /// <param name="newBox">The vocabBox to add into the list</param>
         public bool CreateVocabBox(VocabBox newBox)
         {
-            if (CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
+            if (CheckExistenceVocabBox(newBox.GetName(), newBox.GetFilePath()))
             {
                 vocabBoxes.Add(newBox);
                 selectVocabBox(vocabBoxes.Count - 1);
@@ -221,14 +221,14 @@ namespace VokabelCarsten
             {
                 foreach (VocabBox item in vocabBoxes)
                 {
-                    if (item.getName() == name)
+                    if (item.GetName() == name)
                     {
                         throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
                     }
                 }
                 foreach (VocabBox item in vocabBoxes)
                 {
-                    if (item.getName() == filePath)
+                    if (item.GetName() == filePath)
                     {
                         throw new VocabBoxAlreadyExists("A Vocabbox with this Filepath already exists.");
                     }

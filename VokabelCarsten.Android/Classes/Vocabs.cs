@@ -8,8 +8,8 @@ namespace VokabelCarsten
     public class Vocab
     {
         //Make attributes private and create extra getter/setter methods, data encapsulation, it should never be possible to directly access attributes from outside the containing class
-        public string side1 { get; set; }       //Vocab on side 1 e.g. "to walk2
-        public string side2 { get; set; }       // Vocab on side 2 e.g."laufen"
+        public string Question { get; set; }       //Vocab on side 1 e.g. "to walk2
+        public string Answer { get; set; }       // Vocab on side 2 e.g."laufen"
         public int level { get; set; } = 0;
         public int id { get; set; }
 
@@ -28,8 +28,8 @@ namespace VokabelCarsten
         /// <returns>List Index or -1 if not found</returns>
         public Vocab(string si1, string si2, int ID)   //Konstruktor
         {
-            side1 = si1;
-            side2 = si2;
+            Question = si1;
+            Answer = si2;
             id = ID;
         }
 
@@ -41,8 +41,8 @@ namespace VokabelCarsten
         /// <returns>List Index or -1 if not found</returns>
         public void EditVocab(string si1, string si2)
         {
-            side1 = si1;
-            side2 = si2;
+            Question = si1;
+            Answer = si2;
         }
 
         /// <summary>

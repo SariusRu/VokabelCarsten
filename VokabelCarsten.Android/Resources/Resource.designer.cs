@@ -3253,8 +3253,8 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a0039
 			public const int ALT = 2131361849;
 			
-			// aapt resource value: 0x7f0a00d6
-			public const int Add = 2131362006;
+			// aapt resource value: 0x7f0a00d3
+			public const int Add = 2131362003;
 			
 			// aapt resource value: 0x7f0a00b6
 			public const int AddVokabel = 2131361974;
@@ -3274,8 +3274,8 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a003b
 			public const int FUNCTION = 2131361851;
 			
-			// aapt resource value: 0x7f0a00d5
-			public const int Learn = 2131362005;
+			// aapt resource value: 0x7f0a00d2
+			public const int Learn = 2131362002;
 			
 			// aapt resource value: 0x7f0a003c
 			public const int META = 2131361852;
@@ -3292,17 +3292,17 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a00ba
 			public const int SolutionNotKnown = 2131361978;
 			
-			// aapt resource value: 0x7f0a00d4
-			public const int VokabelCarstenName = 2131362004;
+			// aapt resource value: 0x7f0a00d1
+			public const int VokabelCarstenName = 2131362001;
 			
-			// aapt resource value: 0x7f0a00d3
-			public const int VokabelForeignLanguage = 2131362003;
+			// aapt resource value: 0x7f0a00d0
+			public const int VokabelForeignLanguage = 2131362000;
 			
 			// aapt resource value: 0x7f0a00be
 			public const int VokabelKastenRecycler = 2131361982;
 			
-			// aapt resource value: 0x7f0a00d2
-			public const int VokabelNativLanguage = 2131362002;
+			// aapt resource value: 0x7f0a00cf
+			public const int VokabelNativLanguage = 2131361999;
 			
 			// aapt resource value: 0x7f0a00b5
 			public const int VokabelRecycler = 2131361973;
@@ -3379,9 +3379,6 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a003f
 			public const int always = 2131361855;
 			
-			// aapt resource value: 0x7f0a00cf
-			public const int appbar = 2131361999;
-			
 			// aapt resource value: 0x7f0a0065
 			public const int async = 2131361893;
 			
@@ -3418,8 +3415,8 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a009f
 			public const int cancel = 2131361951;
 			
-			// aapt resource value: 0x7f0a00d1
-			public const int cardView = 2131362001;
+			// aapt resource value: 0x7f0a00ce
+			public const int cardView = 2131361998;
 			
 			// aapt resource value: 0x7f0a004c
 			public const int center = 2131361868;
@@ -3595,11 +3592,8 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a00bc
 			public const int mainLayout = 2131361980;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int main_content = 2131361998;
-			
-			// aapt resource value: 0x7f0a00d8
-			public const int masked = 2131362008;
+			// aapt resource value: 0x7f0a00d5
+			public const int masked = 2131362005;
 			
 			// aapt resource value: 0x7f0a009c
 			public const int message = 2131361948;
@@ -3622,29 +3616,29 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a009d
 			public const int nativeVocab = 2131361949;
 			
-			// aapt resource value: 0x7f0a00dc
-			public const int nav_discussion = 2131362012;
+			// aapt resource value: 0x7f0a00d9
+			public const int nav_discussion = 2131362009;
+			
+			// aapt resource value: 0x7f0a00d8
+			public const int nav_friends = 2131362008;
+			
+			// aapt resource value: 0x7f0a00d6
+			public const int nav_home = 2131362006;
+			
+			// aapt resource value: 0x7f0a00d7
+			public const int nav_messages = 2131362007;
 			
 			// aapt resource value: 0x7f0a00db
-			public const int nav_friends = 2131362011;
-			
-			// aapt resource value: 0x7f0a00d9
-			public const int nav_home = 2131362009;
-			
-			// aapt resource value: 0x7f0a00da
-			public const int nav_messages = 2131362010;
-			
-			// aapt resource value: 0x7f0a00de
-			public const int navigation_dashboard = 2131362014;
+			public const int navigation_dashboard = 2131362011;
 			
 			// aapt resource value: 0x7f0a00ae
 			public const int navigation_header_container = 2131361966;
 			
-			// aapt resource value: 0x7f0a00dd
-			public const int navigation_home = 2131362013;
+			// aapt resource value: 0x7f0a00da
+			public const int navigation_home = 2131362010;
 			
-			// aapt resource value: 0x7f0a00df
-			public const int navigation_notifications = 2131362015;
+			// aapt resource value: 0x7f0a00dc
+			public const int navigation_notifications = 2131362012;
 			
 			// aapt resource value: 0x7f0a0042
 			public const int never = 2131361858;
@@ -3871,9 +3865,6 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a007e
 			public const int title_template = 2131361918;
 			
-			// aapt resource value: 0x7f0a00d0
-			public const int toolbar = 2131362000;
-			
 			// aapt resource value: 0x7f0a0045
 			public const int top = 2131361861;
 			
@@ -3913,8 +3904,8 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0a001b
 			public const int view_offset_helper = 2131361819;
 			
-			// aapt resource value: 0x7f0a00d7
-			public const int visible = 2131362007;
+			// aapt resource value: 0x7f0a00d4
+			public const int visible = 2131362004;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int withText = 2131361859;
@@ -4160,7 +4151,7 @@ namespace VokabelCarsten
 			public const int EditKasten = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int LearnModus1 = 2130968623;
+			public const int LearnModus = 2130968623;
 			
 			// aapt resource value: 0x7f040030
 			public const int Main_Activity = 2130968624;
@@ -4202,13 +4193,10 @@ namespace VokabelCarsten
 			public const int support_simple_spinner_dropdown_item = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int toolbar = 2130968637;
+			public const int VokabelCard = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int VokabelCard = 2130968638;
-			
-			// aapt resource value: 0x7f04003f
-			public const int VokabelKastenCard = 2130968639;
+			public const int VokabelKastenCard = 2130968638;
 			
 			static Layout()
 			{
@@ -4264,17 +4252,29 @@ namespace VokabelCarsten
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0d003b
-			public const int AddButton = 2131558459;
+			// aapt resource value: 0x7f0d0046
+			public const int AddButton = 2131558470;
 			
-			// aapt resource value: 0x7f0d003d
-			public const int Delete = 2131558461;
+			// aapt resource value: 0x7f0d0049
+			public const int Cancel = 2131558473;
 			
-			// aapt resource value: 0x7f0d003a
-			public const int LearnButton = 2131558458;
+			// aapt resource value: 0x7f0d004a
+			public const int Delete = 2131558474;
+			
+			// aapt resource value: 0x7f0d0045
+			public const int LearnButton = 2131558469;
+			
+			// aapt resource value: 0x7f0d0048
+			public const int Save = 2131558472;
 			
 			// aapt resource value: 0x7f0d003c
-			public const int VokabelnDesc = 2131558460;
+			public const int VocableForeign = 2131558460;
+			
+			// aapt resource value: 0x7f0d003b
+			public const int VocableNative = 2131558459;
+			
+			// aapt resource value: 0x7f0d0047
+			public const int VokabelnDesc = 2131558471;
 			
 			// aapt resource value: 0x7f0d0000
 			public const int abc_action_bar_home_description = 2131558400;
@@ -4393,6 +4393,12 @@ namespace VokabelCarsten
 			// aapt resource value: 0x7f0d001a
 			public const int abc_toolbar_collapse_description = 2131558426;
 			
+			// aapt resource value: 0x7f0d003f
+			public const int answerKnown = 2131558463;
+			
+			// aapt resource value: 0x7f0d0040
+			public const int answerNotKnown = 2131558464;
+			
 			// aapt resource value: 0x7f0d0036
 			public const int app_name = 2131558454;
 			
@@ -4401,6 +4407,18 @@ namespace VokabelCarsten
 			
 			// aapt resource value: 0x7f0d0029
 			public const int bottom_sheet_behavior = 2131558441;
+			
+			// aapt resource value: 0x7f0d0041
+			public const int boxDialogTitle = 2131558465;
+			
+			// aapt resource value: 0x7f0d0044
+			public const int boxForeignDesc = 2131558468;
+			
+			// aapt resource value: 0x7f0d0043
+			public const int boxNativeDesc = 2131558467;
+			
+			// aapt resource value: 0x7f0d0042
+			public const int boxTitleDesc = 2131558466;
 			
 			// aapt resource value: 0x7f0d002a
 			public const int character_counter_content_description = 2131558442;
@@ -4449,6 +4467,15 @@ namespace VokabelCarsten
 			
 			// aapt resource value: 0x7f0d0039
 			public const int title_notifications = 2131558457;
+			
+			// aapt resource value: 0x7f0d003a
+			public const int vocableBoxName = 2131558458;
+			
+			// aapt resource value: 0x7f0d003d
+			public const int vocableQuery = 2131558461;
+			
+			// aapt resource value: 0x7f0d003e
+			public const int vocableSolution = 2131558462;
 			
 			static String()
 			{

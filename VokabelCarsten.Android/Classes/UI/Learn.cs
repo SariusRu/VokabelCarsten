@@ -19,7 +19,7 @@ namespace VokabelCarsten
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.LearnModus1);
+            SetContentView(Resource.Layout.LearnModus);
 
             // Get Ui Elements
             vokabelQuery = FindViewById<Button>(Resource.Id.VokableQuery);
@@ -27,27 +27,31 @@ namespace VokabelCarsten
             solutionWasKnown = FindViewById<Button>(Resource.Id.SolutionKnown);
             solutionWasNotKnown = FindViewById<Button>(Resource.Id.SolutionNotKnown);
             answerView = FindViewById<LinearLayout>(Resource.Id.AnswerContainerView);
-            
+
+            //Show the First Question
+            string Question = Control.DisplayVocabQuestion();
+            showQuestion(Question);
+
             //Handle Show Solution Button
             showSolution.Click += delegate
             {
-                string answer = Control.displayVocabAnswer();
+                string answer = Control.DisplayVocabAnswer();
                 showQuestion(answer);
             };
 
             //Handle Solution was Known Button
             solutionWasKnown.Click += delegate
             {
-                Control.selectVocabCheck(true);
-                string Question = Control.displayVocabQuestion();
+                Control.SelectVocabCheck(true);
+                Question = Control.DisplayVocabQuestion();
                 showQuestion(Question);
             };
 
             //Handle Solution was not Known Button
             solutionWasNotKnown.Click += delegate
             {
-                Control.selectVocabCheck(false);
-                string Question = Control.displayVocabQuestion();
+                Control.SelectVocabCheck(false);
+                string Question = Control.DisplayVocabQuestion();
                 showQuestion(Question);
             };
         }

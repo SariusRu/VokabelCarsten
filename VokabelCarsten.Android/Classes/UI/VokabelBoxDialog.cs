@@ -24,6 +24,7 @@ namespace VokabelCarsten.Classes.UI
             RequestWindowFeature((int)WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.AddVokabelBox);
 
+            //Find Elements
             Button save = FindViewById<Button>(Resource.Id.save);
             Button cancel = FindViewById<Button>(Resource.Id.cancel);
 
@@ -33,30 +34,35 @@ namespace VokabelCarsten.Classes.UI
             colum2 = FindViewById<EditText>(Resource.Id.colum2);
 
             //Load Existing Data
-            if (Control.getCurrentVocabBox() != null) { 
-                title.Text = Control.getCurrentVocabBox().name;
-                colum1.Text = Control.getCurrentVocabBox().column1;
-                colum2.Text = Control.getCurrentVocabBox().column2;
+            if (Control.GetCurrentVocabBox() != null) { 
+                title.Text = Control.GetCurrentVocabBox().name;
+                colum1.Text = Control.GetCurrentVocabBox().column1;
+                colum2.Text = Control.GetCurrentVocabBox().column2;
                 
                 cancel.Text = base.Context.GetString(Resource.String.Delete);
             }
+
+            //Handle Button Actions
             save.Click += delegate
             {
-                if (Control.getCurrentVocabBox() != null)
+                if (Control.GetCurrentVocabBox() != null)
                 {
-                    Control.editVocabBox(title.Text, colum1.Text, colum2.Text);
+                    //Item Exists => Edit
+                    Control.EditVocabBox(title.Text, colum1.Text, colum2.Text);
                 }else
                 {
-                    Control.createVocabelKasten(title.Text, colum1.Text, colum2.Text);
+                    //No Item Exists => Create
+                    Control.CreateVocabelKasten(title.Text, colum1.Text, colum2.Text);
                 }
                 Dismiss();
             };
 
             cancel.Click += delegate
             {
-                if (Control.getCurrentVocabBox() != null)
+                if (Control.GetCurrentVocabBox() != null)
                 {
-                    Control.deleteCurrentVocabBox();
+                    //Delete Item if it Exists
+                    Control.DeleteCurrentVocabBox();
                 }
                 Dismiss();
             };

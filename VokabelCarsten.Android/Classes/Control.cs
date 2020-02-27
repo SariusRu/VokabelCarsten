@@ -8,7 +8,6 @@ namespace VokabelCarsten
     {
         #region Global Variables
 
-        private string theGUI; //Change type to GUI-class name
         private static List<VocabBox> vocabboxList = new List<VocabBox>();
         public enum Mode_t
         {
@@ -18,88 +17,52 @@ namespace VokabelCarsten
 
         }
         private static Mode_t selectedLearningMode = Mode_t.Linear;
-        private static int selectedVocabBoxIdx = 0 ;
+        private static int selectedVocabBoxIdx = 0;
         private static int selectedVocabIdx = 0;
 
         #endregion
-
-        public Control(string pGUI)
-        {
-            theGUI = pGUI;
-            /*vocabboxList.Add(new VocabBox("Eng-De", "englisch", "deutsch"));
-            vocabboxList.Add(new VocabBox("Ft-De", "französisch", "deutsch"));
-            vocabboxList.Add(new VocabBox("Sp-De", "spansich", "deutsch")); 
-            Dummy data for testing purposes*/
-        }
-
+        
         #region From GUI
 
         /// <summary>
         /// Handle Level, display next vocab and increase vocab index.
         /// </summary>
         /// <param name="known"></param>
-        public static void selectVocabCheck(bool known)
+        public static void SelectVocabCheck(bool known)
         {
             if (known == true) 
             {
-                increaseVocabLvl();
+                IncreaseVocabLvl();
             }
             else
             {
-                decreaseVocabLvl();
+                DecreaseVocabLvl();
             }
-            increaseVocabIdx();
-            displayVocabQuestion();
-        }
-        #endregion
-
-        #region Convert From GUI
-
-        /// <summary>
-        /// Searches for matching string in vocabBoxlist an returns list index.
-        /// </summary>
-        /// <param name="pName"></param>
-        /// <returns>List Index or -1 if not found</returns>
-        public int convertBoxNametoBoxIdx(string pName)
-        {
-            int findListIdx = 0;
-            foreach (VocabBox tempVocabBox in vocabboxList)
-            {
-               if (String.Equals(tempVocabBox.getName(), pName))
-                {
-                    return findListIdx;
-                }
-               else
-                {
-                    findListIdx++;
-                }
-            }
-
-
-            return -1; //String does not match listelement
+            IncreaseVocabIdx();
         }
         #endregion
 
         #region To GUI
 
         /// <summary>
-        /// Display next vocab side 1
+        /// Display Vocabel Question
         /// </summary>
-        public static string displayVocabQuestion()
+        /// <returns>returns the Question</returns>
+        public static string DisplayVocabQuestion()
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
-            return vocab.side1;
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].GetVokabel(selectedVocabIdx);
+            return vocab.Question;
         }
 
         /// <summary>
-        /// Display next vocab side 2
+        /// Display Vocabel Answer Side
         /// </summary>
-        public static string displayVocabAnswer()
+        public static string DisplayVocabAnswer()
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
-            return vocab.side2;
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].GetVokabel(selectedVocabIdx);
+            return vocab.Answer;
         }
 
         #endregion
@@ -109,23 +72,29 @@ namespace VokabelCarsten
         /// <summary>
         /// Adds new Vocab Box to the list, handing over params to Vocab Box class constructor to create new Vocab Box.
         /// </summary>
-        /// <param name="pName"></param>
-        /// <param name="pColumn1"></param>
-        /// <param name="pColumn2"></param>
-        public static void createVocabelKasten(string pName, string pColumn1, string pColumn2)
+        /// <param name="Name">Name of the Box</param>
+        /// <param name="Native">Name of the Native Column</param>
+        /// <param name="Foreign">Name of the Foreign Column</param>
+        public static void CreateVocabelKasten(string Name, string Native, string Foreign)
         {
-            string filepath = ""; //Need to generate safe location of JSON file
-            //Need to check if pName is already existing
-            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, filepath));
-            //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");  
+            string filepath = ""; //ToDo: Need to generate safe location of JSON file
+            vocabboxList.Add(new VocabBox(Name, Native, Foreign, filepath));  
         }
         
+        /// <summary>
+        /// Returns the VocabBox List
+        /// </summary>
+        /// <returns>Vocab Box List</returns>
         public static List<VocabBox> GetVocabBoxes()
         {
             return vocabboxList;
         }
 
-        public static VocabBox getCurrentVocabBox()
+        /// <summary>
+        /// Returns the Current selected Vocab Box
+        /// </summary>
+        /// <returns>Selected Vocab Box</returns>
+        public static VocabBox GetCurrentVocabBox()
         {
             if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
             {
@@ -137,76 +106,122 @@ namespace VokabelCarsten
             }
         }
 
-        public static void editVocabBox(string Name, string Column1, string Column2)
+        /// <summary>
+        /// Edit/Update the Current selected Vocab Box
+        /// </summary>
+        /// <param name="Name">Name of the Box</param>
+        /// <param name="Column1">Native Column</param>
+        /// <param name="Column2">Foreign Column</param>
+        public static void EditVocabBox(string Name, string Column1, string Column2)
         {
-            vocabboxList[selectedVocabBoxIdx].name = Name;      
-            vocabboxList[selectedVocabBoxIdx].column1 = Name;      
-            vocabboxList[selectedVocabBoxIdx].column2 = Name;      
+            vocabboxList[selectedVocabBoxIdx].name = Name;
+            vocabboxList[selectedVocabBoxIdx].column1 = Column1;      
+            vocabboxList[selectedVocabBoxIdx].column2 = Column2;      
         }
 
-
-        public static void deleteCurrentVocabBox()
+        /// <summary>
+        /// Delete the Current selected Vocab Box
+        /// </summary>
+        public static void DeleteCurrentVocabBox()
         {
             vocabboxList.RemoveAt(selectedVocabBoxIdx);
         }
         #endregion
 
         #region Vocab
-        public static void setSelectedVocabel(int SelectedVokabelIdx)
+
+        /// <summary>
+        /// Set the current Selected Vocable ID
+        /// </summary>
+        /// <param name="SelectedVokabelIdx">Vocable ID</param>
+        public static void SetSelectedVocabel(int SelectedVokabelIdx)
         {
             selectedVocabIdx = SelectedVokabelIdx;
         }
 
-        public static Vocab getVocab()
+        /// <summary>
+        /// Return the Current selected Vocable
+        /// </summary>
+        /// <returns>the Selected Vocable</returns>
+        public static Vocab GetVocab()
         {
-            if(getCurrentVocabBox() != null & selectedVocabIdx >= 0)
+            if(GetCurrentVocabBox() != null & selectedVocabIdx >= 0)
             {               
-                if (selectedVocabIdx < getCurrentVocabBox().Vokabeln.Count)
+                if (selectedVocabIdx < GetCurrentVocabBox().Vokabeln.Count)
                 {
-                    return getCurrentVocabBox().Vokabeln[selectedVocabIdx];
+                    return GetCurrentVocabBox().Vokabeln[selectedVocabIdx];
                 }
             }
             return null;
         }
 
-        public static void createVocab(string Side1, string Side2)
+        /// <summary>
+        /// Creates a Vocable
+        /// </summary>
+        /// <param name="Native">Native Translation</param>
+        /// <param name="Foreign">Foreign Translation</param>
+        public static void CreateVocab(string Native, string Foreign)
         {
-            vocabboxList[selectedVocabBoxIdx].addVokabel(Side1, Side2);
+            if (GetCurrentVocabBox() == null)
+                throw new NullReferenceException();
+
+            GetCurrentVocabBox().AddVokabel(Native, Foreign);
         }
 
-        public static void deleteVocab()
+        /// <summary>
+        /// Delete the Selected Vocable
+        /// </summary>
+        public static void DeleteVocab()
         {
-            vocabboxList[selectedVocabBoxIdx].removeVokabel(selectedVocabIdx);
+            if (GetCurrentVocabBox() == null)
+                throw new NullReferenceException();
+
+            GetCurrentVocabBox().RemoveVokabel(selectedVocabIdx);
         }
 
-        public static void editVokab(string pSide1, string pSide2)
+        /// <summary>
+        /// Edit the selected Vocable
+        /// </summary>
+        /// <param name="Native">Native Translation</param>
+        /// <param name="Foreign">Foreign Translation</param>
+        public static void EditVokab(string Native, string Foreign)
         {
-            vocabboxList[selectedVocabBoxIdx].changeVokabel(selectedVocabIdx, pSide1, pSide2);
+            if (GetCurrentVocabBox() == null)
+                throw new NullReferenceException();
+
+            GetCurrentVocabBox().ChangeVokabel(selectedVocabIdx, Native, Foreign);
         }
 
-        public static List<Vocab> getCurrentVokabelList()
+        /// <summary>
+        /// Get the Current List of Vocables
+        /// </summary>
+        /// <returns>Vocable List of the Selected Box</returns>
+        public static List<Vocab> GetCurrentVokabelList()
         {
-            return vocabboxList[selectedVocabBoxIdx].Vokabeln;
+            if (GetCurrentVocabBox() == null)
+                throw new NullReferenceException();
+
+            return GetCurrentVocabBox().Vokabeln;
+        }
+
+        /// <summary>
+        /// Set the Selected Vocable Box
+        /// </summary>
+        /// <param name="vocabBoxListIdx">Id of the Box</param>
+        public static void SetSelectedVocabBox(int vocabBoxListIdx)
+        {
+            selectedVocabBoxIdx = vocabBoxListIdx;
         }
 
         #endregion
 
-        #region Learning
-        
+        #region Learning    
+
         /// <summary>
-        /// Call if a vocabBox is selected for learning.
+        /// Set the Learning Mode
         /// </summary>
-        /// <param name="vocabBoxListIdx"></param>
-        public static void setSelectedVocabBox(int vocabBoxListIdx)
-        {
-            selectedVocabBoxIdx = vocabBoxListIdx;
-        }    
-        
-        /// <summary>
-        /// Call if lerning mode is selected.
-        /// </summary>
-        /// <param name="mode"></param>
-        public static void setLearnMode(Mode_t mode)
+        /// <param name="mode">Learnig Mode to be Used</param>
+        public static void SetLearnMode(Mode_t mode)
         {
             if (mode >= 0 && mode <= Mode_t.EndMode)
             {
@@ -220,33 +235,33 @@ namespace VokabelCarsten
         }
 
         /// <summary>
-        /// increase vocab index
+        /// Increase the Selected vocab Index
         /// </summary>
-        private static void increaseVocabIdx()
+        private static void IncreaseVocabIdx()
         {
             selectedVocabIdx++;
         }
 
-        //Moved display-methods to region "To GUI" as they are directly communicating from Control to GUI
-
         /// <summary>
-        /// increase vocab level.
+        /// Increase the Vocab level
         /// </summary>
-        public static void increaseVocabLvl()
+        public static void IncreaseVocabLvl()
         {
-            //Does Control know class Vocab? Might be better to directly increase level without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
-            vocab.increaseLevel();
+            if (GetVocab() == null)
+                return;
+
+            GetVocab().increaseLevel();
         }
 
         /// <summary>
-        /// decrease vocab level.
+        /// Decrease vocab level.
         /// </summary>
-        public static void decreaseVocabLvl()
+        public static void DecreaseVocabLvl()
         {
-            //Does Control know class Vocab? Might be better to directly decrease without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
-            vocab.decreaseLevel();
+            if (GetVocab() == null)
+                return;
+
+            GetVocab().decreaseLevel();
         }
 
         #endregion
@@ -254,17 +269,17 @@ namespace VokabelCarsten
         #region DataManager
 
         /// <summary>
-        /// To be done.
+        /// ToDo: To be done.
         /// </summary>
-        public void loadData()
+        public void LoadData()
         { 
         
         }
 
         /// <summary>
-        /// To be done.
+        /// ToDo: To be done.
         /// </summary>
-        public void storeData()
+        public void StoreData()
         { 
         
         }
@@ -274,9 +289,8 @@ namespace VokabelCarsten
         /// <summary>
         /// To be done.
         /// </summary>
-        public void exit(Activity contextActivity)
+        public void Exit(Activity contextActivity)
         {
-            //What is the proper way to close this application?
             contextActivity.FinishAffinity();
         }
     }

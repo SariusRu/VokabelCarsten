@@ -4,9 +4,25 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="vocableBoxName">Vokabel Box Name</string>
+    <string name="VocableNative">Muttersprache</string>
+    <string name="VocableForeign">Fremdsprache</string>
+
+    <string name="vocableQuery">Vokabel Frage</string>
+    <string name="vocableSolution">Vokabel Antwort</string>
+    <string name="answerKnown">Ja Gewusst!</string>
+    <string name="answerNotKnown">Nein nicht Gewusst!</string>
+
+    <string name="boxDialogTitle">Vocabel Box:</string>
+    <string name="boxTitleDesc">Title</string>
+    <string name="boxNativeDesc">Mutter Sprache</string>
+    <string name="boxForeignDesc">Fremd Sprache</string>
+  
     <string name="LearnButton">Learn</string>
     <string name="AddButton">Add Vocab</string>
     <string name="VokabelnDesc">Vokabeln:</string>
 
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
     <string name="Delete">Delete</string>
 </resources>

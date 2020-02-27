@@ -26,9 +26,9 @@ namespace VokabelCarsten
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             //Add For Debugging
-            Control.createVocabelKasten("Vokabluar 1", "Englisch", "Deutsch");
-            Control.createVocabelKasten("Vokabluar 2", "Englisch", "Deutsch");
-            Control.createVocabelKasten("Vokabluar 3", "Englisch", "Deutsch");
+            Control.CreateVocabelKasten("Vokabluar 1", "Englisch", "Deutsch");
+            Control.CreateVocabelKasten("Vokabluar 2", "Englisch", "Deutsch");
+            Control.CreateVocabelKasten("Vokabluar 3", "Englisch", "Deutsch");
 
             //Set Up Ui
             SetContentView(Resource.Layout.Main_Activity);
@@ -39,19 +39,19 @@ namespace VokabelCarsten
             VokabelKastenAdapter adapter = new VokabelKastenAdapter(this, Control.GetVocabBoxes());
             recyclerView.SetAdapter(adapter);
 
+            //Handle Add Button 
             Button addVokabelKastenButton = FindViewById<Button>(Resource.Id.AddVokabelKasten);
             addVokabelKastenButton.Click += delegate
             {
                 //Notify New Creation
-                Control.setSelectedVocabBox(-1);
+                Control.SetSelectedVocabBox(-1);
 
                 VokabelBoxDialog dialog = new VokabelBoxDialog(this);
                 dialog.Show();
 
                 adapter.NotifyDataSetChanged();
             };
-
-
+            
             //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
             DataManager dataManager = DataManager.staticDataManager;

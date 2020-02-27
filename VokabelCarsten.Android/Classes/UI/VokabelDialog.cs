@@ -26,6 +26,7 @@ namespace VokabelCarsten.Classes.UI
             RequestWindowFeature((int)WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.AddVokabel);
 
+            //Find Elements
             Button save = FindViewById<Button>(Resource.Id.save);
             Button cancel = FindViewById<Button>(Resource.Id.cancel);
 
@@ -34,32 +35,36 @@ namespace VokabelCarsten.Classes.UI
             foreign = FindViewById<EditText>(Resource.Id.foreignVocab);
 
             //Load Clicked Item
-            if (Control.getVocab() != null)
+            if (Control.GetVocab() != null)
             {
-                native.Text = Control.getVocab().side1;
-                foreign.Text = Control.getVocab().side2;
+                native.Text = Control.GetVocab().Question;
+                foreign.Text = Control.GetVocab().Answer;
 
                 cancel.Text = base.Context.GetString(Resource.String.Delete);
             }
 
+            //Handle Button Actions
             save.Click += delegate
             {
-                if (Control.getVocab() != null)
+                if (Control.GetVocab() != null)
                 {
-                    Control.editVokab(native.Text, foreign.Text);
+                    //Item Exists => Edit
+                    Control.EditVokab(native.Text, foreign.Text);
                 }
                 else
                 {
-                    Control.createVocab(native.Text, foreign.Text);
+                    //No Item Exists => Create
+                    Control.CreateVocab(native.Text, foreign.Text);
                 }
                 Dismiss();
             };
 
             cancel.Click += delegate
             {
-                if(Control.getVocab() != null)
+                if(Control.GetVocab() != null)
                 {
-                    Control.deleteVocab();
+                    //Delete Item if it Exists
+                    Control.DeleteVocab();
                 }
                 Dismiss();
             };

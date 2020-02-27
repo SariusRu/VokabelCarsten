@@ -12,13 +12,13 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:hint="Native Vocab"
+			android:hint="@string/VocableNative"
 			android:id="@+id/nativeVocab"/>
 		<EditText
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:hint="Foreign Vocab"
+			android:hint="@string/VocableForeign"
 			android:id="@+id/foreignVocab"/>
 	</LinearLayout>
 	<LinearLayout 
@@ -29,13 +29,13 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="Cancel"
+			android:text="@string/Cancel"
 			android:id="@+id/cancel"/>
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="Save"
+			android:text="@string/Save"
 			android:id="@+id/save"/>
 	</LinearLayout>
 </LinearLayout>

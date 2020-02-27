@@ -45,7 +45,7 @@ namespace VokabelCarsten
             vh.ItemView.LongClick += delegate
             {
                 //Handle Editing
-                Control.setSelectedVocabel(vh.AdapterPosition);
+                Control.SetSelectedVocabel(vh.AdapterPosition);
 
                 VokabelDialog dialog = new VokabelDialog((Activity)context);
                 dialog.Show();
@@ -65,8 +65,8 @@ namespace VokabelCarsten
             VokabelViewHolder vh = holder as VokabelViewHolder;
 
             //Load Text into Specific Cards
-            vh.native.Text = vocabList[position].side1;
-            vh.foreign.Text = vocabList[position].side2;
+            vh.native.Text = vocabList[position].Question;
+            vh.foreign.Text = vocabList[position].Answer;
         }
 
         public override int ItemCount

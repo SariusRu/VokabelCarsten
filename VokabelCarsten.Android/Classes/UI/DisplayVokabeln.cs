@@ -21,22 +21,26 @@ namespace VokabelCarsten
             RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelRecycler);
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
             recyclerView.SetLayoutManager(mLayoutManager);
-            VokabelAdapter adapter = new VokabelAdapter(this, Control.getCurrentVokabelList());
+            VokabelAdapter adapter = new VokabelAdapter(this, Control.GetCurrentVokabelList());
             recyclerView.SetAdapter(adapter);
 
             EditText title = FindViewById<EditText>(Resource.Id.EditTitle);
-            title.Text = Control.getCurrentVocabBox().name;
+            //Load in Name
+            if (Control.GetCurrentVocabBox() != null)
+            {
+                title.Text = Control.GetCurrentVocabBox().name;
+            }
 
             Button addVocab = FindViewById<Button>(Resource.Id.AddVokabel);
+            //Handle Add Button Actions
             addVocab.Click += delegate
             {
                 //Notify New Creation
-                Control.setSelectedVocabel(-1);
+                Control.SetSelectedVocabel(-1);
 
                 VokabelDialog dialog = new VokabelDialog(this);
                 dialog.Show();
-
-                //ToDo:  Bad Practice?
+                
                 dialog.DismissEvent += delegate
                 {
                     adapter.NotifyDataSetChanged();

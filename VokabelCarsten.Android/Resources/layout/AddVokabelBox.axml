@@ -8,26 +8,26 @@
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Vocabel Box:"
+		android:text="@string/boxDialogTitle"
 		android:textStyle="bold"
 		android:textSize="30dp"/>
 	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="15dp"
-		android:hint="Title"
+		android:hint="@string/boxTitleDesc"
 		android:id="@+id/title"/>
 	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="15dp"
-		android:hint="Native Language"
+		android:hint="@string/boxNativeDesc"
 		android:id="@+id/colum1"/>
 	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="15dp"
-		android:hint="Foreign Language"
+		android:hint="@string/boxForeignDesc"
 		android:id="@+id/colum2"/>
 
 	<LinearLayout 
@@ -38,13 +38,13 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="Cancel"
+			android:text="@string/Cancel"
 			android:id="@+id/cancel"/>
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="Save"
+			android:text="@string/Save"
 			android:id="@+id/save"/>
 	</LinearLayout>
 </LinearLayout>

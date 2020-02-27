@@ -46,7 +46,7 @@ namespace VokabelCarsten
             //Handle Creation of Cards
             vh.add.Click += delegate
             {
-                Control.setSelectedVocabBox(vh.AdapterPosition);
+                Control.SetSelectedVocabBox(vh.AdapterPosition);
 
                 //Show Vocabeln
                 context.StartActivity(typeof(VokabelActivity));
@@ -54,7 +54,7 @@ namespace VokabelCarsten
 
             vh.learn.Click += delegate
             {
-                Control.setSelectedVocabBox(vh.AdapterPosition);
+                Control.SetSelectedVocabBox(vh.AdapterPosition);
 
                 //Show Learn Activity
                 context.StartActivity(typeof(LearnActivity));
@@ -62,7 +62,7 @@ namespace VokabelCarsten
 
             vh.ItemView.LongClick += delegate
             {
-                Control.setSelectedVocabBox(vh.AdapterPosition);
+                Control.SetSelectedVocabBox(vh.AdapterPosition);
 
                 VokabelBoxDialog dialog = new VokabelBoxDialog((Activity)context);
                 dialog.Show();
