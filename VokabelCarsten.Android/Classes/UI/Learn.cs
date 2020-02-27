@@ -1,12 +1,13 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 
 namespace VokabelCarsten
 {
     [Activity(Label = "Learn1")]
-    public class Learn : Activity
+    public class LearnActivity : AppCompatActivity
     {
         // Get Ui Elements
         Button vokabelQuery;

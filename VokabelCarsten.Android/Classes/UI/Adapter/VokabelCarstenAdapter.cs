@@ -1,8 +1,10 @@
-﻿using Android.Content;
+﻿using Android.App;
+using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
+using VokabelCarsten.Classes.UI;
 
 namespace VokabelCarsten
 {
@@ -10,13 +12,13 @@ namespace VokabelCarsten
     {
         //All Text Views
         public TextView title;
-        public Button edit, learn;
+        public Button add, learn;
 
         //Find all Views
         public VokabelKastenViewHolder(View itemview) : base(itemview)
         {
             title = itemview.FindViewById<TextView>(Resource.Id.VokabelCarstenName);
-            edit = itemview.FindViewById<Button>(Resource.Id.Edit);
+            add = itemview.FindViewById<Button>(Resource.Id.Add);
             learn = itemview.FindViewById<Button>(Resource.Id.Learn);
         }
     }
@@ -42,22 +44,33 @@ namespace VokabelCarsten
             VokabelKastenViewHolder vh = new VokabelKastenViewHolder(itemView);
 
             //Handle Creation of Cards
-            vh.edit.Click += delegate
+            vh.add.Click += delegate
             {
                 Control.setSelectedVocabBox(vh.AdapterPosition);
 
-                //ToDo: Do Stuff Here
-                Toast.MakeText(context, "Edit was Clicked", ToastLength.Short);
-                context.StartActivity(typeof(EditVokabelKasten));
+                //Show Vocabeln
+                context.StartActivity(typeof(VokabelActivity));
             };
 
             vh.learn.Click += delegate
             {
                 Control.setSelectedVocabBox(vh.AdapterPosition);
-                context.StartActivity(typeof(Learn));
 
-                //ToDo: Do Stuff Here
-                Toast.MakeText(context, "Learn was Clicked", ToastLength.Short);
+                //Show Learn Activity
+                context.StartActivity(typeof(LearnActivity));
+            };
+
+            vh.ItemView.LongClick += delegate
+            {
+                Control.setSelectedVocabBox(vh.AdapterPosition);
+
+                VokabelBoxDialog dialog = new VokabelBoxDialog((Activity)context);
+                dialog.Show();
+
+                dialog.DismissEvent += delegate
+                {
+                    NotifyDataSetChanged();
+                };
             };
 
             //Return View Holder

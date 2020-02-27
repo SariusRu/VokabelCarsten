@@ -13,8 +13,8 @@ namespace VokabelCarsten
 		//Counts total number of added Vocabs and serves as Vocab-ID for creating a new Vocab; does not include removing Vocabs intentionally
 		private int countVocs = 0;
 		public string name { get; set; }
-		public string spalte1 { get; set; }
-		public string spalte2 { get; set; }
+		public string column1 { get; set; }
+		public string column2 { get; set; }
 		public List<Vocab> Vokabeln { get; set; }
 		private Random rndGenerator;
 		public string filePath { get; set; }
@@ -28,8 +28,8 @@ namespace VokabelCarsten
 		public VocabBox(string Na, string S1, string S2, string file)
         {
 			name = Na;
-			spalte1 = S1;
-			spalte2 = S2;
+			column1 = S1;
+			column2 = S2;
 			this.filePath = filePath;
 			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
@@ -79,8 +79,7 @@ namespace VokabelCarsten
         /// <param name="pID"></param>
         /// <param name="pSide1"></param>
         /// <param name="pSide2"></param>
-        /// <param name="pLevel"></param>
-		public void changeVokabel(int pID, string pSide1, string pSide2, int pLevel)
+		public void changeVokabel(int pID, string pSide1, string pSide2)
         {
             int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
             if (index == -1)
@@ -88,7 +87,7 @@ namespace VokabelCarsten
                 //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
                 return;
             }
-			Vokabeln[index].EditVocab(pSide1, pSide2, pLevel);
+			Vokabeln[index].EditVocab(pSide1, pSide2);
 		}
 
 		public Vocab getVokabel(int id)

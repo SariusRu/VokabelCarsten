@@ -19,7 +19,7 @@ namespace VokabelCarsten
         }
         private static Mode_t selectedLearningMode = Mode_t.Linear;
         private static int selectedVocabBoxIdx = 0 ;
-        private static int selectedvocabIdx = 0;
+        private static int selectedVocabIdx = 0;
 
         #endregion
 
@@ -88,7 +88,7 @@ namespace VokabelCarsten
         public static string displayVocabQuestion()
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
             return vocab.side1;
         }
 
@@ -98,7 +98,7 @@ namespace VokabelCarsten
         public static string displayVocabAnswer()
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
             return vocab.side2;
         }
 
@@ -119,123 +119,69 @@ namespace VokabelCarsten
             vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, filepath));
             //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");  
         }
-
-        /// <summary>
-        /// Takes name of a Vocab Box given by GUI, searches the Vocab Box List and deletes the object with matching name.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pName"></param>
-        public void deleteBox(string pName)
-        {
-            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
-            if (index == -1)
-            {
-                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
-                return;
-            }
-            vocabboxList.RemoveAt(index); 
-            //theGUI.appendTB_outputText("Vocab Box " + pName + " deleted.");
-        }
-
-        /// <summary>
-        /// Takes Vocab Box List and hands every name of boxes to the GUI to display all Vocab Box names.
-        /// </summary>
-        public void printAllBoxes()
-        {
-            /*theGUI.appendTB_outputText("List of saved Vocab Boxes
-            for (int i = 0; i < vocabboxList.Count; i)
-            {
-                theGUI.appendTB_outputText(vocabboxList[i].name);
-            }*/
-        }
-
+        
         public static List<VocabBox> GetVocabBoxes()
         {
             return vocabboxList;
         }
 
-        /// <summary>
-        /// Takes name of a Vocab Box given by GUI, searches the Vocab Box List and renames the object with matching name.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pName"></param>
-        /// <param name="pNameNew"></param>
-        public void renameBoxName(string pName, string pNameNew)
+        public static VocabBox getCurrentVocabBox()
         {
-            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
-            if (index == -1)
+            if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
             {
-                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
-                return;
+                return vocabboxList[selectedVocabBoxIdx];
             }
-            vocabboxList[index].name = pNameNew;
-            //theGUI.appendTB_outputText("Vocab Box name " + pName + " changed into " + pNameNew + ".");       
+            else
+            {
+                return null;
+            }
         }
 
-        /// <summary>
-        /// Takes name of a Vocab Box given by GUI, searches the Vocab Box List and renames columns of the object with matching name.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pName"></param>
-        /// <param name="pColumn1"></param>
-        /// <param name="pCOlumn2"></param>
-        public void renameBoxColumns(string pName, string pColumn1, string pColumn2)
+        public static void editVocabBox(string Name, string Column1, string Column2)
         {
-            int index = vocabboxList.IndexOf(vocabboxList.Find(item => item.name == pName));
-            if (index == -1)
-            {
-                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
-                return;
-            }
-            vocabboxList[index].spalte1 = pColumn1;
-            vocabboxList[index].spalte2 = pColumn2;
-            //theGUI.appendTB_outputText("Vocab Box " + pName + ": columns changed into " + pColumn1 + " and " + pColumn2 + ".");        
+            vocabboxList[selectedVocabBoxIdx].name = Name;      
+            vocabboxList[selectedVocabBoxIdx].column1 = Name;      
+            vocabboxList[selectedVocabBoxIdx].column2 = Name;      
         }
 
+
+        public static void deleteCurrentVocabBox()
+        {
+            vocabboxList.RemoveAt(selectedVocabBoxIdx);
+        }
         #endregion
 
         #region Vocab
-
-        /// <summary>
-        /// Hands over the params to the given Vocab Box to create a new Vocab.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pBox"></param>
-        /// <param name="pSide1"<>/param>
-        /// <param name="pSide2"></param>
-        public static void createVocab(int pBox, string pSide1, string pSide2)
+        public static void setSelectedVocabel(int SelectedVokabelIdx)
         {
-            vocabboxList[pBox].addVokabel(pSide1, pSide2);           
+            selectedVocabIdx = SelectedVokabelIdx;
         }
 
-        public static void createVocab(string pSide1, string pSide2)
+        public static Vocab getVocab()
         {
-            vocabboxList[selectedVocabBoxIdx].addVokabel(pSide1, pSide2);
+            if(getCurrentVocabBox() != null & selectedVocabIdx >= 0)
+            {               
+                if (selectedVocabIdx < getCurrentVocabBox().Vokabeln.Count)
+                {
+                    return getCurrentVocabBox().Vokabeln[selectedVocabIdx];
+                }
+            }
+            return null;
         }
 
-        /// <summary>
-        /// Hands over the pID to the given Vocab Box to remave the Vocab identified by pID.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pID"></param>
-        /// <param name="pBox"></param>
-        public void rmVocab(int pID, int pBox)
+        public static void createVocab(string Side1, string Side2)
         {
-            vocabboxList[pBox].removeVokabel(pID);
+            vocabboxList[selectedVocabBoxIdx].addVokabel(Side1, Side2);
         }
 
-        /// <summary>
-        /// Hands over the params to the given Vocab Box to cahnge a new Vocab.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pID"></param>
-        /// <param name="pBox"></param>
-        /// <param name="pSide1"<>/param>
-        /// <param name="pSide2"></param>
-        /// <param name="pLevel"></param>
-        public void changeVokabel(int pID, int pBox, string pSide1, string pSide2, int pLevel)
+        public static void deleteVocab()
         {
-            vocabboxList[pBox].changeVokabel(pID, pSide1, pSide2, pLevel);
+            vocabboxList[selectedVocabBoxIdx].removeVokabel(selectedVocabIdx);
+        }
+
+        public static void editVokab(string pSide1, string pSide2)
+        {
+            vocabboxList[selectedVocabBoxIdx].changeVokabel(selectedVocabIdx, pSide1, pSide2);
         }
 
         public static List<Vocab> getCurrentVokabelList()
@@ -278,7 +224,7 @@ namespace VokabelCarsten
         /// </summary>
         private static void increaseVocabIdx()
         {
-            selectedvocabIdx++;
+            selectedVocabIdx++;
         }
 
         //Moved display-methods to region "To GUI" as they are directly communicating from Control to GUI
@@ -289,7 +235,7 @@ namespace VokabelCarsten
         public static void increaseVocabLvl()
         {
             //Does Control know class Vocab? Might be better to directly increase level without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
             vocab.increaseLevel();
         }
 
@@ -299,7 +245,7 @@ namespace VokabelCarsten
         public static void decreaseVocabLvl()
         {
             //Does Control know class Vocab? Might be better to directly decrease without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedVocabIdx);
             vocab.decreaseLevel();
         }
 

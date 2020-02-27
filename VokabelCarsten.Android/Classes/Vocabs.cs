@@ -38,13 +38,11 @@ namespace VokabelCarsten
         /// </summary>
         /// <param name="si1"></param>
         /// <param name="si2"></param>
-        /// <param name="lev"></param>
         /// <returns>List Index or -1 if not found</returns>
-        public void EditVocab(string si1, string si2, int lev)
+        public void EditVocab(string si1, string si2)
         {
             side1 = si1;
             side2 = si2;
-            level = lev;
         }
 
         /// <summary>

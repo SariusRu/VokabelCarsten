@@ -42,7 +42,10 @@ namespace VokabelCarsten
             Button addVokabelKastenButton = FindViewById<Button>(Resource.Id.AddVokabelKasten);
             addVokabelKastenButton.Click += delegate
             {
-                AddVokabelBoxDialog dialog = new AddVokabelBoxDialog(this);
+                //Notify New Creation
+                Control.setSelectedVocabBox(-1);
+
+                VokabelBoxDialog dialog = new VokabelBoxDialog(this);
                 dialog.Show();
 
                 adapter.NotifyDataSetChanged();

@@ -31,7 +31,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_toLeftOf="@id/Learn"
-			android:text="@string/EditButton"
-			android:id="@+id/Edit"/>
+			android:text="@string/AddButton"
+			android:id="@+id/Add"/>
 	</RelativeLayout>
 </android.support.v7.widget.CardView>

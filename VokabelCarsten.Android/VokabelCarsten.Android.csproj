@@ -72,9 +72,9 @@
     <Compile Include="Classes\Exception.cs" />
     <Compile Include="Classes\UI\Adapter\VokabelAdapter.cs" />
     <Compile Include="Classes\UI\Adapter\VokabelCarstenAdapter.cs" />
-    <Compile Include="Classes\UI\AddVokabelBoxDialog.cs" />
-    <Compile Include="Classes\UI\EditVokabelDialog.cs" />
-    <Compile Include="Classes\UI\EditVokabelKasten.cs" />
+    <Compile Include="Classes\UI\VokabelBoxDialog.cs" />
+    <Compile Include="Classes\UI\VokabelDialog.cs" />
+    <Compile Include="Classes\UI\DisplayVokabeln.cs" />
     <Compile Include="Classes\UI\Learn.cs" />
     <Compile Include="Classes\VocabBox.cs" />
     <Compile Include="Classes\Vocabs.cs" />

@@ -1,8 +1,10 @@
-﻿using Android.Content;
+﻿using Android.App;
+using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
+using VokabelCarsten.Classes.UI;
 
 namespace VokabelCarsten
 {
@@ -40,10 +42,18 @@ namespace VokabelCarsten
             VokabelViewHolder vh = new VokabelViewHolder(itemView);
 
             //Handle Creation of Cards
-            vh.ItemView.Click += delegate
+            vh.ItemView.LongClick += delegate
             {
                 //Handle Editing
-                //ToDo:
+                Control.setSelectedVocabel(vh.AdapterPosition);
+
+                VokabelDialog dialog = new VokabelDialog((Activity)context);
+                dialog.Show();
+
+                dialog.DismissEvent += delegate
+                {
+                    NotifyDataSetChanged();
+                };
             };
 
             //Return View Holder

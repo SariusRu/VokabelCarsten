@@ -1633,26 +1633,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\samue\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\source\\repos\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
       "projectName": "VokabelCarsten.Android",
-      "projectPath": "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
-      "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\obj\\",
+      "projectPath": "C:\\Users\\admin\\source\\repos\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\source\\repos\\VokabelCarsten\\VokabelCarsten.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "monoandroid90"
