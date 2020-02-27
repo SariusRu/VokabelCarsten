@@ -65,7 +65,7 @@ namespace VokabelCarsten
             }                
             catch(Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the file!", ex);
             }
             return true;
         }
@@ -126,7 +126,7 @@ namespace VokabelCarsten
             }
             catch (Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the VocabBox", ex);
             }
         }
 
@@ -150,7 +150,7 @@ namespace VokabelCarsten
             }
             catch (Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileSaveException("There was a error while reading the file!", ex);
             }
         }
 
@@ -203,7 +203,7 @@ namespace VokabelCarsten
             }
             catch (Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileSaveException("There was a error while reading the file!", ex);
             }
             return true;
         }
