@@ -27,8 +27,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Setup MSTest.exe
+      uses: SariusRu/Setup-MSTest@v2
     - name: Restoring Packages
       run: |
                 cd VokabelCarsten.Test
