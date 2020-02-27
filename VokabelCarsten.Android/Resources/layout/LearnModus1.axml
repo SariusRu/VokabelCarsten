@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:padding="20dp">
+
+	<LinearLayout
+		android:layout_width="match_parent"	
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:paddingVertical="50dp">
+		<Button
+			android:layout_width="match_parent"	
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Vokabel Frage"
+			android:id="@+id/VokableQuery"
+			android:clickable="false"
+		/>
+		<Button
+			android:layout_width="match_parent"	
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Vokabel Antwort"
+			android:visibility="gone"
+			android:id="@+id/showSolution"
+		/>
+		<LinearLayout
+			android:layout_width="match_parent"	
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="horizontal"
+			android:id="@+id/AnswerContainerView">
+			<Button
+				android:layout_width="match_parent"	
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="Nein nicht Gewusst!"
+				android:id="@+id/SolutionNotKnown"
+			/>
+			<Button
+				android:layout_width="match_parent"	
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:text="Ja Gewusst!"
+				android:id="@+id/SolutionKnown"
+			/>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
