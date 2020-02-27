@@ -3,7 +3,7 @@
   <PropertyGroup>
     <SelectedDevice>Blackview BV6000S</SelectedDevice>
     <DefaultDevice>my_device</DefaultDevice>
-    <AndroidDesignerPreferredTheme>Theme.DeviceDefault</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredTheme>AppTheme</AndroidDesignerPreferredTheme>
     <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>

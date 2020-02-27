@@ -157,7 +157,7 @@ namespace VokabelCarsten
 			Vokabeln.Clear();
 		}
 
-		public string getName()
+		public string GetName()
 		{
 			return name;
 		}
