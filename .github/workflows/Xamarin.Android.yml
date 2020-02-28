@@ -32,7 +32,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Restoring Packages
         run: |
-                cd VokabelCarsten.Android
+                cd VokabelCarsten.Test
                 msBuild -t:restore
       - name: Run Test
         run: |
