@@ -22,4 +22,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: Build_Results
-        path: VokabelCarsten/Build/
+        path: Build/
