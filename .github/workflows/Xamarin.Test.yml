@@ -27,7 +27,7 @@ jobs:
           msBuild
       - name: Run Test
         run: |
-          cd ..\Build\netcoreapp3.1\
+          cd Build\netcoreapp3.1\
           & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe' VokabelCarsten.Test.dll
           
         
