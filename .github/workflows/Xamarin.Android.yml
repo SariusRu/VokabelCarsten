@@ -18,7 +18,8 @@ jobs:
     - name: Build App
       run: |
             cd VokabelCarsten.Android
-            msBuild VokabelCarsten.Android.csproj -t:restore -t:Package
+            msBuild VokabelCarsten.Android.csproj -t:restore
+            msBuild VokabelCarsten.Android.csproj -t:Package
     - uses: actions/upload-artifact@v1
       with:
         name: Build_Results
