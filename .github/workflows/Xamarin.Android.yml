@@ -28,5 +28,9 @@ jobs:
     steps:
     - name: Setup MSTest.exe
       run: |
-        & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\MSTest.exe'
+        cd VokabelCarsten.Test
+        msBuild -t:restore
+        cd ..\Build
+        & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe' VokabelCarsten.Test.dll
+        
     
