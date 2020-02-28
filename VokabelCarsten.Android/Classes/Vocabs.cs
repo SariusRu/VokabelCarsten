@@ -75,5 +75,15 @@ namespace VokabelCarsten
             else { level++; }
 
         }
+
+        public string getSide1()
+        {
+            return side1;
+        }
+
+        public string getSide2()
+        {
+            return side2;
+        }
     }
 }

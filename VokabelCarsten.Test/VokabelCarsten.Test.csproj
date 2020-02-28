@@ -10,6 +10,10 @@
     <OutputPath>..\Build\</OutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Build\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="..\VokabelCarsten.Android\Classes\Control.cs" Link="Classes\Control.cs" />
     <Compile Include="..\VokabelCarsten.Android\Classes\DataManager.cs" Link="Classes\DataManager.cs" />
