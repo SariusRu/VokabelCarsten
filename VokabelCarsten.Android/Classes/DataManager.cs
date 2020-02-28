@@ -15,7 +15,7 @@ namespace VokabelCarsten
         /// </summary>
         public static readonly DataManager staticDataManager = new DataManager();
 
-        private string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "vocabBoxes.xml");
+        private string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "vocabBoxes.xml");
 
         private List<VocabBox> vocabBoxes = new List<VocabBox>();
 
@@ -34,7 +34,7 @@ namespace VokabelCarsten
         {
             if (!readVocabBoxList())
             {
-                throw new FileNotReadException("File wasn't read properly");
+                //throw new FileNotReadException("File wasn't read properly");
             }
         }
 
@@ -46,24 +46,37 @@ namespace VokabelCarsten
         /// This methos is using the vocabFileList from the members to check if the file exists. If no File exists a file is created.
         /// After that the methos tries to read from the file using a FileStrean and a XML-Serializer.
         /// The results are cated to a list of VocabBoxes and then saved in vocabBoxes
-        /// \return False if something wen't wrong or the methos was interrupted. Otherwise always true.
+        /// \return False if there wasn't any text to read
         private bool readVocabBoxList()
         {
-            if(!File.Exists(vocabFileList) || vocabFileList == null)
-            {
-                File.Create(vocabFileList);
-            }
             try
             {
-                string test = File.ReadAllText(vocabFileList);
-                XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
-                using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
+                if (!File.Exists(vocabFileList) || vocabFileList == null)
                 {
-                    // Call the Deserialize method to restore the object's state.
-                    vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
+                    File.Create(vocabFileList);
+                    return false;
                 }
-            }                
-            catch(Exception ex)
+                else
+                {
+                    string test = File.ReadAllText(vocabFileList);
+                    if (test != "")
+                    {
+                        XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
+                        using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
+                        {
+                            // Call the Deserialize method to restore the object's state.
+                            vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
             {
                 throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the file!", ex);
             }
