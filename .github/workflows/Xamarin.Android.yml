@@ -27,5 +27,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Setup MSTest.exe
-      uses: SariusRu/Setup-MSTest@v1
+      run: |
+        C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\MSTest.exe
     
