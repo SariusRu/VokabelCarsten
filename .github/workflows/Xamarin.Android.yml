@@ -13,8 +13,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
     - name: Restoring Packages
       run: |
                 cd VokabelCarsten.Android
@@ -26,14 +26,19 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
-    - name: Restoring Packages
-      run: |
+      - name: Checkout Code
+        uses: actions/checkout@v1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      - name: Restoring Packages
+        run: |
                 cd VokabelCarsten.Test
                 msBuild -t:restore
-    - name: Build App
-      run: |
-                cd VokabelCarsten.Test
-                msBuild VokabelCarsten.Test.csproj
+      - name: Run Test
+        run: |
+          cd .\VokabelCarsten.Test\
+          msBuild -t:restore
+          cd ..\Build\
+          & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe' VokabelCarsten.Test.dll
+        
+    

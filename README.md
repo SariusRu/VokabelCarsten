@@ -18,3 +18,9 @@ Alle Klassen und Kommentare werden in Englisch geschrieben.
  - Da alle mit VS Community programmieren, wird die Standard-Formatierung von VS Community als Formatierung festgelegt.
 ## Dokumentation
  - Zur Dokumentation wird Doxygen in der C-Notation verwendet
+
+
+
+
+
+Testing: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe' VokabelCarsten.Test.dll
