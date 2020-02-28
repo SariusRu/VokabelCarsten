@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
       - name: Restoring Packages
         run: |
                 cd VokabelCarsten.Android
