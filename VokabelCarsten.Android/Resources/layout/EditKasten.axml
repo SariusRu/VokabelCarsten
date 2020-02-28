@@ -11,12 +11,14 @@
 		android:layout_marginHorizontal="3dp"
 		android:text="Vokabel Karsten"
 		android:layout_marginBottom="20dp"
+		android:id="@+id/EditTitle"
 	/>
 	<TextView
 		android:layout_width="wrap_content"	
 		android:layout_height="wrap_content"
 		android:text="@string/VokabelnDesc"
 	/>
+
 	<!--Line-->
 	<View
 		android:layout_width="match_parent"
@@ -26,5 +28,20 @@
 	<android.support.v7.widget.RecyclerView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:id="@+id/VokabelRecycler"
 	/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<Button
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_margin="25dp"
+				android:id="@+id/AddVokabel"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentRight="true"
+				android:text="+"
+			/>
+	</RelativeLayout>
 </LinearLayout>

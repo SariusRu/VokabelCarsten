@@ -1,5 +1,8 @@
 ﻿using System;
 
+
+namespace VokabelCarsten.Exceptions
+{
 [Serializable()]
 public class FileNotReadException : System.Exception
 {
@@ -23,4 +26,17 @@ public class VocabBoxAlreadyExists : System.Exception
     // exception propagates from a remoting server to the client. 
     protected VocabBoxAlreadyExists(System.Runtime.Serialization.SerializationInfo info,
         System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+}
+
+    public class FileSaveException : System.Exception
+    {
+        public FileSaveException() : base() { }
+        public FileSaveException(string message) : base(message) { }
+        public FileSaveException(string message, System.Exception inner) : base(message, inner) { }
+
+        // A constructor is needed for serialization when an
+        // exception propagates from a remoting server to the client. 
+        protected FileSaveException(System.Runtime.Serialization.SerializationInfo info,
+            System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
 }

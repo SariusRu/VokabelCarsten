@@ -170,5 +170,10 @@ namespace VokabelCarsten
 		{
 			Vokabeln.Clear();
 		}
+
+		public string getName()
+		{
+			return name;
+		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTestProject1
+namespace VocabelCarsten.Test
 {
     [TestClass]
     public class UnitTest1
@@ -8,7 +8,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestMethod1()
         {
-
+            Assert.AreEqual(1, 1);
         }
     }
 }
