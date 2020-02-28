@@ -18,7 +18,7 @@ jobs:
     - name: Restoring Packages
       run: |
                 cd VokabelCarsten.Android
-                msBuild -t:restore
+                msBuild -t:restore /t:Package
     - name: Build App
       run: |
                 cd VokabelCarsten.Android
