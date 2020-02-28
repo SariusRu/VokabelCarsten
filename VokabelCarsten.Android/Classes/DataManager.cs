@@ -80,7 +80,6 @@ namespace VokabelCarsten
             {
                 throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the file!", ex);
             }
-            return true;
         }
 
         /// <summary>

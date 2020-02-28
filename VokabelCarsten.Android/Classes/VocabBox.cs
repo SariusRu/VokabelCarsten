@@ -94,13 +94,10 @@ namespace VokabelCarsten
 		/// Method is not necessary until later versions
 		/// </summary>
 		/// <param name="id"<>/param>
-		/*public Vocab getVokabel(int id)
+		public Vocab getVokabel(int id)
         {
-
-				return Vokabeln[id];
-
-			
-        }*/
+				return Vokabeln[id];			
+        }
 
 		/// <summary>
 		/// Get random Vocab.
