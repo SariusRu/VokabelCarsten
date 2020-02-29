@@ -136,7 +136,8 @@ namespace VokabelCarsten
             {
                 if (!File.Exists(vocabBoxPath) || vocabBoxPath == null)
                 {
-                    File.Create(vocabBoxPath);
+                    var myFile = File.Create(vocabBoxPath);
+                    myFile.Close();
                     return false;
                 }
                 else
