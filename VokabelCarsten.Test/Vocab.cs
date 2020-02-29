@@ -49,5 +49,52 @@ namespace VocabelCarsten.Test
             Assert.AreEqual("Hello", testVocab.getSide2(), "The value wasn't changed correctly");
 
         }
+
+        [TestMethod]
+        public void getLevelTest()
+        {
+            //initialize
+            VokabelCarsten.Vocab testVocab1 = new VokabelCarsten.Vocab("Hallo", "Hello", 0);
+            Assert.AreEqual(0, testVocab1.GetLevel(), "Test Vocab was initalized properly");
+            testVocab1.increaseLevel();
+            VokabelCarsten.Vocab testVocab2 = new VokabelCarsten.Vocab("Hallo", "Hello", 0);
+            //alter name
+            Assert.AreEqual(1, testVocab1.GetLevel(), "Level wasn't returned Properly");
+            Assert.AreEqual(0, testVocab2.GetLevel(), "Test Vocab was initalized properly");
+
+        }
+
+        [TestMethod]
+        public void increaseLevelTest()
+        {
+            VokabelCarsten.Vocab testVocab1 = new VokabelCarsten.Vocab("Hallo", "Hello", 0);
+            Assert.AreEqual(0, testVocab1.GetLevel(), "Test Vocab was initalized properly");
+            testVocab1.increaseLevel();
+            Assert.AreEqual(1, testVocab1.GetLevel(), "Level wasn't increased Properly");
+            testVocab1.increaseLevel();
+            testVocab1.increaseLevel();
+            testVocab1.increaseLevel();
+            testVocab1.increaseLevel();
+            testVocab1.increaseLevel();
+            Assert.AreEqual(6, testVocab1.GetLevel(), "Level wasn't increased Properly");
+            testVocab1.increaseLevel();
+            Assert.AreEqual(6, testVocab1.GetLevel(), "Level wasn't increased Properly");
+        }
+
+        [TestMethod]
+        public void decreaseLevelTest()
+        {
+            VokabelCarsten.Vocab testVocab1 = new VokabelCarsten.Vocab("Hallo", "Hello", 0);
+            Assert.AreEqual(0, testVocab1.GetLevel(), "Test Vocab was initalized properly");
+            testVocab1.decreaseLevel();
+            Assert.AreEqual(0, testVocab1.GetLevel(), "Level wasn't increased Properly");
+            testVocab1.increaseLevel();
+            testVocab1.increaseLevel();
+            testVocab1.increaseLevel();
+            Assert.AreEqual(3, testVocab1.GetLevel(), "Level wasn't increased Properly");
+            testVocab1.decreaseLevel();
+            Assert.AreEqual(2, testVocab1.GetLevel(), "Level wasn't increased Properly");
+            
+        }
     }
 }

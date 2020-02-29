@@ -60,7 +60,7 @@ namespace VokabelCarsten
         /// <summary>
         /// Increases the level of a vocab
         /// </summary>
-        public void increaseLevel()
+        public void decreaseLevel()
         {
             if (level == 0)
             { }
@@ -70,7 +70,7 @@ namespace VokabelCarsten
         /// <summary>
         /// Decreases the level of a vocab
         /// </summary>
-        public void decreaseLevel()
+        public void increaseLevel()
         {
             if (level == 6) { }
             else { level++; }
