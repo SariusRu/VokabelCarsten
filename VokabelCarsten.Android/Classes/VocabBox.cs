@@ -20,6 +20,13 @@ namespace VokabelCarsten
 		public string filePath { get; set; }
 
 
+		//needed for the serialization KEEP IT!
+		public VocabBox()
+		{
+
+		}
+
+
 		/// <summary>
 		/// Create new VocabBox with given parameters.
 		/// </summary>
@@ -98,6 +105,16 @@ namespace VokabelCarsten
         {
 				return Vokabeln[id];			
         }
+
+		public void increaseVocabLevel(int id)
+		{
+			Vokabeln[id].increaseLevel();
+		}
+
+		public void decreaseVocabLevel(int id)
+		{
+			Vokabeln[id].decreaseLevel();
+		}
 
 		/// <summary>
 		/// Get random Vocab.

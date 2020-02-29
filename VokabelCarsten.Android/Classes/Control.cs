@@ -88,7 +88,8 @@ namespace VokabelCarsten
         public static string displayVocabQuestion()
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            //Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedvocabIdx);
             return vocab.side1;
         }
 
@@ -114,9 +115,10 @@ namespace VokabelCarsten
         /// <param name="pColumn2"></param>
         public static void createVocabelKasten(string pName, string pColumn1, string pColumn2)
         {
-            string filepath = ""; //Need to generate safe location of JSON file
+            string filepath = pName + ".xml"; //Need to generate safe location of JSON file
             //Need to check if pName is already existing
-            vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, filepath));
+            DataManager.staticDataManager.CreateVocabBox(new VocabBox(pName, pColumn1, pColumn2, filepath));
+            //vocabboxList.Add(new VocabBox(pName, pColumn1, pColumn2, filepath));
             //theGUI.appendTB_outputText("New Vocab Box " + pName + " added.");  
         }
 
@@ -151,7 +153,7 @@ namespace VokabelCarsten
 
         public static List<VocabBox> GetVocabBoxes()
         {
-            return vocabboxList;
+            return DataManager.staticDataManager.getVocabBoxList();
         }
 
         /// <summary>
@@ -210,7 +212,8 @@ namespace VokabelCarsten
 
         public static void createVocab(string pSide1, string pSide2)
         {
-            vocabboxList[selectedVocabBoxIdx].addVokabel(pSide1, pSide2);
+            DataManager.staticDataManager.loadedBox.addVokabel(pSide1, pSide2);
+            //vocabboxList[selectedVocabBoxIdx].addVokabel(pSide1, pSide2);
         }
 
         /// <summary>
@@ -240,7 +243,8 @@ namespace VokabelCarsten
 
         public static List<Vocab> getCurrentVokabelList()
         {
-            return vocabboxList[selectedVocabBoxIdx].Vokabeln;
+            return DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx).Vokabeln;
+            //return vocabboxList[selectedVocabBoxIdx].Vokabeln;
         }
 
         #endregion
@@ -251,9 +255,11 @@ namespace VokabelCarsten
         /// Call if a vocabBox is selected for learning.
         /// </summary>
         /// <param name="vocabBoxListIdx"></param>
+        /// 
         public static void setSelectedVocabBox(int vocabBoxListIdx)
         {
             selectedVocabBoxIdx = vocabBoxListIdx;
+            DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
         }    
         
         /// <summary>
@@ -289,8 +295,9 @@ namespace VokabelCarsten
         public static void increaseVocabLvl()
         {
             //Does Control know class Vocab? Might be better to directly increase level without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
-            vocab.increaseLevel();
+            //Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            //vocab.increaseLevel();
+            DataManager.staticDataManager.loadedBox.increaseVocabLevel(selectedvocabIdx);
         }
 
         /// <summary>
@@ -299,8 +306,9 @@ namespace VokabelCarsten
         public static void decreaseVocabLvl()
         {
             //Does Control know class Vocab? Might be better to directly decrease without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
-            vocab.decreaseLevel();
+            //Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            //vocab.decreaseLevel();
+            DataManager.staticDataManager.loadedBox.decreaseVocabLevel(selectedvocabIdx);
         }
 
         #endregion
@@ -311,16 +319,16 @@ namespace VokabelCarsten
         /// To be done.
         /// </summary>
         public void loadData()
-        { 
-        
+        {
+            DataManager.staticDataManager.refreshVocabBoxes();
         }
 
         /// <summary>
         /// To be done.
         /// </summary>
         public void storeData()
-        { 
-        
+        {
+            DataManager.staticDataManager.SaveVocabBoxesXML();
         }
 
         #endregion

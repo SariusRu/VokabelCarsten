@@ -36,7 +36,12 @@ namespace VokabelCarsten
                 {
                     adapter.NotifyDataSetChanged();
                 };
-            };           
+            };
+            Button saveVocabBox = FindViewById<Button>(Resource.Id.SaveVocabBox);
+            saveVocabBox.Click += delegate
+            {
+                DataManager.staticDataManager.SaveVocabBoxesXML();
+            };
         }
     }
 }

@@ -26,9 +26,9 @@ namespace VokabelCarsten
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             //Add For Debugging
-            Control.createVocabelKasten("Vokabluar 1", "Englisch", "Deutsch");
-            Control.createVocabelKasten("Vokabluar 2", "Englisch", "Deutsch");
-            Control.createVocabelKasten("Vokabluar 3", "Englisch", "Deutsch");
+            //Control.createVocabelKasten("Vokabluar 1", "Englisch", "Deutsch");
+            //Control.createVocabelKasten("Vokabluar 2", "Englisch", "Deutsch");
+            //Control.createVocabelKasten("Vokabluar 3", "Englisch", "Deutsch");
 
             //Set Up Ui
             SetContentView(Resource.Layout.Main_Activity);
@@ -51,7 +51,6 @@ namespace VokabelCarsten
 
             //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
-            DataManager dataManager = DataManager.staticDataManager;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

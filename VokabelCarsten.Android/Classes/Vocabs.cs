@@ -13,11 +13,12 @@ namespace VokabelCarsten
         public int level { get; set; } = 0;
         public int id { get; set; }
 
-        /*Commented empty constructor without parameters (why overload it?)
+        /*Commented empty constructor without parameters (why overload it?)*/
+        //Because it's needed for the Serialization
         public Vocab()
         {
 
-        }*/
+        }
 
         /// <summary>
         /// Konstructor for Vocab Element
