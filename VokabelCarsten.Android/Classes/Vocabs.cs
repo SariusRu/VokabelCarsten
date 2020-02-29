@@ -77,11 +77,13 @@ namespace VokabelCarsten
 
         }
 
+        //returns the first side
         public string getSide1()
         {
             return side1;
         }
 
+        //returns the first side
         public string getSide2()
         {
             return side2;
