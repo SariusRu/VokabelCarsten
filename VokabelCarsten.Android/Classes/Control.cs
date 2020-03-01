@@ -19,7 +19,7 @@ namespace VokabelCarsten
         }
         private static Mode_t selectedLearningMode = Mode_t.Linear;
         private static int selectedVocabBoxIdx = 0 ;
-        private static int selectedvocabIdx = 0;
+        private static int selectedvocabIdx = -1;
 
         #endregion
 
@@ -40,13 +40,16 @@ namespace VokabelCarsten
         /// <param name="known"></param>
         public static void selectVocabCheck(bool known)
         {
-            if (known == true) 
+            if (selectedvocabIdx != -1)
             {
-                increaseVocabLvl();
-            }
-            else
-            {
-                decreaseVocabLvl();
+                if (known == true)
+                {
+                    increaseVocabLvl();
+                }
+                else
+                {
+                    decreaseVocabLvl();
+                }
             }
             increaseVocabIdx();
             displayVocabQuestion();
@@ -89,8 +92,17 @@ namespace VokabelCarsten
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
             //Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
-            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedvocabIdx);
-            return vocab.side1;
+            int l = DataManager.staticDataManager.loadedBox.getAnzVok();
+            if(selectedvocabIdx < l)
+            {
+                Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedvocabIdx);
+                return vocab.side1;
+            }
+            else
+            {
+                return "Keine Vokabeln vorhanden!";
+            }
+
         }
 
         /// <summary>
