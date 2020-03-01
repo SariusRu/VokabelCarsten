@@ -26,12 +26,20 @@ namespace VokabelCarsten
             solutionWasKnown = FindViewById<Button>(Resource.Id.SolutionKnown);
             solutionWasNotKnown = FindViewById<Button>(Resource.Id.SolutionNotKnown);
             answerView = FindViewById<LinearLayout>(Resource.Id.AnswerContainerView);
-            
+            //start = FindViewById<Button>(Resource.Id.start);
+
+
+            //start.Click += delegate
+            //{
+            //    solutionWasKnown.Visibility = true;
+            //    solutionWasNotKnown.Visibility = true;
+
+            //}
             //Handle Show Solution Button
             showSolution.Click += delegate
             {
                 string answer = Control.displayVocabAnswer();
-                showQuestion(answer);
+                showAnswer(answer);
             };
 
             //Handle Solution was Known Button

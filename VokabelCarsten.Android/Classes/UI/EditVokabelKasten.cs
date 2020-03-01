@@ -25,6 +25,7 @@ namespace VokabelCarsten
             recyclerView.SetAdapter(adapter);
 
             EditText title = FindViewById<EditText>(Resource.Id.EditTitle);
+            title.Text = Control.getVocabBoxTitle();
             Button addVocab = FindViewById<Button>(Resource.Id.AddVokabel);
             addVocab.Click += delegate
             {

@@ -119,9 +119,12 @@ namespace VokabelCarsten
         /// All Vocabs are deleted from the selected VocabBox and the loadedBox-member is nulled.
         public void restoreLoadedBox()
         {
-            SaveVocabBoxXML();
-            loadedBox.unloadVocabs();
-            loadedBox = null;
+            if(loadedBox != null)
+            {
+                SaveVocabBoxXML();
+                loadedBox.unloadVocabs();
+                loadedBox = null;
+            }
         }
 
         /// <summary>

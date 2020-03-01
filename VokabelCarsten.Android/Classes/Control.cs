@@ -99,7 +99,7 @@ namespace VokabelCarsten
         public static string displayVocabAnswer()
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].getVokabel(selectedvocabIdx);
+            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedvocabIdx);
             return vocab.side2;
         }
 
@@ -258,9 +258,15 @@ namespace VokabelCarsten
         /// 
         public static void setSelectedVocabBox(int vocabBoxListIdx)
         {
+            DataManager.staticDataManager.selectVocabBox(vocabBoxListIdx);
             selectedVocabBoxIdx = vocabBoxListIdx;
-            DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
-        }    
+
+        }
+        
+        public static string getVocabBoxTitle()
+        {
+            return DataManager.staticDataManager.loadedBox.getName();
+        }
         
         /// <summary>
         /// Call if lerning mode is selected.
