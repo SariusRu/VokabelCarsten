@@ -6,7 +6,7 @@ using VokabelCarsten.Exceptions;
 
 namespace VokabelCarsten
 {
-    class DataManager
+    public class DataManager
     {
 
         #region Global Variables
@@ -47,7 +47,7 @@ namespace VokabelCarsten
         /// After that the methos tries to read from the file using a FileStrean and a XML-Serializer.
         /// The results are cated to a list of VocabBoxes and then saved in vocabBoxes
         /// \return False if there wasn't any text to read
-        private bool readVocabBoxList()
+        protected bool readVocabBoxList()
         {
             try
             {
@@ -58,15 +58,17 @@ namespace VokabelCarsten
                 }
                 else
                 {
-                    string test = File.ReadAllText(vocabFileList);
-                    if (test != "")
+                    string stringToDeserialize = File.ReadAllText(vocabFileList);
+                    if (stringToDeserialize != "")
                     {
-                        XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
-                        using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
-                        {
+                        List<VocabBox> List = new List<VocabBox>();
+                        vocabBoxes = xmlDeserialize(ref List, stringToDeserialize);
+                        //XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
+                        //using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
+                        //{
                             // Call the Deserialize method to restore the object's state.
-                            vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
-                        }
+                        //    vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
+                        //}
                         return true;
                     }
                     else
@@ -80,6 +82,27 @@ namespace VokabelCarsten
             {
                 throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the file!", ex);
             }
+        }
+
+        protected string xmlSerializer<T>(ref T objectToSerialize)
+        {
+            XmlSerializer ser = new XmlSerializer(objectToSerialize.GetType());
+            using (StringWriter textWriter = new StringWriter())
+            {
+                ser.Serialize(textWriter, objectToSerialize);
+                return textWriter.ToString();
+            }
+        }
+
+        protected T xmlDeserialize<T>(ref T objectToWriteTo, string stringToDeserialize)
+        {
+            XmlSerializer ser = new XmlSerializer(objectToWriteTo.GetType());
+            using (StringReader reader = new StringReader(stringToDeserialize))
+            {
+                // Call the Deserialize method to restore the object's state.
+                objectToWriteTo = (T)ser.Deserialize(reader);
+            }
+            return objectToWriteTo;
         }
 
         public List<VocabBox> getVocabBoxList()
@@ -273,6 +296,16 @@ namespace VokabelCarsten
                 }
             }
             return true;
+        }
+
+        public void deleteVocabBox(int id)
+        {
+            vocabBoxes.RemoveAt(id);
+        }
+
+        public void removeAllVocabBoxes()
+        {
+            vocabBoxes.Clear();
         }
     }
 }
