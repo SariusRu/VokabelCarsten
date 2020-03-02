@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -39,15 +39,18 @@ namespace VokabelCarsten
             VokabelKastenAdapter adapter = new VokabelKastenAdapter(this, Control.GetVocabBoxes());
             recyclerView.SetAdapter(adapter);
 
+            //Handle Add Button 
             Button addVokabelKastenButton = FindViewById<Button>(Resource.Id.AddVokabelKasten);
             addVokabelKastenButton.Click += delegate
             {
-                AddVokabelBoxDialog dialog = new AddVokabelBoxDialog(this);
+                //Notify New Creation
+                Control.SetSelectedVocabBox(-1);
+
+                VokabelBoxDialog dialog = new VokabelBoxDialog(this);
                 dialog.Show();
 
                 adapter.NotifyDataSetChanged();
             };
-
 
             //Load Data
             textMessage = FindViewById<TextView>(Resource.Id.message);
@@ -61,4 +64,3 @@ namespace VokabelCarsten
         }
     }
 }
-
