@@ -148,7 +148,7 @@ namespace VokabelCarsten
                 loadedBox.unloadVocabs();
                 loadedBox = null;
             }
-            refreshVocabBoxes();
+            //refreshVocabBoxes();
         }
 
         /// <summary>
@@ -238,6 +238,7 @@ namespace VokabelCarsten
             if (CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
             {
                 vocabBoxes.Add(newBox);
+                SaveVocabBoxesXML();
                 selectVocabBox(vocabBoxes.Count - 1);
             }
 
