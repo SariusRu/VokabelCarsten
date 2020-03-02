@@ -1,13 +1,12 @@
-using Android.App;
+﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 
 namespace VokabelCarsten
 {
-    [Activity(Label = "Learn")]
-    public class LearnActivity : AppCompatActivity
+    [Activity(Label = "Learn1")]
+    public class Learn : Activity
     {
         // Get Ui Elements
         Button vokabelQuery;
@@ -19,7 +18,7 @@ namespace VokabelCarsten
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.LearnModus);
+            SetContentView(Resource.Layout.LearnModus1);
 
             // Get Ui Elements
             vokabelQuery = FindViewById<Button>(Resource.Id.VokableQuery);
@@ -29,11 +28,13 @@ namespace VokabelCarsten
             answerView = FindViewById<LinearLayout>(Resource.Id.AnswerContainerView);
             //start = FindViewById<Button>(Resource.Id.start);
 
-            //Show the First Question
-            Control.SetSelectedVocabel(0);
-            string Question = Control.DisplayVocabQuestion();
-            showQuestion(Question);
 
+            //start.Click += delegate
+            //{
+            //    solutionWasKnown.Visibility = true;
+            //    solutionWasNotKnown.Visibility = true;
+
+            //}
             //Handle Show Solution Button
             showSolution.Click += delegate
             {
