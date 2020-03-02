@@ -6,7 +6,7 @@ using VokabelCarsten.Exceptions;
 
 namespace VokabelCarsten
 {
-    class DataManager
+    public class DataManager
     {
 
         #region Global Variables
@@ -15,7 +15,7 @@ namespace VokabelCarsten
         /// </summary>
         public static readonly DataManager staticDataManager = new DataManager();
 
-        private string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "vocabBoxes.xml");
+        private string vocabFileList = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "vocabBoxes.xml");
 
         private List<VocabBox> vocabBoxes = new List<VocabBox>();
 
@@ -34,7 +34,7 @@ namespace VokabelCarsten
         {
             if (!readVocabBoxList())
             {
-                throw new FileNotReadException("File wasn't read properly");
+                //throw new FileNotReadException("File wasn't read properly");
             }
         }
 
@@ -46,28 +46,68 @@ namespace VokabelCarsten
         /// This methos is using the vocabFileList from the members to check if the file exists. If no File exists a file is created.
         /// After that the methos tries to read from the file using a FileStrean and a XML-Serializer.
         /// The results are cated to a list of VocabBoxes and then saved in vocabBoxes
-        /// \return False if something wen't wrong or the methos was interrupted. Otherwise always true.
-        private bool readVocabBoxList()
+        /// \return False if there wasn't any text to read
+        protected bool readVocabBoxList()
         {
-            if(!File.Exists(vocabFileList) || vocabFileList == null)
-            {
-                File.Create(vocabFileList);
-            }
             try
             {
-                string test = File.ReadAllText(vocabFileList);
-                XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
-                using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
+                if (!File.Exists(vocabFileList) || vocabFileList == null)
                 {
-                    // Call the Deserialize method to restore the object's state.
-                    vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
+                    File.Create(vocabFileList);
+                    return false;
                 }
-            }                
-            catch(Exception ex)
-            {
-                
+                else
+                {
+                    string stringToDeserialize = File.ReadAllText(vocabFileList);
+                    if (stringToDeserialize != "")
+                    {
+                        List<VocabBox> List = new List<VocabBox>();
+                        vocabBoxes = xmlDeserialize(ref List, stringToDeserialize);
+                        //XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
+                        //using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
+                        //{
+                        // Call the Deserialize method to restore the object's state.
+                        //    vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
+                        //}
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
             }
-            return true;
+            catch (Exception ex)
+            {
+                throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the file!", ex);
+            }
+        }
+
+        protected string xmlSerializer<T>(ref T objectToSerialize)
+        {
+            XmlSerializer ser = new XmlSerializer(objectToSerialize.GetType());
+            using (StringWriter textWriter = new StringWriter())
+            {
+                ser.Serialize(textWriter, objectToSerialize);
+                return textWriter.ToString();
+            }
+        }
+
+        protected T xmlDeserialize<T>(ref T objectToWriteTo, string stringToDeserialize)
+        {
+            XmlSerializer ser = new XmlSerializer(objectToWriteTo.GetType());
+            using (StringReader reader = new StringReader(stringToDeserialize))
+            {
+                // Call the Deserialize method to restore the object's state.
+                objectToWriteTo = (T)ser.Deserialize(reader);
+            }
+            return objectToWriteTo;
+        }
+
+        public List<VocabBox> getVocabBoxList()
+        {
+            return vocabBoxes;
         }
 
         /// <summary>
@@ -76,7 +116,7 @@ namespace VokabelCarsten
         /// Converts the vocabBoxes-Member into an Array and returns it.
         /// Used to select the Array.
         /// \return  The converted list
-        public VocabBox[] getVocabBoxList()
+        public VocabBox[] getVocabBoxArray()
         {
             return vocabBoxes.ToArray();
         }
@@ -102,9 +142,12 @@ namespace VokabelCarsten
         /// All Vocabs are deleted from the selected VocabBox and the loadedBox-member is nulled.
         public void restoreLoadedBox()
         {
-            SaveVocabBoxXML();
-            loadedBox.UnloadVocabs();
-            loadedBox = null;
+            if (loadedBox != null)
+            {
+                SaveVocabBoxXML();
+                loadedBox.unloadVocabs();
+                loadedBox = null;
+            }
         }
 
         /// <summary>
@@ -112,21 +155,39 @@ namespace VokabelCarsten
         /// </summary>
         /// The methos is using the filepath saved in every VocabBox to open a filestream to the file.
         /// This fileStream is used by the XMLSerializer. The result are casted to a VocabBox and saved in the loadedBox-member
-        private void readVocabBox()
+        private bool readVocabBox()
         {
-            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.GetFilePath());
-            String test = File.ReadAllText(vocabBoxPath);
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), loadedBox.getFilePath());
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
-                using(Stream reader = new FileStream(vocabBoxPath, FileMode.Open))
+                if (!File.Exists(vocabBoxPath) || vocabBoxPath == null)
                 {
-                    loadedBox = (VocabBox)ser.Deserialize(reader);
+                    var myFile = File.Create(vocabBoxPath);
+                    myFile.Close();
+                    return false;
+                }
+                else
+                {
+                    String test = File.ReadAllText(vocabBoxPath);
+                    if (test != "")
+                    {
+                        XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
+                        using (Stream reader = new FileStream(vocabBoxPath, FileMode.Open))
+                        {
+                            loadedBox = (VocabBox)ser.Deserialize(reader);
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
             }
             catch (Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileNotReadException("There was a error while reading the file!", ex);
             }
         }
 
@@ -138,7 +199,7 @@ namespace VokabelCarsten
         /// This fileStream is used by the XMLSerializer. The serializer is saving the data into the file.
         private void SaveVocabBoxXML()
         {
-            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), loadedBox.GetFilePath());
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), loadedBox.getFilePath());
             try
             {
                 File.Delete(vocabBoxPath);
@@ -150,7 +211,7 @@ namespace VokabelCarsten
             }
             catch (Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileSaveException("There was a error while reading the file!", ex);
             }
         }
 
@@ -173,13 +234,13 @@ namespace VokabelCarsten
         /// <param name="newBox">The vocabBox to add into the list</param>
         public bool CreateVocabBox(VocabBox newBox)
         {
-            if (CheckExistenceVocabBox(newBox.GetName(), newBox.GetFilePath()))
+            if (CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
             {
                 vocabBoxes.Add(newBox);
                 selectVocabBox(vocabBoxes.Count - 1);
-            }                  
-                
-            
+            }
+
+
             return true;
         }
 
@@ -203,7 +264,7 @@ namespace VokabelCarsten
             }
             catch (Exception ex)
             {
-                
+                throw new VokabelCarsten.Exceptions.FileSaveException("There was a error while reading the file!", ex);
             }
             return true;
         }
@@ -221,20 +282,30 @@ namespace VokabelCarsten
             {
                 foreach (VocabBox item in vocabBoxes)
                 {
-                    if (item.GetName() == name)
+                    if (item.getName() == name)
                     {
                         throw new VocabBoxAlreadyExists("A Vocabbox with this name already exists.");
                     }
                 }
                 foreach (VocabBox item in vocabBoxes)
                 {
-                    if (item.GetName() == filePath)
+                    if (item.getName() == filePath)
                     {
                         throw new VocabBoxAlreadyExists("A Vocabbox with this Filepath already exists.");
                     }
                 }
             }
             return true;
+        }
+
+        public void deleteVocabBox(int id)
+        {
+            vocabBoxes.RemoveAt(id);
+        }
+
+        public void removeAllVocabBoxes()
+        {
+            vocabBoxes.Clear();
         }
     }
 }

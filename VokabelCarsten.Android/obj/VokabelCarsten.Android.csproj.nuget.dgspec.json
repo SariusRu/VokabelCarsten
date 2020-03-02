@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj": {}
+    "C:\\Users\\samue\\Downloads\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj": {
+    "C:\\Users\\samue\\Downloads\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
+        "projectUniqueName": "C:\\Users\\samue\\Downloads\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
         "projectName": "VokabelCarsten.Android",
-        "projectPath": "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
+        "projectPath": "C:\\Users\\samue\\Downloads\\VokabelCarsten\\VokabelCarsten.Android\\VokabelCarsten.Android.csproj",
         "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\samue\\OneDrive\\Sourcecode\\C#\\VokabelCarsten\\VokabelCarsten.Android\\obj\\",
+        "outputPath": "C:\\Users\\samue\\Downloads\\VokabelCarsten\\VokabelCarsten.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [

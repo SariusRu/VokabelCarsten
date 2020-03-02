@@ -36,8 +36,8 @@ namespace VokabelCarsten.Classes.UI
             //Load Existing Data
             if (Control.GetCurrentVocabBox() != null) { 
                 title.Text = Control.GetCurrentVocabBox().name;
-                colum1.Text = Control.GetCurrentVocabBox().column1;
-                colum2.Text = Control.GetCurrentVocabBox().column2;
+                colum1.Text = Control.GetCurrentVocabBox().spalte1;
+                colum2.Text = Control.GetCurrentVocabBox().spalte2;
                 
                 cancel.Text = base.Context.GetString(Resource.String.Delete);
             }

@@ -10,14 +10,21 @@ namespace VokabelCarsten
 	{
 		//Make attributes private and create extra getter/setter methods, data encapsulation, it should never be possible to directly access attributes from outside the containing class
 		public int id { get; set; } //Is ID really required? Control identifies Vocab Box after its name
-		//Counts total number of added Vocabs and serves as Vocab-ID for creating a new Vocab; does not include removing Vocabs intentionally
+									//Counts total number of added Vocabs and serves as Vocab-ID for creating a new Vocab; does not include removing Vocabs intentionally
 		private int countVocs = 0;
 		public string name { get; set; }
-		public string column1 { get; set; }
-		public string column2 { get; set; }
+		public string spalte1 { get; set; }
+		public string spalte2 { get; set; }
 		public List<Vocab> Vokabeln { get; set; }
 		private Random rndGenerator;
 		public string filePath { get; set; }
+
+
+		//needed for the serialization KEEP IT!
+		public VocabBox()
+		{
+
+		}
 
 
 		/// <summary>
@@ -28,122 +35,143 @@ namespace VokabelCarsten
 		/// <param name="S2"></param>
 		/// <param name="file"></param>
 		public VocabBox(string Na, string S1, string S2, string file)
-        {
+		{
 			name = Na;
-			column1 = S1;
-			column2 = S2;
-			this.filePath = filePath;
+			spalte1 = S1;
+			spalte2 = S2;
 			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
 			filePath = file;
 
 		}
 
-        /// <summary>
-        /// Create new Vocab with given parameters.
-        /// We allow vocabs to exist as duplicates.
-        /// </summary>
-        /// <param name="pSide1"<>/param>
-        /// <param name="pSide2"></param>
-		public void AddVokabel(string pSide1, string pSide2)
-        {
+		/// <summary>
+		/// Create new Vocab with given parameters.
+		/// We allow vocabs to exist as duplicates.
+		/// </summary>
+		/// <param name="pSide1"<>/param>
+		/// <param name="pSide2"></param>
+		public void addVokabel(string pSide1, string pSide2)
+		{
 			//How to handle if Vocab already exists with both or one of the sides?
 			Vocab voc = new Vocab(pSide1, pSide2, countVocs);
 			Vokabeln.Add(voc);
 			countVocs++;
-			
+
 		}
 
-        /// <summary>
-        /// Delete Vocab identified by given ID.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pID"></param>
-		public void RemoveVokabel(int id)
-        {
-            int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
-            if (index == -1)
-            {
-                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
-                return;
-            }
+		/// <summary>
+		/// Delete Vocab identified by given ID.
+		/// RWe assume that 
+		/// </summary>
+		/// <param name="pID"></param>
+		public void removeVokabel(int id)
+		{
+			int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
+			if (index == -1)
+			{
+				//theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+				return;
+			}
 			Vokabeln.RemoveAt(index);
 		}
 
-        /// <summary>
-        /// Change attributes of Vocab identified by ID.
-        /// Return on error to be done.
-        /// </summary>
-        /// <param name="pID"></param>
-        /// <param name="pSide1"></param>
-        /// <param name="pSide2"></param>
-		public void ChangeVokabel(int pID, string pSide1, string pSide2)
-        {
-            int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
-            if (index == -1)
-            {
-                //theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
-                return;
-            }
+		/// <summary>
+		/// Change attributes of Vocab identified by ID.
+		/// Return on error to be done.
+		/// </summary>
+		/// <param name="pID"></param>
+		/// <param name="pSide1"></param>
+		/// <param name="pSide2"></param>
+		/// <param name="pLevel"></param>
+		public void changeVokabel(int pID, string pSide1, string pSide2, int pLevel)
+		{
+			int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
+			if (index == -1)
+			{
+				//theGUI.appendTB_outputText("Vocab Box " + pName + " not found.");
+				return;
+			}
 			Vokabeln[index].EditVocab(pSide1, pSide2);
 		}
 
-        /// <summary>
-        /// Return the Vokabel given by the ID
-        /// </summary>
-        /// <param name="id">The Vokabel ID</param>
-        /// <returns>Vokabel</returns>
-		public Vocab GetVokabel(int id)
-        {
-            if (id >= 0 && id < Vokabeln.Count)
-            {
-                return Vokabeln[id];
-            }
-            else
-            {
-                return null;
-            }
-        }
 
-        /// <summary>
-        /// Returns a Random Vokabel from the List
-        /// </summary>
-        /// <returns>Vokabel</returns>
-		public Vocab GetRandomVok()
+		/// <summary>
+		/// Get Vocab with certain Id.
+		/// Method is not necessary until later versions
+		/// </summary>
+		/// <param name="id"<>/param>
+		public Vocab getVokabel(int id)
+		{
+			return Vokabeln[id];
+		}
+
+		public void increaseVocabLevel(int id)
+		{
+			Vokabeln[id].increaseLevel();
+		}
+
+		public void decreaseVocabLevel(int id)
+		{
+			Vokabeln[id].decreaseLevel();
+		}
+
+		/// <summary>
+		/// Get random Vocab.
+		/// Method is not necessary until later versions
+		/// </summary>
+		/*public Vocab getRandomVok()
         {
 			return Vokabeln[rndGenerator.Next(Vokabeln.Count)];
-        }
+        }*/
 
-        /// <summary>
-        /// Return a Vokabel from an Compartment
-        /// </summary>
-        /// <param name="Compartment">Compartment Number</param>
-        /// <returns>Vocable List from Compartment</returns>
-		public List<Vocab> GetVokFromFach(int Compartment)
+		/// <summary>
+		/// Get Vocab count.
+		/// </summary>
+		public int getAnzVok()
+		{
+			return Vokabeln.Count;
+		}
+
+		/// <summary>
+		/// Get Vocabs from certain Fach.
+		/// Method is not necessary until later versions
+		/// returns VocabList
+		/// </summary>
+		/// <param name="Fachnummer"<>/param>
+		/*public List<Vocab> getVokFromFach(int Fachnummer)
         {
 			List<Vocab> retVocs = new List<Vocab>();
 			for(int i = 0; i < Vokabeln.Count; i++)
             {
-				if (Vokabeln[i].GetLevel() == Compartment)
+				if (Vokabeln[i].GetLevel() == Fachnummer)
 					retVocs.Add(Vokabeln[i]);
             }
 			return retVocs;
-        }
+        }*/
 
-        /// <summary>
-        /// Set File Path for the Box to Save it to
-        /// </summary>
-        /// <param name="FilePath">Filepath</param>
-		public void SetFilePath(string FilePath)
+		/// <summary>
+		/// Get VocabBox Id.
+		/// returns id
+		/// </summary>
+		public int getId()
 		{
-			filePath = FilePath;
+			return id;
 		}
 
-        /// <summary>
-        /// Get the File Path for the Box
-        /// </summary>
-        /// <returns>String Filepath</returns>
-		public string GetFilePath()
+		/// <summary>
+		/// Set file path
+		/// </summary>
+		/// <param name="file"<>/param>
+		public void setFilePath(string file)
+		{
+			filePath = file;
+		}
+
+		/// <summary>
+		/// Get Filepath.
+		/// </summary>
+		public string getFilePath()
 		{
 			return filePath;
 		}
@@ -152,12 +180,12 @@ namespace VokabelCarsten
 		/// <summary>
 		/// Clear Vocabs.
 		/// </summary>
-		public void UnloadVocabs()
+		public void unloadVocabs()
 		{
 			Vokabeln.Clear();
 		}
 
-		public string GetName()
+		public string getName()
 		{
 			return name;
 		}

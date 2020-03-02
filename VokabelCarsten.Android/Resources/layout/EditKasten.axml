@@ -39,11 +39,20 @@
 		<Button
 				android:layout_width="50dp"
 				android:layout_height="50dp"
-				android:layout_margin="25dp"
+				android:layout_marginRight="25dp"
+				android:layout_marginLeft="2dp"
 				android:id="@+id/AddVokabel"
 				android:layout_alignParentBottom="true"
 				android:layout_alignParentRight="true"
 				android:text="+"
+			/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/SaveVokabel"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/AddVokabel"
+            android:text="Save"
 			/>
 	</RelativeLayout>
 </LinearLayout>

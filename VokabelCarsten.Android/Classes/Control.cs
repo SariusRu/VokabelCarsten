@@ -51,7 +51,7 @@ namespace VokabelCarsten
         public static string DisplayVocabQuestion()
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].GetVokabel(selectedVocabIdx);
+            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedVocabIdx);
             if (vocab != null)
             {
                 return vocab.Question;
@@ -67,7 +67,7 @@ namespace VokabelCarsten
         public static string DisplayVocabAnswer()
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
-            Vocab vocab = vocabboxList[selectedVocabBoxIdx].GetVokabel(selectedVocabIdx);
+            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedVocabIdx);
             if (vocab != null)
             {
                 return vocab.Answer;
@@ -90,8 +90,8 @@ namespace VokabelCarsten
         /// <param name="Foreign">Name of the Foreign Column</param>
         public static void CreateVocabelKasten(string Name, string Native, string Foreign)
         {
-            string filepath = ""; //ToDo: Need to generate safe location of JSON file
-            vocabboxList.Add(new VocabBox(Name, Native, Foreign, filepath));  
+            string filepath = Name + ".xml"; //ToDo: Need to generate safe location of JSON file
+            DataManager.staticDataManager.CreateVocabBox(new VocabBox(Name, Native, Foreign, filepath));  
         }
         
         /// <summary>
@@ -100,7 +100,7 @@ namespace VokabelCarsten
         /// <returns>Vocab Box List</returns>
         public static List<VocabBox> GetVocabBoxes()
         {
-            return vocabboxList;
+            return DataManager.staticDataManager.getVocabBoxList();
         }
 
         /// <summary>
@@ -111,7 +111,8 @@ namespace VokabelCarsten
         {
             if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
             {
-                return vocabboxList[selectedVocabBoxIdx];
+                DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
+                return DataManager.staticDataManager.loadedBox;
             }
             else
             {
@@ -127,9 +128,9 @@ namespace VokabelCarsten
         /// <param name="Column2">Foreign Column</param>
         public static void EditVocabBox(string Name, string Column1, string Column2)
         {
-            vocabboxList[selectedVocabBoxIdx].name = Name;
-            vocabboxList[selectedVocabBoxIdx].column1 = Column1;      
-            vocabboxList[selectedVocabBoxIdx].column2 = Column2;      
+            DataManager.staticDataManager.loadedBox.name = Name;
+            DataManager.staticDataManager.loadedBox.spalte1 = Column1;
+            DataManager.staticDataManager.loadedBox.spalte2 = Column2;      
         }
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace VokabelCarsten
         /// </summary>
         public static void DeleteCurrentVocabBox()
         {
-            vocabboxList.RemoveAt(selectedVocabBoxIdx);
+            DataManager.staticDataManager.deleteVocabBox(selectedVocabBoxIdx);
         }
         #endregion
 
@@ -162,7 +163,7 @@ namespace VokabelCarsten
             {               
                 if (selectedVocabIdx < GetCurrentVocabBox().Vokabeln.Count)
                 {
-                    return GetCurrentVocabBox().Vokabeln[selectedVocabIdx];
+                    return DataManager.staticDataManager.loadedBox.Vokabeln[selectedVocabIdx];
                 }
             }
             return null;
@@ -175,10 +176,10 @@ namespace VokabelCarsten
         /// <param name="Foreign">Foreign Translation</param>
         public static void CreateVocab(string Native, string Foreign)
         {
-            if (GetCurrentVocabBox() == null)
+            if (DataManager.staticDataManager.loadedBox == null)
                 throw new NullReferenceException();
 
-            GetCurrentVocabBox().AddVokabel(Native, Foreign);
+            DataManager.staticDataManager.loadedBox.addVokabel(Native, Foreign);
         }
 
         /// <summary>
@@ -186,10 +187,10 @@ namespace VokabelCarsten
         /// </summary>
         public static void DeleteVocab()
         {
-            if (GetCurrentVocabBox() == null)
+            if (DataManager.staticDataManager.loadedBox == null)
                 throw new NullReferenceException();
 
-            GetCurrentVocabBox().RemoveVokabel(selectedVocabIdx);
+            DataManager.staticDataManager.loadedBox.removeVokabel(selectedVocabIdx);
         }
 
         /// <summary>
@@ -199,10 +200,10 @@ namespace VokabelCarsten
         /// <param name="Foreign">Foreign Translation</param>
         public static void EditVokab(string Native, string Foreign)
         {
-            if (GetCurrentVocabBox() == null)
+            if (DataManager.staticDataManager.loadedBox == null)
                 throw new NullReferenceException();
 
-            GetCurrentVocabBox().ChangeVokabel(selectedVocabIdx, Native, Foreign);
+            DataManager.staticDataManager.loadedBox.changeVokabel(selectedVocabIdx, Native, Foreign, 0);
         }
 
         /// <summary>
@@ -211,10 +212,10 @@ namespace VokabelCarsten
         /// <returns>Vocable List of the Selected Box</returns>
         public static List<Vocab> GetCurrentVokabelList()
         {
-            if (GetCurrentVocabBox() == null)
+            if (DataManager.staticDataManager.loadedBox == null)
                 throw new NullReferenceException();
 
-            return GetCurrentVocabBox().Vokabeln;
+            return DataManager.staticDataManager.loadedBox.Vokabeln;
         }
 
         /// <summary>
@@ -223,6 +224,7 @@ namespace VokabelCarsten
         /// <param name="vocabBoxListIdx">Id of the Box</param>
         public static void SetSelectedVocabBox(int vocabBoxListIdx)
         {
+            DataManager.staticDataManager.selectVocabBox(vocabBoxListIdx);
             selectedVocabBoxIdx = vocabBoxListIdx;
         }
 

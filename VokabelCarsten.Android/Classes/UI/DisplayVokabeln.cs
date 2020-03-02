@@ -31,6 +31,12 @@ namespace VokabelCarsten
                 title.Text = Control.GetCurrentVocabBox().name;
             }
 
+            Button saveVocab = FindViewById<Button>(Resource.Id.SaveVokabel);
+            saveVocab.Click += delegate
+            {
+                DataManager.staticDataManager.SaveVocabBoxesXML();
+            };
+
             Button addVocab = FindViewById<Button>(Resource.Id.AddVokabel);
             //Handle Add Button Actions
             addVocab.Click += delegate
