@@ -54,6 +54,7 @@ namespace VokabelCarsten.Classes.UI
                     //No Item Exists => Create
                     Control.CreateVocabelKasten(title.Text, colum1.Text, colum2.Text);
                 }
+                DataManager.staticDataManager.restoreLoadedBox();
                 Dismiss();
             };
 

@@ -109,15 +109,15 @@ namespace VokabelCarsten
         /// <returns>Selected Vocab Box</returns>
         public static VocabBox GetCurrentVocabBox()
         {
-            if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
-            {
-                DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
+            //if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
+            //{
+                //DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
                 return DataManager.staticDataManager.loadedBox;
-            }
-            else
-            {
-                return null;
-            }
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
 
         /// <summary>

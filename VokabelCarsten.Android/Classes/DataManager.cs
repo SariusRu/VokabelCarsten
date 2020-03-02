@@ -148,6 +148,7 @@ namespace VokabelCarsten
                 loadedBox.unloadVocabs();
                 loadedBox = null;
             }
+            refreshVocabBoxes();
         }
 
         /// <summary>
@@ -222,7 +223,7 @@ namespace VokabelCarsten
         /// <returns>Returns if the read-methos was successfull</returns>
         public bool refreshVocabBoxes()
         {
-            restoreLoadedBox();
+            //restoreLoadedBox();
             return readVocabBoxList();
         }
 

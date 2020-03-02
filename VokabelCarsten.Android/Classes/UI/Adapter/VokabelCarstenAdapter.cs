@@ -63,6 +63,7 @@ namespace VokabelCarsten
             vh.ItemView.LongClick += delegate
             {
                 Control.SetSelectedVocabBox(vh.AdapterPosition);
+                
 
                 VokabelBoxDialog dialog = new VokabelBoxDialog((Activity)context);
                 dialog.Show();
