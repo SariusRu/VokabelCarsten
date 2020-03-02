@@ -13,8 +13,8 @@ namespace VokabelCarsten
 		//Counts total number of added Vocabs and serves as Vocab-ID for creating a new Vocab; does not include removing Vocabs intentionally
 		private int countVocs = 0;
 		public string name { get; set; }
-		public string spalte1 { get; set; }
-		public string spalte2 { get; set; }
+		public string column1 { get; set; }
+		public string column2 { get; set; }
 		public List<Vocab> Vokabeln { get; set; }
 		private Random rndGenerator;
 		public string filePath { get; set; }
@@ -37,8 +37,8 @@ namespace VokabelCarsten
 		public VocabBox(string Na, string S1, string S2, string file)
         {
 			name = Na;
-			spalte1 = S1;
-			spalte2 = S2;
+			column1 = S1;
+			column2 = S2;
 			Vokabeln = new List<Vocab>();
 			rndGenerator = new Random();
 			filePath = file;
@@ -103,7 +103,14 @@ namespace VokabelCarsten
 		/// <param name="id"<>/param>
 		public Vocab getVokabel(int id)
         {
-				return Vokabeln[id];			
+			if (id >= 0 && id < Vokabeln.Count)
+			{
+				return Vokabeln[id];
+			}
+			else
+			{
+				return null;
+			}							
         }
 
 		public void increaseVocabLevel(int id)
