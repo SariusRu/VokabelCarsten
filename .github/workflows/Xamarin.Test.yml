@@ -1,0 +1,34 @@
+name: Xamarin.Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      - name: Restoring Packages
+        run: |
+                cd VokabelCarsten.Test
+                msBuild -t:restore
+      - name: Run Build
+        run: |
+          cd .\VokabelCarsten.Test\
+          msBuild -t:restore
+          msBuild
+      - name: Run Test
+        run: |
+          cd Build\netcoreapp3.1\
+          & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe' VokabelCarsten.Test.dll
+          
+        
+    
