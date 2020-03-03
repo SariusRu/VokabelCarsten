@@ -145,10 +145,11 @@ namespace VokabelCarsten
             if (loadedBox != null)
             {
                 SaveVocabBoxXML();
+                SaveVocabBoxesXML();
                 loadedBox.unloadVocabs();
                 loadedBox = null;
             }
-            //refreshVocabBoxes();
+            refreshVocabBoxes();
         }
 
         /// <summary>
@@ -253,7 +254,7 @@ namespace VokabelCarsten
         /// <returns>If the operation was successfull</returns>
         public bool SaveVocabBoxesXML()
         {
-            restoreLoadedBox();
+            //restoreLoadedBox();
 
             try
             {
