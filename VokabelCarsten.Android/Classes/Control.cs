@@ -51,11 +51,12 @@ namespace VokabelCarsten
         public static string DisplayVocabQuestion()
         {
             //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
-            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedVocabIdx);
+            Vocab vocab = DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].getVokabel(selectedVocabIdx);
             if (vocab != null)
             {
                 return vocab.Question;
-            }else
+            }
+            else
             {
                 return "No More Vokable Found";
             }
@@ -67,7 +68,7 @@ namespace VokabelCarsten
         public static string DisplayVocabAnswer()
         {
             //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
-            Vocab vocab = DataManager.staticDataManager.loadedBox.getVokabel(selectedVocabIdx);
+            Vocab vocab = DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].getVokabel(selectedVocabIdx);
             if (vocab != null)
             {
                 return vocab.Answer;
@@ -109,15 +110,15 @@ namespace VokabelCarsten
         /// <returns>Selected Vocab Box</returns>
         public static VocabBox GetCurrentVocabBox()
         {
-            //if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
-            //{
+            if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
+            {
                 //DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
-                return DataManager.staticDataManager.loadedBox;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
+                return DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -128,9 +129,7 @@ namespace VokabelCarsten
         /// <param name="Column2">Foreign Column</param>
         public static void EditVocabBox(string Name, string Column1, string Column2)
         {
-            DataManager.staticDataManager.loadedBox.name = Name;
-            DataManager.staticDataManager.loadedBox.spalte1 = Column1;
-            DataManager.staticDataManager.loadedBox.spalte2 = Column2;      
+            DataManager.staticDataManager.EditVocabBox(Name, Column1, Column2);      
         }
 
         /// <summary>
@@ -163,7 +162,7 @@ namespace VokabelCarsten
             {               
                 if (selectedVocabIdx < GetCurrentVocabBox().Vokabeln.Count)
                 {
-                    return DataManager.staticDataManager.loadedBox.Vokabeln[selectedVocabIdx];
+                    return DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].Vokabeln[selectedVocabIdx];
                 }
             }
             return null;
@@ -176,10 +175,10 @@ namespace VokabelCarsten
         /// <param name="Foreign">Foreign Translation</param>
         public static void CreateVocab(string Native, string Foreign)
         {
-            if (DataManager.staticDataManager.loadedBox == null)
+            if (DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox] == null)
                 throw new NullReferenceException();
 
-            DataManager.staticDataManager.loadedBox.addVokabel(Native, Foreign);
+            DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].addVokabel(Native, Foreign);
         }
 
         /// <summary>
@@ -187,10 +186,10 @@ namespace VokabelCarsten
         /// </summary>
         public static void DeleteVocab()
         {
-            if (DataManager.staticDataManager.loadedBox == null)
+            if (DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox] == null)
                 throw new NullReferenceException();
 
-            DataManager.staticDataManager.loadedBox.removeVokabel(selectedVocabIdx);
+            DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].removeVokabel(selectedVocabIdx);
         }
 
         /// <summary>
@@ -200,10 +199,10 @@ namespace VokabelCarsten
         /// <param name="Foreign">Foreign Translation</param>
         public static void EditVokab(string Native, string Foreign)
         {
-            if (DataManager.staticDataManager.loadedBox == null)
+            if (DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox] == null)
                 throw new NullReferenceException();
 
-            DataManager.staticDataManager.loadedBox.changeVokabel(selectedVocabIdx, Native, Foreign, 0);
+            DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].changeVokabel(selectedVocabIdx, Native, Foreign, 0);
         }
 
         /// <summary>
@@ -212,10 +211,10 @@ namespace VokabelCarsten
         /// <returns>Vocable List of the Selected Box</returns>
         public static List<Vocab> GetCurrentVokabelList()
         {
-            if (DataManager.staticDataManager.loadedBox == null)
+            if (DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox] == null)
                 throw new NullReferenceException();
 
-            return DataManager.staticDataManager.loadedBox.Vokabeln;
+            return DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].Vokabeln;
         }
 
         /// <summary>
