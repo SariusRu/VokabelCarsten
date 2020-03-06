@@ -44,10 +44,13 @@ namespace VokabelCarsten
             addVokabelKastenButton.Click += delegate
             {
                 //Notify New Creation
-                DataManager.staticDataManager.restoreLoadedBox();
+                
+
+                Control.SetSelectedVocabBox(-1);
 
                 VokabelBoxDialog dialog = new VokabelBoxDialog(this);
                 dialog.Show();
+                DataManager.staticDataManager.SaveVocabBoxesXML();
 
                 adapter.NotifyDataSetChanged();
             };

@@ -65,6 +65,7 @@ namespace VokabelCarsten.Classes.UI
                     //Delete Item if it Exists
                     Control.DeleteCurrentVocabBox();
                 }
+                DataManager.staticDataManager.SaveVocabBoxesXML();
                 Dismiss();
             };
         }

@@ -34,7 +34,7 @@ namespace VokabelCarsten
             Button saveVocab = FindViewById<Button>(Resource.Id.SaveVokabel);
             saveVocab.Click += delegate
             {
-                DataManager.staticDataManager.SaveVocabBoxesXML();
+                DataManager.staticDataManager.restoreLoadedBox();
             };
 
             Button addVocab = FindViewById<Button>(Resource.Id.AddVokabel);
@@ -51,7 +51,8 @@ namespace VokabelCarsten
                 {
                     adapter.NotifyDataSetChanged();
                 };
-            };           
-        }
+            };
+            
+            }
     }
 }

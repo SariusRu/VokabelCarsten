@@ -8,7 +8,7 @@ namespace VokabelCarsten
     {
         #region Global Variables
 
-        private static List<VocabBox> vocabboxList = new List<VocabBox>();
+        //private static List<VocabBox> vocabboxList = new List<VocabBox>();
         public enum Mode_t
         {
             Linear = 0,
@@ -110,7 +110,7 @@ namespace VokabelCarsten
         /// <returns>Selected Vocab Box</returns>
         public static VocabBox GetCurrentVocabBox()
         {
-            if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < vocabboxList.Count)
+            if (selectedVocabBoxIdx >= 0 && selectedVocabBoxIdx < DataManager.staticDataManager.getVocabBoxList().Count)
             {
                 //DataManager.staticDataManager.selectVocabBox(selectedVocabBoxIdx);
                 return DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox];
@@ -223,8 +223,16 @@ namespace VokabelCarsten
         /// <param name="vocabBoxListIdx">Id of the Box</param>
         public static void SetSelectedVocabBox(int vocabBoxListIdx)
         {
-            DataManager.staticDataManager.selectVocabBox(vocabBoxListIdx);
-            selectedVocabBoxIdx = vocabBoxListIdx;
+            if(vocabBoxListIdx != -1)
+            {
+                DataManager.staticDataManager.selectVocabBox(vocabBoxListIdx);
+                selectedVocabBoxIdx = vocabBoxListIdx;
+            }
+            else
+            {
+                selectedVocabBoxIdx = vocabBoxListIdx;
+            }
+           
         }
 
         #endregion
