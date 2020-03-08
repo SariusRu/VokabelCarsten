@@ -4,3 +4,6 @@ VokabelCarsten.Android/obj
 VokabelCarsten.Test/bin
 VokabelCarsten.Test/obj
 Build
+VokabelCarsten.Android/obj/project.assets.json
+VokabelCarsten.Android/obj/VokabelCarsten.Android.csproj.nuget.cache
+VokabelCarsten.Android/obj/VokabelCarsten.Android.csproj.nuget.dgspec.json
