@@ -3,10 +3,10 @@ name: Xamarin.Test
 on:
   push:
     branches:
-      - master
+      - Release
   pull_request:
     branches: 
-      - master
+      - Release
 
 jobs:
   test:
@@ -29,6 +29,3 @@ jobs:
         run: |
           cd Build\netcoreapp3.1\
           & 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe' VokabelCarsten.Test.dll
-          
-        
-    

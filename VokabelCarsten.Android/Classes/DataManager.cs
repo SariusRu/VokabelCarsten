@@ -19,7 +19,7 @@ namespace VokabelCarsten
 
         private List<VocabBox> vocabBoxes = new List<VocabBox>();
 
-        public VocabBox loadedBox { get; set; }
+        public int loadedBox { get; set; }
         private List<VocabBox> loadedVocabes = new List<VocabBox>();
 
         #endregion Global Variables
@@ -62,13 +62,7 @@ namespace VokabelCarsten
                     if (stringToDeserialize != "")
                     {
                         List<VocabBox> List = new List<VocabBox>();
-                        vocabBoxes = xmlDeserialize(ref List, stringToDeserialize);
-                        //XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
-                        //using (Stream reader = new FileStream(vocabFileList, FileMode.Open))
-                        //{
-                            // Call the Deserialize method to restore the object's state.
-                        //    vocabBoxes = (List<VocabBox>)ser.Deserialize(reader);
-                        //}
+                        vocabBoxes = xmlDeserialize(ref List, stringToDeserialize);
                         return true;
                     }
                     else
@@ -130,9 +124,9 @@ namespace VokabelCarsten
         /// <returns VocabBox>The selected VocabBox</returns>
         public VocabBox selectVocabBox(int select)
         {
-            loadedBox = vocabBoxes[select];
+            loadedBox = select;
             readVocabBox();
-            return loadedBox;
+            return vocabBoxes[loadedBox];
         }
 
         /// <summary>
@@ -142,12 +136,18 @@ namespace VokabelCarsten
         /// All Vocabs are deleted from the selected VocabBox and the loadedBox-member is nulled.
         public void restoreLoadedBox()
         {
-            if(loadedBox != null)
-            {
-                SaveVocabBoxXML();
-                loadedBox.unloadVocabs();
-                loadedBox = null;
-            }
+            if(loadedBox != -1)
+            {
+                if (vocabBoxes[loadedBox] != null && loadedBox != -1)
+                {
+                    SaveVocabBoxXML();
+                    SaveVocabBoxesXML();
+                    vocabBoxes[loadedBox].unloadVocabs();
+                    loadedBox = -1;
+                }
+                
+            }
+            refreshVocabBoxes();
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace VokabelCarsten
         /// This fileStream is used by the XMLSerializer. The result are casted to a VocabBox and saved in the loadedBox-member
         private bool readVocabBox()
         {
-            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), loadedBox.getFilePath());
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), vocabBoxes[loadedBox].getFilePath());
             try
             {
                 if (!File.Exists(vocabBoxPath) || vocabBoxPath == null)
@@ -168,14 +168,11 @@ namespace VokabelCarsten
                 }
                 else
                 {
-                    String test = File.ReadAllText(vocabBoxPath);
-                    if (test != "")
+                    String stringToDeserialize = File.ReadAllText(vocabBoxPath);
+                    if (stringToDeserialize != "")
                     {
-                        XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
-                        using (Stream reader = new FileStream(vocabBoxPath, FileMode.Open))
-                        {
-                            loadedBox = (VocabBox)ser.Deserialize(reader);
-                        }
+                        VocabBox temp = new VocabBox();
+                        vocabBoxes[loadedBox] = xmlDeserialize(ref temp, stringToDeserialize);
                         return true;
                     }
                     else
@@ -199,15 +196,13 @@ namespace VokabelCarsten
         /// This fileStream is used by the XMLSerializer. The serializer is saving the data into the file.
         private void SaveVocabBoxXML()
         {
-            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), loadedBox.getFilePath());
+            string vocabBoxPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), vocabBoxes[loadedBox].getFilePath());
             try
             {
                 File.Delete(vocabBoxPath);
-                XmlSerializer ser = new XmlSerializer(typeof(VocabBox));
-                using (Stream writer = new FileStream(vocabBoxPath, FileMode.Create))
-                {
-                    ser.Serialize(writer, loadedBox);
-                }
+                VocabBox temp = vocabBoxes[loadedBox];
+                String writeToFile = xmlSerializer(ref temp);
+                File.WriteAllText(vocabBoxPath, writeToFile);
             }
             catch (Exception ex)
             {
@@ -237,6 +232,7 @@ namespace VokabelCarsten
             if (CheckExistenceVocabBox(newBox.getName(), newBox.getFilePath()))
             {
                 vocabBoxes.Add(newBox);
+                SaveVocabBoxesXML();
                 selectVocabBox(vocabBoxes.Count - 1);
             }                  
                 
@@ -251,16 +247,14 @@ namespace VokabelCarsten
         /// <returns>If the operation was successfull</returns>
         public bool SaveVocabBoxesXML()
         {
-            restoreLoadedBox();
+            //restoreLoadedBox();
 
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
+                //XmlSerializer ser = new XmlSerializer(typeof(List<VocabBox>));
                 File.Delete(vocabFileList);
-                using (Stream writer = new FileStream(vocabFileList, FileMode.Create))
-                {
-                    ser.Serialize(writer, vocabBoxes);
-                }
+                String writeToFile = xmlSerializer(ref vocabBoxes);
+                File.WriteAllText(vocabFileList, writeToFile);
             }
             catch (Exception ex)
             {
@@ -306,6 +300,13 @@ namespace VokabelCarsten
         public void removeAllVocabBoxes()
         {
             vocabBoxes.Clear();
+        }
+
+        public void EditVocabBox(string Name, string Column1, string Column2)
+        {
+            vocabBoxes[loadedBox].name = Name;
+            vocabBoxes[loadedBox].spalte1 = Column1;
+            vocabBoxes[loadedBox].spalte2 = Column2;
         }
     }
 }

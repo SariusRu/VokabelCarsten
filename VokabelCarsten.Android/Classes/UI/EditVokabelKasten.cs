@@ -24,8 +24,19 @@ namespace VokabelCarsten
             VokabelAdapter adapter = new VokabelAdapter(this, Control.getCurrentVokabelList());
             recyclerView.SetAdapter(adapter);
 
-            EditText title = FindViewById<EditText>(Resource.Id.EditTitle);
-            title.Text = Control.getVocabBoxTitle();
+            TextView title = FindViewById<TextView>(Resource.Id.EditTitle);
+            //Load in Name
+            if (Control.GetCurrentVocabBox() != null)
+            {
+                title.Text = Control.GetCurrentVocabBox().name;
+            }
+
+            Button saveVocab = FindViewById<Button>(Resource.Id.SaveVokabel);
+            saveVocab.Click += delegate
+            {
+                DataManager.staticDataManager.restoreLoadedBox();
+            };
+
             Button addVocab = FindViewById<Button>(Resource.Id.AddVokabel);
             addVocab.Click += delegate
             {
@@ -38,11 +49,7 @@ namespace VokabelCarsten
                     adapter.NotifyDataSetChanged();
                 };
             };
-            Button saveVocabBox = FindViewById<Button>(Resource.Id.SaveVocabBox);
-            saveVocabBox.Click += delegate
-            {
-                DataManager.staticDataManager.SaveVocabBoxesXML();
-            };
-        }
+            
+            }
     }
 }

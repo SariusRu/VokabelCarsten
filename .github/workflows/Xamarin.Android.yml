@@ -3,10 +3,10 @@ name: Xamarin.Android
 on:
   push:
     branches:
-      - master
+      - Release
   pull_request:
     branches: 
-      - master
+      - Release
 
 jobs:
   build:
