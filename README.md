@@ -2,7 +2,8 @@
 This Android-Application is a project written for the class "Software-Engineering" at DHBW Ravensburg
 
 # Build-Status
-![Xamarin](https://github.com/SariusRu/VokabelCarsten/workflows/Xamarin/badge.svg?branch=master)
+![Xamarin.Android](https://github.com/SariusRu/VokabelCarsten/workflows/Xamarin.Android/badge.svg)
+![Xamarin.Test](https://github.com/SariusRu/VokabelCarsten/workflows/Xamarin.Test/badge.svg)
 
 # Test-Status
 
