@@ -49,7 +49,7 @@ namespace VokabelCarsten.Classes.UI
                 if (Control.GetVocab() != null)
                 {
                     //Item Exists => Edit
-                    Control.EditVokab(native.Text, foreign.Text);
+                    Control.EditVocab(native.Text, foreign.Text);
                 }
                 else
                 {

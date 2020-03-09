@@ -21,7 +21,7 @@ namespace VokabelCarsten
             RecyclerView recyclerView = FindViewById<RecyclerView>(Resource.Id.VokabelRecycler);
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
             recyclerView.SetLayoutManager(mLayoutManager);
-            VokabelAdapter adapter = new VokabelAdapter(this, Control.GetCurrentVokabelList());
+            VokabelAdapter adapter = new VokabelAdapter(this, Control.GetCurrentVokabList());
             recyclerView.SetAdapter(adapter);
 
             TextView title = FindViewById<TextView>(Resource.Id.EditTitle);
@@ -42,7 +42,7 @@ namespace VokabelCarsten
             addVocab.Click += delegate
             {
                 //Notify New Creation
-                Control.SetSelectedVocabel(-1);
+                Control.SetSelectedVocab(-1);
 
                 VokabelDialog dialog = new VokabelDialog(this);
                 dialog.Show();

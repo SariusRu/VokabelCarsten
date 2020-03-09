@@ -52,7 +52,7 @@ namespace VokabelCarsten.Classes.UI
                 }else
                 {
                     //No Item Exists => Create
-                    Control.CreateVocabelKasten(title.Text, colum1.Text, colum2.Text);
+                    Control.CreateVocabBox(title.Text, colum1.Text, colum2.Text);
                 }
                 DataManager.staticDataManager.restoreLoadedBox();
                 Dismiss();

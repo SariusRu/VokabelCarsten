@@ -44,9 +44,9 @@ namespace VokabelCarsten
         /// Reads a list of Vocabs from a File
         /// </summary>
         /// This methos is using the vocabFileList from the members to check if the file exists. If no File exists a file is created.
-        /// After that the methos tries to read from the file using a FileStrean and a XML-Serializer.
-        /// The results are cated to a list of VocabBoxes and then saved in vocabBoxes
-        /// \return False if there wasn't any text to read
+        /// After that the methos tries to read from the file using a FileStrean and giving the content of the filestream to the xmlDeserializer
+        /// The results are casted to a list of VocabBoxes and then saved in vocabBoxes
+        /// <returns>False if there wasn't any text to read</returns> 
         protected bool readVocabBoxList()
         {
             try
@@ -78,6 +78,11 @@ namespace VokabelCarsten
             }
         }
 
+        /// <summary>
+        /// Turns Objects into a xmlSerializer
+        /// </summary>
+        /// Creates a Serializer, get's an object and get's it type. Using it's type to serialize and returns the value as string
+        /// <returns String>The serialized object as string</returns>
         protected string xmlSerializer<T>(ref T objectToSerialize)
         {
             XmlSerializer ser = new XmlSerializer(objectToSerialize.GetType());
@@ -88,6 +93,11 @@ namespace VokabelCarsten
             }
         }
 
+        /// <summary>
+        /// Turns a string into an object using a serializer
+        /// </summary>
+        /// uses a reference object, and a given string to cast the string to a given object type and returns the object.
+        /// <returns object T>Returns the deserialited object</returns>
         protected T xmlDeserialize<T>(ref T objectToWriteTo, string stringToDeserialize)
         {
             XmlSerializer ser = new XmlSerializer(objectToWriteTo.GetType());
@@ -99,6 +109,11 @@ namespace VokabelCarsten
             return objectToWriteTo;
         }
 
+        /// <summary>
+        /// Returns the list
+        /// </summary>
+        /// returns the vocabBoxes list as list
+        /// <returns vocabBoxes>VocabBoxes-List as List</returns>
         public List<VocabBox> getVocabBoxList()
         {
             return vocabBoxes;
@@ -110,6 +125,7 @@ namespace VokabelCarsten
         /// Converts the vocabBoxes-Member into an Array and returns it.
         /// Used to select the Array.
         /// \return  The converted list
+        /// <returns VocabBox>The list of vocabBoxes in an array</returns>
         public VocabBox[] getVocabBoxArray()
         {
             return vocabBoxes.ToArray();
@@ -295,16 +311,34 @@ namespace VokabelCarsten
             return true;
         }
 
+        /// <summary>
+        /// deleted a selected VocabBox
+        /// </summary>
+        /// deletes the given index from the vocabBoxes-List
+        /// <param name="id">the index to delete</param>
         public void deleteVocabBox(int id)
         {
             vocabBoxes.RemoveAt(id);
         }
 
+        /// <summary>
+        /// deletes all vocabBoxes
+        /// </summary>
+        /// deletes all vocabBoxes from the list
+        /// <param name="id">the index to delete</param>
         public void removeAllVocabBoxes()
         {
             vocabBoxes.Clear();
         }
 
+
+        /// <summary>
+        /// edits a vocabBox
+        /// </summary>
+        /// edits the currently selected box using the params
+        /// <param name="Name">The new Name</param>
+        /// /// <param name="Column1">The new Name of the first column</param>
+        /// /// <param name="Column2">The new Name of the second column</param>
         public void EditVocabBox(string Name, string Column1, string Column2)
         {
             vocabBoxes[loadedBox].name = Name;

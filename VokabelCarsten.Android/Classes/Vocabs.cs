@@ -7,13 +7,11 @@ namespace VokabelCarsten
     [Serializable]
     public class Vocab
     {
-        //Make attributes private and create extra getter/setter methods, data encapsulation, it should never be possible to directly access attributes from outside the containing class
         public string Question { get; set; }       //Vocab on side 1 e.g. "to walk2
         public string Answer { get; set; }       // Vocab on side 2 e.g."laufen"
         public int level { get; set; } = 0;
         public int id { get; set; }
 
-        //Commented empty constructor without parameters (why overload it?)
         public Vocab()
         {
 
@@ -55,7 +53,7 @@ namespace VokabelCarsten
         }
 
         /// <summary>
-        /// Increases the level of a vocab
+        /// Decreases the level of a vocab
         /// </summary>
         public void decreaseLevel()
         {
@@ -65,7 +63,7 @@ namespace VokabelCarsten
         }
 
         /// <summary>
-        /// Decreases the level of a vocab
+        /// Increases the level of a vocab
         /// </summary>
         public void increaseLevel()
         {

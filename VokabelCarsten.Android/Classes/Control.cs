@@ -25,9 +25,9 @@ namespace VokabelCarsten
         #region From GUI
 
         /// <summary>
-        /// Handle Level, display next vocab and increase vocab index.
+        /// Handle Level, decrease and increase
         /// </summary>
-        /// <param name="known"></param>
+        /// <param name="known">Select if the Vocable was known</param>
         public static void SelectVocabCheck(bool known)
         {
             if (known == true) 
@@ -45,12 +45,12 @@ namespace VokabelCarsten
         #region To GUI
 
         /// <summary>
-        /// Display Vocabel Question
+        /// Display the Vocabel Question
         /// </summary>
         /// <returns>returns the Question</returns>
         public static string DisplayVocabQuestion()
         {
-            //Does Control know class Vocab? Might be better to directly extract side1 without storing a complete object
+            //Get Vocab
             Vocab vocab = DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].getVokabel(selectedVocabIdx);
             if (vocab != null)
             {
@@ -63,11 +63,10 @@ namespace VokabelCarsten
         }
 
         /// <summary>
-        /// Display Vocabel Answer Side
+        /// Display Vocabel Answer
         /// </summary>
         public static string DisplayVocabAnswer()
         {
-            //Does Control know class Vocab? Might be better to directly extract side2 without storing a complete object
             Vocab vocab = DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox].getVokabel(selectedVocabIdx);
             if (vocab != null)
             {
@@ -89,7 +88,7 @@ namespace VokabelCarsten
         /// <param name="Name">Name of the Box</param>
         /// <param name="Native">Name of the Native Column</param>
         /// <param name="Foreign">Name of the Foreign Column</param>
-        public static void CreateVocabelKasten(string Name, string Native, string Foreign)
+        public static void CreateVocabBox(string Name, string Native, string Foreign)
         {
             string filepath = Name + ".xml"; //ToDo: Need to generate safe location of JSON file
             DataManager.staticDataManager.CreateVocabBox(new VocabBox(Name, Native, Foreign, filepath));  
@@ -147,7 +146,7 @@ namespace VokabelCarsten
         /// Set the current Selected Vocable ID
         /// </summary>
         /// <param name="SelectedVokabelIdx">Vocable ID</param>
-        public static void SetSelectedVocabel(int SelectedVokabelIdx)
+        public static void SetSelectedVocab(int SelectedVokabelIdx)
         {
             selectedVocabIdx = SelectedVokabelIdx;
         }
@@ -197,7 +196,7 @@ namespace VokabelCarsten
         /// </summary>
         /// <param name="Native">Native Translation</param>
         /// <param name="Foreign">Foreign Translation</param>
-        public static void EditVokab(string Native, string Foreign)
+        public static void EditVocab(string Native, string Foreign)
         {
             if (DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox] == null)
                 throw new NullReferenceException();
@@ -209,7 +208,7 @@ namespace VokabelCarsten
         /// Get the Current List of Vocables
         /// </summary>
         /// <returns>Vocable List of the Selected Box</returns>
-        public static List<Vocab> GetCurrentVokabelList()
+        public static List<Vocab> GetCurrentVokabList()
         {
             if (DataManager.staticDataManager.getVocabBoxList()[DataManager.staticDataManager.loadedBox] == null)
                 throw new NullReferenceException();
@@ -284,26 +283,6 @@ namespace VokabelCarsten
                 return;
 
             GetVocab().decreaseLevel();
-        }
-
-        #endregion
-
-        #region DataManager
-
-        /// <summary>
-        /// ToDo: To be done.
-        /// </summary>
-        public void LoadData()
-        { 
-        
-        }
-
-        /// <summary>
-        /// ToDo: To be done.
-        /// </summary>
-        public void StoreData()
-        { 
-        
         }
 
         #endregion

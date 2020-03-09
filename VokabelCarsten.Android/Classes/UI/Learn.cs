@@ -29,7 +29,7 @@ namespace VokabelCarsten
             answerView = FindViewById<LinearLayout>(Resource.Id.AnswerContainerView);
 
             //Show the First Question
-            Control.SetSelectedVocabel(0);
+            Control.SetSelectedVocab(0);
             string Question = Control.DisplayVocabQuestion();
             showQuestion(Question);
 
