@@ -32,9 +32,9 @@ namespace VokabelCarsten
         /// Unloaded Vocabboxes don't contain Vocabs, but a reference to the file where to find them. An Error is thrown if a reading-Error occurs.
         public DataManager()
         {
-            if (!readVocabBoxList())
+            if(!readVocabBoxList())
             {
-                //throw new FileNotReadException("File wasn't read properly");
+                vocabBoxes.Add(new VocabBox("Problem occured", "Test", "Test", "test,file"));
             }
         }
 
