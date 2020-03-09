@@ -20,9 +20,9 @@ namespace VokabelCarsten
         /// <summary>
         /// Konstructor for Vocab Element
         /// </summary>
-        /// <param name="si1"></param>
-        /// <param name="si2"></param>
-        /// <param name="ID"></param>
+        /// <param name="si1">Name of first side</param>
+        /// <param name="si2">Name of second side</param>
+        /// <param name="ID"> ID of vocab</param>
         /// <returns>List Index or -1 if not found</returns>
         public Vocab(string si1, string si2, int ID)   //Konstruktor
         {
@@ -34,8 +34,8 @@ namespace VokabelCarsten
         /// <summary>
         /// Function to edit a vocab element
         /// </summary>
-        /// <param name="si1"></param>
-        /// <param name="si2"></param>
+        /// <param name="si1">new Value of side 1</param>
+        /// <param name="si2">new value of side 2</param>
         /// <returns>List Index or -1 if not found</returns>
         public void EditVocab(string si1, string si2)
         {
