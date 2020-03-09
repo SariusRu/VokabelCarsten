@@ -60,18 +60,17 @@ namespace VokabelCarsten
                 context.StartActivity(typeof(LearnActivity));
             };
 
+            VokabelBoxDialog dialog = new VokabelBoxDialog((Activity)context);
             vh.ItemView.LongClick += delegate
             {
                 Control.SetSelectedVocabBox(vh.AdapterPosition);
-                
-
-                VokabelBoxDialog dialog = new VokabelBoxDialog((Activity)context);
                 dialog.Show();
-
-                dialog.DismissEvent += delegate
-                {
-                    NotifyDataSetChanged();
-                };
+            };
+            
+            dialog.DismissEvent += delegate
+            {
+                list = Control.GetVocabBoxes();
+                NotifyDataSetChanged();
             };
 
             //Return View Holder

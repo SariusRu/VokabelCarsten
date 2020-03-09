@@ -8,3 +8,5 @@ VokabelCarsten.Android/obj/project.assets.json
 VokabelCarsten.Android/obj/VokabelCarsten.Android.csproj.nuget.cache
 VokabelCarsten.Android/obj/VokabelCarsten.Android.csproj.nuget.dgspec.json
 VokabelCarsten.Android/Resources/Resource.designer.cs
+
+VokabelCarsten.Android/VokabelCarsten.Android.csproj.user
