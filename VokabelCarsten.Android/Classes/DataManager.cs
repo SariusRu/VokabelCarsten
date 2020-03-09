@@ -122,10 +122,13 @@ namespace VokabelCarsten
         /// The selected vocabBox is then saved into the loadedBox, loaded and returned.
         /// <param name="select">The index of the wanted vocabBox.</param>
         /// <returns VocabBox>The selected VocabBox</returns>
-        public VocabBox selectVocabBox(int select)
+        public VocabBox selectVocabBox(int select, Boolean isTest=false)
         {
             loadedBox = select;
-            readVocabBox();
+            if (!isTest)
+            {
+                readVocabBox();
+            }
             return vocabBoxes[loadedBox];
         }
 
