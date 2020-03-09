@@ -1,5 +1,6 @@
 var dir_24e3d74935a730fe1c7b1c6707d0fc52 =
 [
+    [ "UI", "dir_abb918178f5470fd5098e6c5ef5e0ca9.html", "dir_abb918178f5470fd5098e6c5ef5e0ca9" ],
     [ "Control.cs", "d8/d87/_control_8cs.html", [
       [ "Control", "d3/da3/class_vokabel_carsten_1_1_control.html", "d3/da3/class_vokabel_carsten_1_1_control" ]
     ] ],
@@ -8,7 +9,8 @@ var dir_24e3d74935a730fe1c7b1c6707d0fc52 =
     ] ],
     [ "Exception.cs", "d2/dcf/_exception_8cs.html", [
       [ "FileNotReadException", "d9/d28/class_vokabel_carsten_1_1_exceptions_1_1_file_not_read_exception.html", "d9/d28/class_vokabel_carsten_1_1_exceptions_1_1_file_not_read_exception" ],
-      [ "VocabBoxAlreadyExists", "d1/dd3/class_vokabel_carsten_1_1_exceptions_1_1_vocab_box_already_exists.html", "d1/dd3/class_vokabel_carsten_1_1_exceptions_1_1_vocab_box_already_exists" ]
+      [ "VocabBoxAlreadyExists", "d1/dd3/class_vokabel_carsten_1_1_exceptions_1_1_vocab_box_already_exists.html", "d1/dd3/class_vokabel_carsten_1_1_exceptions_1_1_vocab_box_already_exists" ],
+      [ "FileSaveException", "d9/d5d/class_vokabel_carsten_1_1_exceptions_1_1_file_save_exception.html", "d9/d5d/class_vokabel_carsten_1_1_exceptions_1_1_file_save_exception" ]
     ] ],
     [ "VocabBox.cs", "df/da2/_vocab_box_8cs.html", [
       [ "VocabBox", "d4/d99/class_vokabel_carsten_1_1_vocab_box.html", "d4/d99/class_vokabel_carsten_1_1_vocab_box" ]

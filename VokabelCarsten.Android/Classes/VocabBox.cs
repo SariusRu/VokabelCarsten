@@ -25,7 +25,7 @@ namespace VokabelCarsten
 		/// <summary>
 		/// Create new VocabBox with given parameters.
 		/// </summary>
-		/// <param name="Na"<>/param>
+		/// <param name="Na"></param>
 		/// <param name="S1"></param>
 		/// <param name="S2"></param>
 		/// <param name="file"></param>
@@ -44,7 +44,7 @@ namespace VokabelCarsten
 		/// Create new Vocab with given parameters.
 		/// We allow vocabs to exist as duplicates.
 		/// </summary>
-		/// <param name="pSide1"<>/param>
+		/// <param name="pSide1"></param>
 		/// <param name="pSide2"></param>
 		public void addVokabel(string pSide1, string pSide2)
 		{
@@ -60,9 +60,9 @@ namespace VokabelCarsten
 		/// RWe assume that 
 		/// </summary>
 		/// <param name="pID"></param>
-		public void removeVokabel(int id)
+		public void removeVokabel(int pID)
 		{
-			int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == id));
+			int index = Vokabeln.IndexOf(Vokabeln.Find(item => item.id == pID));
 			if (index == -1)
 			{
 				return;

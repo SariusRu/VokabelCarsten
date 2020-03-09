@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['vocabbox_2ecs_2722',['VocabBox.cs',['../df/da2/_vocab_box_8cs.html',1,'']]],
-  ['vocabs_2ecs_2723',['Vocabs.cs',['../d7/dd0/_vocabs_8cs.html',1,'']]],
-  ['vokabelcarsten_2etest_2eassemblyinfo_2ecs_2724',['VokabelCarsten.Test.AssemblyInfo.cs',['../df/d73/_vokabel_carsten_8_test_8_assembly_info_8cs.html',1,'']]]
+  ['resource_2edesigner_2ecs_2828',['Resource.designer.cs',['../dd/d1e/obj_2_debug_290_2designtime_2_resource_8designer_8cs.html',1,'(Global Namespace)'],['../d2/d2f/_resources_2_resource_8designer_8cs.html',1,'(Global Namespace)']]]
 ];

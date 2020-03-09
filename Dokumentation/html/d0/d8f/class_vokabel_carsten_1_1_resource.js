@@ -18,5 +18,7 @@ var class_vokabel_carsten_1_1_resource =
     [ "Styleable", "de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html", "de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable" ],
     [ "Xml", "d0/d60/class_vokabel_carsten_1_1_resource_1_1_xml.html", "d0/d60/class_vokabel_carsten_1_1_resource_1_1_xml" ],
     [ "Resource", "d0/d8f/class_vokabel_carsten_1_1_resource.html#a8f0cd0f380d82d4a01aaacdcc69c95d6", null ],
+    [ "Resource", "d0/d8f/class_vokabel_carsten_1_1_resource.html#a8f0cd0f380d82d4a01aaacdcc69c95d6", null ],
+    [ "UpdateIdValues", "d0/d8f/class_vokabel_carsten_1_1_resource.html#a9a92ac7449d032e56d6bb0f2e85c0b0f", null ],
     [ "UpdateIdValues", "d0/d8f/class_vokabel_carsten_1_1_resource.html#a9a92ac7449d032e56d6bb0f2e85c0b0f", null ]
 ];

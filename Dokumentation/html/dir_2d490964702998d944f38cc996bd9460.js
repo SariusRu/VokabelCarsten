@@ -1,6 +1,6 @@
 var dir_2d490964702998d944f38cc996bd9460 =
 [
-    [ "Resource.designer.cs", "d6/df5/_resource_8designer_8cs.html", [
+    [ "Resource.designer.cs", "dd/d1e/obj_2_debug_290_2designtime_2_resource_8designer_8cs.html", [
       [ "Resource", "d0/d8f/class_vokabel_carsten_1_1_resource.html", "d0/d8f/class_vokabel_carsten_1_1_resource" ],
       [ "Animation", "d9/d7b/class_vokabel_carsten_1_1_resource_1_1_animation.html", "d9/d7b/class_vokabel_carsten_1_1_resource_1_1_animation" ],
       [ "Animator", "d0/d46/class_vokabel_carsten_1_1_resource_1_1_animator.html", "d0/d46/class_vokabel_carsten_1_1_resource_1_1_animator" ],

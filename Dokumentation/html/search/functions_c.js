@@ -1,12 +1,19 @@
 var searchData=
 [
-  ['readvocabbox_2772',['readVocabBox',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#aeea52fc4efba40cec8940f142d039378',1,'VokabelCarsten::DataManager']]],
-  ['readvocabboxlist_2773',['readVocabBoxList',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#ad70ec05bc4f9a09e8362acd576e4ed31',1,'VokabelCarsten::DataManager']]],
-  ['refreshvocabboxes_2774',['refreshVocabBoxes',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#a24d82679e0cb3062b5ef64835c221dfb',1,'VokabelCarsten::DataManager']]],
-  ['removevokabel_2775',['removeVokabel',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a9818bb1965f3d2a77e5dfbb62171e760',1,'VokabelCarsten::VocabBox']]],
-  ['renameboxcolumns_2776',['renameBoxColumns',['../d3/da3/class_vokabel_carsten_1_1_control.html#a665d2b0bd341d671b8ef79c5f73cde30',1,'VokabelCarsten::Control']]],
-  ['renameboxname_2777',['renameBoxName',['../d3/da3/class_vokabel_carsten_1_1_control.html#a4283c5705a38caf11df3045614328d5f',1,'VokabelCarsten::Control']]],
-  ['resource_2778',['Resource',['../d0/d8f/class_vokabel_carsten_1_1_resource.html#a8f0cd0f380d82d4a01aaacdcc69c95d6',1,'VokabelCarsten::Resource']]],
-  ['restoreloadedbox_2779',['restoreLoadedBox',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#ab3b97fbb8ab771b827de927e6bfc5f8b',1,'VokabelCarsten::DataManager']]],
-  ['rmvocab_2780',['rmVocab',['../d3/da3/class_vokabel_carsten_1_1_control.html#a5c7043cae24b9e50f84307b2d6a0cd13',1,'VokabelCarsten::Control']]]
+  ['savevocabboxesxml_2916',['SaveVocabBoxesXML',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#a7c6b591339ae8daded2d197b5c79a8f5',1,'VokabelCarsten::DataManager']]],
+  ['savevocabboxxml_2917',['SaveVocabBoxXML',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#abbc22f043dcbec88f49822d0e4044c11',1,'VokabelCarsten::DataManager']]],
+  ['selectvocabbox_2918',['selectVocabBox',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#a28ffbf8fb2a16f424ff8f931485a03d8',1,'VokabelCarsten::DataManager']]],
+  ['selectvocabboxtest_2919',['selectVocabBoxTest',['../d2/dd2/class_vocabel_carsten_1_1_test_1_1_data_manager_test.html#ab6b7aa585015ce541c1825b460508cb8',1,'VocabelCarsten::Test::DataManagerTest']]],
+  ['selectvocabcheck_2920',['SelectVocabCheck',['../d3/da3/class_vokabel_carsten_1_1_control.html#a76ceb285cd1f83c51e79115e36a3d8c6',1,'VokabelCarsten::Control']]],
+  ['serializetestvocabbox_2921',['SerializeTestVocabBox',['../d2/dd2/class_vocabel_carsten_1_1_test_1_1_data_manager_test.html#a892fd18134e110474e48de2c2e92deec',1,'VocabelCarsten::Test::DataManagerTest']]],
+  ['serializetestvocabboxlist_2922',['SerializeTestVocabBoxList',['../d2/dd2/class_vocabel_carsten_1_1_test_1_1_data_manager_test.html#a327c1fdf0c42c368379bf88c8efcf302',1,'VocabelCarsten::Test::DataManagerTest']]],
+  ['setfilepath_2923',['setFilePath',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a03fea58c21c68d089364170d609de3e1',1,'VokabelCarsten::VocabBox']]],
+  ['setlearnmode_2924',['SetLearnMode',['../d3/da3/class_vokabel_carsten_1_1_control.html#af099dbb7bd64a7e099ba0b4292cdb499',1,'VokabelCarsten::Control']]],
+  ['setselectedvocab_2925',['SetSelectedVocab',['../d3/da3/class_vokabel_carsten_1_1_control.html#ab4fc8d27c1a3430449a6b239f7970b4d',1,'VokabelCarsten::Control']]],
+  ['setselectedvocabbox_2926',['SetSelectedVocabBox',['../d3/da3/class_vokabel_carsten_1_1_control.html#a7255e815f539e7cf965d81fc84637dac',1,'VokabelCarsten::Control']]],
+  ['showanswer_2927',['showAnswer',['../d9/d2d/class_vokabel_carsten_1_1_learn_activity.html#a1e38d2b9f635c7811489215ee0760ebb',1,'VokabelCarsten::LearnActivity']]],
+  ['showquestion_2928',['showQuestion',['../d9/d2d/class_vokabel_carsten_1_1_learn_activity.html#a2229a3daf716e3219fb6bd3a842c7948',1,'VokabelCarsten::LearnActivity']]],
+  ['string_2929',['String',['../df/d4e/class_vokabel_carsten_1_1_resource_1_1_string.html#a1d8ddde28e01f611e6e7526c858f3959',1,'VokabelCarsten.Resource.String.String()'],['../df/d4e/class_vokabel_carsten_1_1_resource_1_1_string.html#a1472a5fe6690007957b8f830af74935f',1,'VokabelCarsten.Resource.String.String()'],['../df/d4e/class_vokabel_carsten_1_1_resource_1_1_string.html#a1d8ddde28e01f611e6e7526c858f3959',1,'VokabelCarsten.Resource.String.String()'],['../df/d4e/class_vokabel_carsten_1_1_resource_1_1_string.html#a1472a5fe6690007957b8f830af74935f',1,'VokabelCarsten.Resource.String.String()']]],
+  ['style_2930',['Style',['../d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#a04e49610dc2370d8d61eb0787f96df37',1,'VokabelCarsten.Resource.Style.Style()'],['../d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#a2d68735663b186424043230d16f8627e',1,'VokabelCarsten.Resource.Style.Style()'],['../d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#a04e49610dc2370d8d61eb0787f96df37',1,'VokabelCarsten.Resource.Style.Style()'],['../d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#a2d68735663b186424043230d16f8627e',1,'VokabelCarsten.Resource.Style.Style()']]],
+  ['styleable_2931',['Styleable',['../de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a525b191cc8161c533491e5081d7a4fb1',1,'VokabelCarsten.Resource.Styleable.Styleable()'],['../de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a352e0800ac29c7b926aa5d6fa49eee15',1,'VokabelCarsten.Resource.Styleable.Styleable()'],['../de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a525b191cc8161c533491e5081d7a4fb1',1,'VokabelCarsten.Resource.Styleable.Styleable()'],['../de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a352e0800ac29c7b926aa5d6fa49eee15',1,'VokabelCarsten.Resource.Styleable.Styleable()']]]
 ];

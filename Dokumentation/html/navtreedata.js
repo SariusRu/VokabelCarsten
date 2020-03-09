@@ -39,7 +39,11 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Typedefs", "globals_type.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
@@ -47,17 +51,18 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#a756f57a84c115afb160ccb522cd1e1ff",
-"d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#af5d8b8f1c5913df2bbae8a474624f49b",
-"d4/d80/class_vokabel_carsten_1_1_resource_1_1_dimension.html#acaaa1e93bad593d33c7bb335d6d7a120",
-"da/dcb/class_vokabel_carsten_1_1_resource_1_1_color.html#a64a4249ed2e5580df5ff81e528c51592",
-"db/d9e/class_vokabel_carsten_1_1_resource_1_1_id.html#aa3bd675a56bc6d4dc5c03c576fc15070",
-"de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a10e6a24f0e36f66eec41072a3f77a6c9",
-"de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a6b987989e3c42053ce2e9e7ba04fefb7",
-"de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#ac3c6abfd46e7b95a532298e8e499172a",
-"df/d4e/class_vokabel_carsten_1_1_resource_1_1_string.html#ab224cff04a832e480d26696864f8788f",
-"df/d75/class_vokabel_carsten_1_1_resource_1_1_attribute.html#a756aea5316538b6bf519f2c387857221",
-"df/da2/_vocab_box_8cs_source.html"
+"d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#a65f3971c470b65b987536365cec4e707",
+"d0/dc7/class_vokabel_carsten_1_1_resource_1_1_style.html#aed2563728de97977f548ff43803c368c",
+"d4/d80/class_vokabel_carsten_1_1_resource_1_1_dimension.html#a916698b8bcad679f957cdce1de1d7849",
+"d9/d2d/class_vokabel_carsten_1_1_learn_activity.html#a1afa69025151ca6f299b7c71b75dddd7",
+"db/d9e/class_vokabel_carsten_1_1_resource_1_1_id.html#a3a1a74259b2d8d05fb77febd8f7c52c1",
+"dc/d0e/class_vokabel_carsten_1_1_resource_1_1_drawable.html#a6d2079b96f7628c43871f1a11fb4c65c",
+"de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a3a49df2a2ef167b7d9ee346c151e77f8",
+"de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#a8a4a1b77be51b9958a113b3db74de594",
+"de/d80/class_vokabel_carsten_1_1_resource_1_1_styleable.html#adf027518fb3af55567ffa8da407195e9",
+"df/d75/class_vokabel_carsten_1_1_resource_1_1_attribute.html#a25487c8bb14146f9a84fd8001b8093c8",
+"df/d75/class_vokabel_carsten_1_1_resource_1_1_attribute.html#aa5bc55b09e81c8ad39c6a7f8ad179897",
+"functions_vars_o.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

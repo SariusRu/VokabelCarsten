@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['testmethod1_2796',['TestMethod1',['../d7/db9/class_vocabel_carsten_1_1_test_1_1_unit_test1.html#a49ec4c215bb1459b6856c350cc4ef927',1,'VocabelCarsten::Test::UnitTest1']]]
+  ['unloadvocabs_2933',['unloadVocabs',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#acdc7d44699769d9362c05dea09b358ba',1,'VokabelCarsten::VocabBox']]],
+  ['updateidvalues_2934',['UpdateIdValues',['../d0/d8f/class_vokabel_carsten_1_1_resource.html#a9a92ac7449d032e56d6bb0f2e85c0b0f',1,'VokabelCarsten.Resource.UpdateIdValues()'],['../d0/d8f/class_vokabel_carsten_1_1_resource.html#a9a92ac7449d032e56d6bb0f2e85c0b0f',1,'VokabelCarsten.Resource.UpdateIdValues()']]]
 ];

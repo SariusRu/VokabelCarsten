@@ -1,12 +1,23 @@
 var searchData=
 [
-  ['getanzvok_2749',['getAnzVok',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#abc14dc1dc9138d30e3b5944d19b16093',1,'VokabelCarsten::VocabBox']]],
-  ['getfilepath_2750',['getFilePath',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a1b324a9e8b1830a3f19e1a96cda1f9ee',1,'VokabelCarsten::VocabBox']]],
-  ['getid_2751',['getId',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a214be5d592b35c5d582951eb6d21bedb',1,'VokabelCarsten::VocabBox']]],
-  ['getlevel_2752',['GetLevel',['../df/dac/class_vokabel_carsten_1_1_vocab.html#aa94f2fea2e6ad0bc06c47afccdf91239',1,'VokabelCarsten::Vocab']]],
-  ['getname_2753',['getName',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a85ad4e536b3990166a41acd9ead0ff79',1,'VokabelCarsten::VocabBox']]],
-  ['getrandomvok_2754',['getRandomVok',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#aa112ec66935629fd5e5a0645877bc901',1,'VokabelCarsten::VocabBox']]],
-  ['getvocabboxlist_2755',['getVocabBoxList',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#a1d6ab4d1d56c072f83a6f2aba8a6f83f',1,'VokabelCarsten::DataManager']]],
-  ['getvokabel_2756',['getVokabel',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#afbc8650a664e25c97a8a307e0c649b39',1,'VokabelCarsten::VocabBox']]],
-  ['getvokfromfach_2757',['getVokFromFach',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a703c64bc1b14cad03512bef068e4d9e5',1,'VokabelCarsten::VocabBox']]]
+  ['getanswer_2870',['getAnswer',['../df/dac/class_vokabel_carsten_1_1_vocab.html#a5e1df6b98282bbdeaa1d2096029ca20f',1,'VokabelCarsten::Vocab']]],
+  ['getanzvok_2871',['getAnzVok',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#abc14dc1dc9138d30e3b5944d19b16093',1,'VokabelCarsten::VocabBox']]],
+  ['getanzvokchecks_2872',['getAnzVokChecks',['../df/df5/class_vocabel_carsten_1_1_test_1_1_vocab_box_test.html#a251fd86c167c5403a166286c66f33a89',1,'VocabelCarsten::Test::VocabBoxTest']]],
+  ['getcurrentvocabbox_2873',['GetCurrentVocabBox',['../d3/da3/class_vokabel_carsten_1_1_control.html#ae3866808035df64918b5a58f5af5cb52',1,'VokabelCarsten::Control']]],
+  ['getcurrentvokablist_2874',['GetCurrentVokabList',['../d3/da3/class_vokabel_carsten_1_1_control.html#a23f6cd81a0aee4068addfa9081136f01',1,'VokabelCarsten::Control']]],
+  ['getfilepath_2875',['getFilePath',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a1b324a9e8b1830a3f19e1a96cda1f9ee',1,'VokabelCarsten::VocabBox']]],
+  ['getid_2876',['getId',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a214be5d592b35c5d582951eb6d21bedb',1,'VokabelCarsten::VocabBox']]],
+  ['getlevel_2877',['GetLevel',['../df/dac/class_vokabel_carsten_1_1_vocab.html#aa94f2fea2e6ad0bc06c47afccdf91239',1,'VokabelCarsten::Vocab']]],
+  ['getleveltest_2878',['getLevelTest',['../dd/def/class_vocabel_carsten_1_1_test_1_1_vocab_test.html#a1718aeadb7be6de92e70d24b8eb32278',1,'VocabelCarsten::Test::VocabTest']]],
+  ['getname_2879',['getName',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#a85ad4e536b3990166a41acd9ead0ff79',1,'VokabelCarsten::VocabBox']]],
+  ['getnamechecks_2880',['getNameChecks',['../df/df5/class_vocabel_carsten_1_1_test_1_1_vocab_box_test.html#a67ef25b93c88d44b7c74206d86964913',1,'VocabelCarsten::Test::VocabBoxTest']]],
+  ['getquestion_2881',['getQuestion',['../df/dac/class_vokabel_carsten_1_1_vocab.html#aac66aa521820b4ecc4343b5b9a804d98',1,'VokabelCarsten::Vocab']]],
+  ['getsetfilepathchecks_2882',['getSetFilePathChecks',['../df/df5/class_vocabel_carsten_1_1_test_1_1_vocab_box_test.html#a0910b34ba4fd3d339f77609156d6f67c',1,'VocabelCarsten::Test::VocabBoxTest']]],
+  ['getvocab_2883',['GetVocab',['../d3/da3/class_vokabel_carsten_1_1_control.html#a5bfa925a218d926df0f3261dc5dc1f9b',1,'VokabelCarsten::Control']]],
+  ['getvocabboxarray_2884',['getVocabBoxArray',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#a6e76a14aa0e65824d9625bce29cbecd9',1,'VokabelCarsten::DataManager']]],
+  ['getvocabboxes_2885',['GetVocabBoxes',['../d3/da3/class_vokabel_carsten_1_1_control.html#a65a451b2452f9dcb541627b2cc50661c',1,'VokabelCarsten::Control']]],
+  ['getvocabboxlist_2886',['getVocabBoxList',['../da/df7/class_vokabel_carsten_1_1_data_manager.html#a2ab8759e60c18b6e4140aa7ca3bf760a',1,'VokabelCarsten::DataManager']]],
+  ['getvocabboxlistasarraytest_2887',['getVocabBoxListAsArrayTest',['../d2/dd2/class_vocabel_carsten_1_1_test_1_1_data_manager_test.html#a049580bfbdbd29e7a5c631bff4c34c48',1,'VocabelCarsten::Test::DataManagerTest']]],
+  ['getvocabboxlisttest_2888',['getVocabBoxListTest',['../d2/dd2/class_vocabel_carsten_1_1_test_1_1_data_manager_test.html#a75130bfd89d285ae2a62c6380abae7c4',1,'VocabelCarsten::Test::DataManagerTest']]],
+  ['getvokabel_2889',['getVokabel',['../d4/d99/class_vokabel_carsten_1_1_vocab_box.html#afbc8650a664e25c97a8a307e0c649b39',1,'VokabelCarsten::VocabBox']]]
 ];
